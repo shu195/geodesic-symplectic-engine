@@ -1,0 +1,33 @@
+{
+  "name": "memory_latch",
+  "description": "Store a concept, mathematical discovery, or decision into the continuous physical phase-space memory manifold. Sets an internal supercritical pitchfork hysteretic latch (w_self > 1) providing 100% noise immunity against conversational drift.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "concept": {
+        "type": "string",
+        "description": "Unique title or canonical name of the memory concept (e.g. 'Kerr Frame-Dragging T-Symmetry Breaking')."
+      },
+      "content": {
+        "type": "string",
+        "description": "Full factual explanation, mathematical formulas, code pointers, or insight to remember."
+      },
+      "category": {
+        "type": "string",
+        "description": "Classification category (e.g. 'physics', 'code', 'architecture', 'decision', 'user_preference').",
+        "default": "general"
+      },
+      "latch_strength": {
+        "type": "number",
+        "description": "Internal self-coupling feedback weight w_self. Values > 1.0 induce a supercritical pitchfork bifurcation, locking the memory against white noise (default 4.208).",
+        "default": 4.208
+      },
+      "links": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "List of existing concept names to establish directed frame-dragging causal links to."
+      }
+    },
+    "required": ["concept", "content"]
+  }
+}

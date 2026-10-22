@@ -1,0 +1,19 @@
+{
+  "name": "memory_consolidate_prune",
+  "description": "Executes sleep consolidation using FLOP-weighted L1 adjoint shrinkage to annihilate spurious, weak, or redundant memory edges to strictly 0.0000 and condense near-collinear concept nodes onto shared Riemannian manifolds.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "sparsity_lambda": {
+        "type": "number",
+        "description": "L1 shrinkage regularization penalty applied to memory edge weights (default 0.015).",
+        "default": 0.015
+      },
+      "hard_threshold": {
+        "type": "number",
+        "description": "Hard threshold cutoff. Edges with absolute strength below this value are eliminated to exactly 0.0000 (default 0.05).",
+        "default": 0.05
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "memory_geodesic_traverse",
+  "description": "Follows relativistic frame-dragging angular momentum fluxes (L = x × v) across the memory manifold using symplectic integration to trace multi-hop causal reasoning chains without context window bloat.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "start_concept": {
+        "type": "string",
+        "description": "Concept name or node ID to originate the geodesic trajectory from."
+      },
+      "max_depth": {
+        "type": "integer",
+        "description": "Maximum number of geodesic causal hops to follow (default 3, up to 8).",
+        "default": 3
+      },
+      "direction": {
+        "type": "string",
+        "enum": ["forward", "backward", "bidirectional"],
+        "description": "Directional flow: 'forward' follows causal consequences via angular momentum L; 'backward' traces causal roots via -L; 'bidirectional' explores both.",
+        "default": "forward"
+      }
+    },
+    "required": ["start_concept"]
+  }
+}

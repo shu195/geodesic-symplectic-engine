@@ -1,0 +1,13 @@
+{
+  "name": "memory_inspect_manifold",
+  "description": "Inspects the continuous physical memory manifold: returns active Hamiltonian energy, total stored concept attractors, edge sparsity ratio, and pitchfork latch states.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "category_filter": {
+        "type": "string",
+        "description": "Optional category filter to inspect specific memory submanifolds."
+      }
+    }
+  }
+}
