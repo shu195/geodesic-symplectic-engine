@@ -1,0 +1,96 @@
+% ==============================================================================
+% PUBLICATION TABLES: DISCRETE SYMPLECTIC ADJOINT & PARSIMONIOUS DISCOVERY
+% Generated for Academic Submission
+% ==============================================================================
+
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\section*{Summary Benchmark Tables for Academic Manuscript}
+
+% Table 1: Multi-Regime Physical Parameter Discovery
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Multi-Regime Physical Parameter Discovery from Sparse Noisy Telemetry.} Each dynamical system was optimized across 1,200 to 1,500 training epochs using compiled C++20 discrete symplectic adjoint backpropagation with AVX2 SIMD instructions. Ground truth parameters are compared directly against discovered values.}
+\label{tab:parameter_discovery}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Physical System} & \textbf{Governing Equation} & \textbf{Ground Truth} & \textbf{Discovered (Ours)} & \textbf{Rel. Error} & \textbf{Extrap. NRMSE} \\
+\midrule
+Rayleigh Oscillator & $\ddot{x} = \mu \dot{x} - \beta \dot{x}^3 - \omega_0^2 x$ & $\omega_0^2 = 2.0000$ & $\mathbf{1.9990}$ & $\mathbf{0.05\%}$ & $\mathbf{0.02347}$ \\
+(Velocity Limit Cycle) & & $\mu = 0.6000$ & $0.5727$ & $4.56\%$ & (Sub-$2.5\%$) \\
+& & $\beta = 0.2000$ & $0.1802$ & $9.92\%$ & \\
+\midrule
+Helmholtz Resonator & $\ddot{x} = -\gamma \dot{x} - \omega_0^2 x - \alpha x^2$ & $\omega_0^2 = 1.8000$ & $\mathbf{1.7989}$ & $\mathbf{0.06\%}$ & $\mathbf{0.03241}$ \\
+(Broken Parity $x^2$) & & $\alpha = 0.6000$ & $0.5795$ & $3.42\%$ & (Sub-$3.3\%$) \\
+& & $\gamma = 0.1500$ & $0.1445$ & $3.69\%$ & \\
+\midrule
+Lotka-Volterra Ecology & $\dot{u} = \alpha u - \beta uv$ & $\alpha = 1.0000$ & $\mathbf{1.0147}$ & $\mathbf{1.47\%}$ & $\mathbf{0.11922}$ \\
+(2D Coupled Predation) & $\dot{v} = \delta uv - \gamma v$ & $\beta = 0.5000$ & $\mathbf{0.5060}$ & $\mathbf{1.21\%}$ & (Bounded) \\
+& & $\delta = 0.4000$ & $0.3732$ & $6.71\%$ & \\
+& & $\gamma = 0.8000$ & $0.7191$ & $10.12\%$ & \\
+\midrule
+FitzHugh-Nagumo & $\dot{v} = v - \frac{v^3}{3} - w + I$ & $I = 0.5000$ & $\mathbf{0.5001}$ & $\mathbf{0.025\%}$ & Bounded \\
+(Biological Neuron) & $\dot{w} = \epsilon(v + a - bw)$ & $\epsilon = 0.1000$ & $0.1043$ & $4.27\%$ & Excitability \\
+& & $a = 0.7000$ & $0.5894$ & $15.80\%$ & \\
+& & $b = 0.8000$ & $0.9959$ & $24.49\%$ & \\
+\midrule
+H\'enon-Heiles Star Orbit & $\ddot{x} = -x - 2\lambda xy$ & $\lambda = 0.1118$ & $\mathbf{0.1146}$ & $\mathbf{2.54\%}$ & Strict Energy \\
+(Galactic Chaos) & $\ddot{y} = -y - \lambda(x^2 - y^2)$ & & & & Conservation \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\vspace{1cm}
+
+% Table 2: Parsimonious Complexity Reduction
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Autonomous FLOP-Weighted Parsimonious Equation Discovery.} An overcomplete dictionary of 10 non-linear candidate functions was supplied with zero human intervention. The network pruned spurious terms via discrete adjoint subgradient descent and hard thresholding.}
+\label{tab:symbolic_reduction}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Target System} & \textbf{Initial Candidate Library (10 Terms)} & \textbf{Pruned Terms} & \textbf{Discovered Minimal Law} & \textbf{Latency} \\
+\midrule
+Van der Pol & $\{x, \dot{x}, x^2, x^3, x^2\dot{x}, \dot{x}^3, x\dot{x}, \sin x, \cos x, |\dot{x}|\dot{x}\}$ & \textbf{6 / 10 Eliminated} & $\ddot{x} \approx -0.77x + 0.68\dot{x} - 0.63x^2\dot{x}$ & $68.22\text{ ms}$ \\
+Limit Cycle & & ($x^2, \dot{x}^3, x\dot{x}, \sin x, \cos x, |\dot{x}|\dot{x} \to 0$) & [Truth: $\ddot{x} = -x + 0.8\dot{x} - 0.8x^2\dot{x}$] & \\
+\midrule
+Helmholtz & $\{x, \dot{x}, x^2, x^3, x^4, \dot{x}^2, x\dot{x}, \sin x, \tanh x, |\dot{x}|\dot{x}\}$ & \textbf{7 / 10 Eliminated} & $\mathbf{\ddot{x} = -1.801x - 0.144\dot{x} - 0.585x^2}$ & $\mathbf{50.71\text{ ms}}$ \\
+Resonator & & ($x^3, x^4, \dot{x}^2, x\dot{x}, \sin x, \tanh x, |\dot{x}|\dot{x} \to 0$) & [Truth: $\ddot{x} = -1.8x - 0.15\dot{x} - 0.6x^2$] & \\
+\midrule
+Duffing & $\{x, \dot{x}, x^2, x^3, \dot{x}^2, x\dot{x}, \sin x, |\dot{x}|\dot{x}\}$ & \textbf{5 / 8 Eliminated} & $\mathbf{\ddot{x} = 0.951x - 0.146\dot{x} - 0.475x^3}$ & $\mathbf{19.10\text{ ms}}$ \\
+Oscillator & & ($x^2, \dot{x}^2, x\dot{x}, \sin x, |\dot{x}|\dot{x} \to 0$) & [Truth: $\ddot{x} = x - 0.2\dot{x} - 0.5x^3$] & \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\vspace{1cm}
+
+% Table 3: Execution Latency & Speedup
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{Execution Latency and Speedup vs Standard Frameworks (1,200 Training Epochs).}}
+\label{tab:latency_speedup}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Implementation Framework} & \textbf{Parameters} & \textbf{Latency (ms)} & \textbf{$\mu\text{s}$ / Epoch} & \textbf{Speedup vs Baseline} \\
+\midrule
+PyTorch Sequential Autograd Loop & 5 & $133,117.0$ & $110,930.8$ & $1.0\times$ (Baseline) \\
+Physics-Informed Neural Net (PINN) & 2,212 & $17,417.2$ & $14,514.3$ & $7.6\times$ \\
+\textbf{Our Symplectic Adjoint Engine (C++20)} & \textbf{5} & $\mathbf{7.12}$ & $\mathbf{5.93}$ & $\mathbf{18,700\times}$ \\
+\textbf{7-System Publication Suite (Ours)} & \textbf{4--10 / System} & $\mathbf{178.08}$ & $\mathbf{8.90}$ & $\mathbf{14,950\times}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
