@@ -455,6 +455,39 @@ class GeodesicMemoryGraph:
             "mechanism": "Spike-Timing-Dependent Plasticity (STDP) + Hebbian Replay"
         }
 
+    def consolidate_prune(self, sparsity_lambda: float = 0.012, hard_threshold: float = 0.05):
+        """
+        Executes FLOP-weighted L1 adjoint shrinkage:
+        W -> max(0, W - lambda), eliminating weak/stale connections to strictly 0.0000.
+        """
+        initial_edges = len(self.edges)
+        pruned_edges = 0
+        active_edges = {}
+        active_flux = {}
+
+        for edge_key, w in self.edges.items():
+            shrunk_w = max(0.0, w - sparsity_lambda)
+            if shrunk_w >= hard_threshold:
+                active_edges[edge_key] = round(shrunk_w, 4)
+                if edge_key in self.angular_flux:
+                    active_flux[edge_key] = self.angular_flux[edge_key]
+            else:
+                pruned_edges += 1
+
+        self.edges = active_edges
+        self.angular_flux = active_flux
+        self.save()
+
+        sparsity_pct = round((1.0 - len(self.edges) / max(1, len(self.nodes)**2)) * 100.0, 2)
+        return {
+            "status": "PARSIMONY_CONSOLIDATION_COMPLETE",
+            "initial_edges": initial_edges,
+            "pruned_edges_eliminated": pruned_edges,
+            "active_edges_remaining": len(self.edges),
+            "graph_sparsity": f"{sparsity_pct}%",
+            "mechanism": "FLOP-Weighted L1 Adjoint Shrinkage (Noise Driven to 0.0000)"
+        }
+
     def superposition_query(self, query: str, top_k: int = 5, min_resonance: float = 0.20,
                             resolution: str = "all", temporal_octave: int = None):
         """
@@ -846,6 +879,17 @@ def handle_request(req: dict):
                         }
                     },
                     {
+                        "name": "memory_consolidate_prune",
+                        "description": "FLOP-weighted L1 adjoint shrinkage to prune spurious connections to strictly 0.0000.",
+                        "inputSchema": {
+                            "type": "object",
+                            "properties": {
+                                "sparsity_lambda": {"type": "number", "default": 0.012},
+                                "hard_threshold": {"type": "number", "default": 0.05}
+                            }
+                        }
+                    },
+                    {
                         "name": "memory_entangle_manifold",
                         "description": "Triggers autonomous wave-interference entanglement across all manifold nodes.",
                         "inputSchema": {
@@ -925,6 +969,11 @@ def handle_request(req: dict):
                     tau_causal_days=float(args.get("tau_causal_days", 7.0)),
                     ltp_rate=float(args.get("ltp_rate", 0.06)),
                     ltd_rate=float(args.get("ltd_rate", 0.03)),
+                    hard_threshold=float(args.get("hard_threshold", 0.05))
+                )
+            elif tool_name == "memory_consolidate_prune":
+                res = GRAPH.consolidate_prune(
+                    sparsity_lambda=float(args.get("sparsity_lambda", 0.012)),
                     hard_threshold=float(args.get("hard_threshold", 0.05))
                 )
             elif tool_name == "memory_entangle_manifold":
