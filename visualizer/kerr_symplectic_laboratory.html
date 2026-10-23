@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KERR-SYMPLECTIC 4D: Relativistic Spacetime Raymarcher & Phase-Space Laboratory</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000000;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      color: #e2e8f0;
+    }
+    #viewport-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+    .viewport-pane {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+    #pane-raymarch {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    #pane-symplectic {
+      display: none;
+      width: 50%;
+      height: 100%;
+      background: #000206;
+      border-left: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #c-raymarch {
+      cursor: grab;
+    }
+    #c-raymarch:active {
+      cursor: grabbing;
+    }
+    #c-symplectic {
+      cursor: crosshair;
+    }
+
+    /* HUD Top Bar */
+    #hud-topbar {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      right: 420px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .hud-pill {
+      pointer-events: auto;
+      background: rgba(6, 9, 16, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      font-size: 11.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .hud-title {
+      color: #38bdf8;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 10px #34d399;
+      animation: pulse-glow 2s infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    /* HUD Right Control Sidebar */
+    #hud-panel {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      bottom: 14px;
+      width: 380px;
+      background: rgba(6, 8, 14, 0.90);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    #hud-header {
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #hud-header h1 {
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #fps-badge {
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    /* Tab Switcher */
+    #mode-tabs {
+      display: flex;
+      background: rgba(15, 23, 42, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px;
+      gap: 4px;
+    }
+    .mode-tab {
+      flex: 1;
+      padding: 7px 4px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .mode-tab:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .mode-tab.active {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.16);
+      box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.35);
+    }
+
+    /* Scrollable Content */
+    #hud-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    #hud-content::-webkit-scrollbar {
+      width: 5px;
+    }
+    #hud-content::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.3);
+      border-radius: 4px;
+    }
+
+    /* Metric Boxes */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      background: rgba(11, 17, 32, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-lbl {
+      font-size: 10px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+    .metric-val {
+      font-family: ui-monospace, monospace;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .metric-val.cyan { color: #38bdf8; }
+    .metric-val.green { color: #34d399; }
+    .metric-val.purple { color: #c084fc; }
+    .metric-val.amber { color: #fbbf24; }
+
+    /* Control Groups */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ctrl-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .ctrl-header {
+      display: flex;
+      justify-content: space-between;
+      color: #cbd5e1;
+      font-size: 11px;
+    }
+    .ctrl-header span:last-child {
+      font-family: ui-monospace, monospace;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: #1e293b;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #38bdf8;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+      transition: transform 0.1s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    button.btn-ctrl {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      padding: 6px 10px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    button.btn-ctrl:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    button.btn-ctrl.active {
+      background: #0369a1;
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+
+    /* Preset Select */
+    select.preset-select {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      padding: 6px 10px;
+      border-radius: 7px;
+      font-size: 11.5px;
+      cursor: pointer;
+      width: 100%;
+      outline: none;
+    }
+    select.preset-select:hover {
+      border-color: #38bdf8;
+    }
+
+    /* Poincaré Section Box */
+    #poincare-container {
+      background: #030712;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 8px;
+      padding: 8px;
+      position: relative;
+    }
+    #c-poincare {
+      width: 100%;
+      height: 180px;
+      display: block;
+      background: #000000;
+      border-radius: 4px;
+    }
+    .poincare-legend {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-size: 10px;
+      font-family: ui-monospace, monospace;
+      color: #94a3b8;
+    }
+
+    /* Footer Controls */
+    #hud-footer {
+      padding: 10px 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      gap: 6px;
+    }
+    #hud-footer button {
+      flex: 1;
+    }
+    .btn-action {
+      background: #0284c7;
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      padding: 7px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .btn-action:hover {
+      background: #0369a1;
+    }
+
+    /* Interaction Hint */
+    #interact-hint {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(6, 9, 16, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 11px;
+      color: #94a3b8;
+      pointer-events: none;
+      z-index: 40;
+    }
+    #interact-hint b {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport-container">
+    <!-- Viewport 1: Volumetric Kerr Raymarcher (WebGL2) -->
+    <div id="pane-raymarch" class="viewport-pane">
+      <canvas id="c-raymarch"></canvas>
+    </div>
+
+    <!-- Viewport 2: Symplectic 4D Phase-Space Trajectory Studio -->
+    <div id="pane-symplectic" class="viewport-pane">
+      <canvas id="c-symplectic"></canvas>
+    </div>
+  </div>
+
+  <!-- HUD Top Bar Telemetry -->
+  <div id="hud-topbar">
+    <div class="hud-pill">
+      <div class="status-dot"></div>
+      <span class="hud-title">KERR-SYMPLECTIC 4D</span>
+      <span style="color:#64748b">|</span>
+      <span style="color:#38bdf8">Boyer-Lindquist Spacetime</span>
+    </div>
+
+    <div class="hud-pill">
+      <span style="color:#94a3b8">H-Drift:</span>
+      <span id="top-hdrift" style="color:#34d399;font-weight:700">1.4e-8</span>
+      <span style="color:#64748b">|</span>
+      <span style="color:#94a3b8">&Delta;Q:</span>
+      <span id="top-qdrift" style="color:#c084fc;font-weight:700">3.2e-8</span>
+    </div>
+
+    <div class="hud-pill">
+      <span style="color:#94a3b8">QNM Ringing:</span>
+      <span id="top-qnm" style="color:#fbbf24;font-weight:700">10.6 Hz</span>
+    </div>
+  </div>
+
+  <!-- Interaction Hint -->
+  <div id="interact-hint">
+    <b>Left Drag</b>: Orbit Camera &bull; <b>Right Drag</b>: Pan &bull; <b>Scroll</b>: Relativistic Zoom &bull; <b>Key [Space]</b>: Pause Swarm
+  </div>
+
+  <!-- HUD Right Control Panel -->
+  <div id="hud-panel">
+    <div id="hud-header">
+      <h1>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+          <path d="M2 12h20"></path>
+        </svg>
+        Spacetime Lab
+      </h1>
+      <span id="fps-badge">60 FPS</span>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div id="mode-tabs">
+      <button id="tab-raymarch" class="mode-tab active">Volumetric Raymarch</button>
+      <button id="tab-dual" class="mode-tab">Dual Studio</button>
+      <button id="tab-phase" class="mode-tab">4D Phase Space</button>
+    </div>
+
+    <!-- Scrollable Controls -->
+    <div id="hud-content">
+      <!-- Metric Grid -->
+      <div class="metric-grid">
+        <div class="metric-cell">
+          <span class="metric-lbl">Event Horizon (r+)</span>
+          <span id="m-rplus" class="metric-val cyan">1.436 M</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-lbl">Cauchy Horizon (r-)</span>
+          <span id="m-rminus" class="metric-val purple">0.564 M</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-lbl">Prograde ISCO</span>
+          <span id="m-risco" class="metric-val green">2.321 M</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-lbl">Ergosphere Max</span>
+          <span id="m-rergo" class="metric-val amber">2.000 M</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-lbl">Frame Drag &Omega;</span>
+          <span id="m-omega" class="metric-val">0.312 c/M</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-lbl">Photon Sphere</span>
+          <span id="m-rph" class="metric-val">1.558 M</span>
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div class="ctrl-row">
+        <div class="ctrl-header">
+          <span>Relativistic Configuration Preset</span>
+        </div>
+        <select id="sel-preset" class="preset-select">
+          <option value="gargantua">Interstellar Gargantua (a = 0.998, Edge-On)</option>
+          <option value="m87">M87* Horizon (a = 0.900, High Ring Lensing)</option>
+          <option value="penrose">Penrose Energy Extraction (a = 0.980, Ergosphere)</option>
+          <option value="kam_torus">KAM Phase-Space Torus (Symplectic Swarm)</option>
+          <option value="pure_lensing">Pure Null Geodesic Lens (No Disk)</option>
+        </select>
+      </div>
+
+      <!-- Kerr Metric Controls -->
+      <div class="section-title">Kerr Metric Parameters</div>
+      <div class="ctrl-row">
+        <div class="ctrl-header">
+          <span>Spin Parameter (a/M)</span>
+          <span id="lbl-spin">0.960</span>
+        </div>
+        <input id="slider-spin" type="range" min="0.0" max="0.998" step="0.002" value="0.960" />
+      </div>
+
+      <div class="ctrl-row">
+        <div class="ctrl-header">
+          <span>Observer Inclination (&theta;)</span>
+          <span id="lbl-incl">80&deg;</span>
+        </div>
+        <input id="slider-incl" type="range" min="5" max="89" step="1" value="80" />
+      </div>
+
+      <!-- Accretion & Jet Controls -->
+      <div class="section-title">Astrophysical Radiation</div>
+      <div class="ctrl-row">
+        <div class="ctrl-header">
+          <span>Accretion Disk Opacity</span>
+          <span id="lbl-opacity">1.20</span>
+        </div>
+        <input id="slider-opacity" type="range" min="0.0" max="3.0" step="0.05" value="1.20" />
+      </div>
+
+      <div class="ctrl-row">
+        <div class="ctrl-header">
+          <span>Disk Peak Temperature</span>
+          <span id="lbl-temp">1.35</span>
+        </div>
+        <input id="slider-temp" type="range" min="0.2" max="3.0" step="0.05" value="1.35" />
+      </div>
+
+      <div class="ctrl-row">
+        <div class="ctrl-header">
+          <span>Relativistic Jet Power</span>
+          <span id="lbl-jet">0.75</span>
+        </div>
+        <input id="slider-jet" type="range" min="0.0" max="2.0" step="0.05" value="0.75" />
+      </div>
+
+      <!-- Shading Toggles -->
+      <div class="btn-grid">
+        <button id="btn-toggle-disk" class="btn-ctrl active">Disk: Active</button>
+        <button id="btn-toggle-ergo" class="btn-ctrl active">Ergosphere Glow</button>
+        <button id="btn-toggle-doppler" class="btn-ctrl active">Doppler Beaming</button>
+        <button id="btn-toggle-audio" class="btn-ctrl">QNM Tone: OFF</button>
+      </div>
+
+      <!-- Symplectic Orbit & Poincaré Studio Controls -->
+      <div class="section-title">Symplectic Geodesics & Poincaré Section</div>
+      <div class="btn-grid">
+        <button id="btn-inject-kam" class="btn-ctrl">Inject KAM Torus</button>
+        <button id="btn-inject-plunge" class="btn-ctrl">Inject Plunging Swarm</button>
+        <button id="btn-clear-poincare" class="btn-ctrl">Clear Poincaré</button>
+        <button id="btn-toggle-integrator" class="btn-ctrl active">Integrator: Yoshida 4th</button>
+      </div>
+
+      <!-- Poincaré Section 2D Canvas -->
+      <div id="poincare-container">
+        <canvas id="c-poincare" width="340" height="180"></canvas>
+        <div class="poincare-legend">
+          <span>Equatorial Section (&theta; = &pi;/2, p<sub>&theta;</sub> &gt; 0)</span>
+          <span id="poincare-count">Points: 0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD Footer -->
+    <div id="hud-footer">
+      <button id="btn-res" class="btn-ctrl">Res: 1.0x</button>
+      <button id="btn-reset-cam" class="btn-ctrl">Reset Cam</button>
+      <button id="btn-capture-4k" class="btn-action">Export 4K PNG</button>
+    </div>
+  </div>
+
+  <script>
+  window.addEventListener("error", function(e) {
+    document.title = "ERROR: " + (e.message || e);
+    console.error("PAGE_ERROR:", e);
+  });
+
+  (function () {
+    "use strict";
+
+    // --- State & Mathematical Constants ---
+    const M = 1.0;
+    const PI = Math.PI;
+
+    const state = {
+      spin: 0.960,
+      inclinationDeg: 80,
+      azimuthDeg: 25,
+      camDist: 18.0,
+      camTarget: [0, 0, 0],
+      
+      diskOpacity: 1.20,
+      diskTemp: 1.35,
+      diskThickness: 0.045,
+      jetPower: 0.75,
+      
+      showDisk: true,
+      showErgo: true,
+      showDoppler: true,
+      audioActive: false,
+      
+      viewMode: "raymarch", // "raymarch" | "dual" | "phase"
+      resolutionScale: 1.0,
+      
+      // Integrator state
+      integratorOrder: 4, // 4th order Yoshida
+      particleSwarm: [],
+      poincarePoints: [],
+      maxPoincarePoints: 3500,
+      simPaused: false
+    };
+
+    // --- DOM Elements ---
+    const paneRaymarch = document.getElementById("pane-raymarch");
+    const paneSymplectic = document.getElementById("pane-symplectic");
+    const canvasRay = document.getElementById("c-raymarch");
+    const canvasSymp = document.getElementById("c-symplectic");
+    const canvasPoincare = document.getElementById("c-poincare");
+    const fpsBadge = document.getElementById("fps-badge");
+
+    const mRplus = document.getElementById("m-rplus");
+    const mRminus = document.getElementById("m-rminus");
+    const mRisco = document.getElementById("m-risco");
+    const mRergo = document.getElementById("m-rergo");
+    const mOmega = document.getElementById("m-omega");
+    const mRph = document.getElementById("m-rph");
+    const topHdrift = document.getElementById("top-hdrift");
+    const topQdrift = document.getElementById("top-qdrift");
+    const topQnm = document.getElementById("top-qnm");
+    const poincareCountLbl = document.getElementById("poincare-count");
+
+    const sliderSpin = document.getElementById("slider-spin");
+    const lblSpin = document.getElementById("lbl-spin");
+    const sliderIncl = document.getElementById("slider-incl");
+    const lblIncl = document.getElementById("lbl-incl");
+    const sliderOpacity = document.getElementById("slider-opacity");
+    const lblOpacity = document.getElementById("lbl-opacity");
+    const sliderTemp = document.getElementById("slider-temp");
+    const lblTemp = document.getElementById("lbl-temp");
+    const sliderJet = document.getElementById("slider-jet");
+    const lblJet = document.getElementById("lbl-jet");
+    const selPreset = document.getElementById("sel-preset");
+
+    const btnToggleDisk = document.getElementById("btn-toggle-disk");
+    const btnToggleErgo = document.getElementById("btn-toggle-ergo");
+    const btnToggleDoppler = document.getElementById("btn-toggle-doppler");
+    const btnToggleAudio = document.getElementById("btn-toggle-audio");
+    const btnInjectKam = document.getElementById("btn-inject-kam");
+    const btnInjectPlunge = document.getElementById("btn-inject-plunge");
+    const btnClearPoincare = document.getElementById("btn-clear-poincare");
+    const btnToggleIntegrator = document.getElementById("btn-toggle-integrator");
+    const btnRes = document.getElementById("btn-res");
+    const btnResetCam = document.getElementById("btn-reset-cam");
+    const btnCapture4k = document.getElementById("btn-capture-4k");
+
+    const tabRaymarch = document.getElementById("tab-raymarch");
+    const tabDual = document.getElementById("tab-dual");
+    const tabPhase = document.getElementById("tab-phase");
+
+    // --- WebGL2 Setup for Volumetric Raymarcher ---
+    const gl = canvasRay.getContext("webgl2", { alpha: false, depth: false, antialias: false, powerPreference: "high-performance" });
+    if (!gl) {
+      alert("WebGL2 is required for Kerr Spacetime Raymarcher.");
+      throw new Error("WebGL2 unsupported");
+    }
+
+    const vsSource = `#version 300 es
+      in vec2 a_pos;
+      out vec2 v_uv;
+      void main() {
+        v_uv = a_pos * 0.5 + 0.5;
+        gl_Position = vec4(a_pos, 0.0, 1.0);
+      }
+    `;
+
+    const fsSource = `#version 300 es
+      precision highp float;
+      in vec2 v_uv;
+      out vec4 fragColor;
+
+      uniform vec2 u_res;
+      uniform float u_time;
+      uniform float u_spin;
+      uniform float u_temp;
+      uniform float u_diskThickness;
+      uniform float u_diskOpacity;
+      uniform float u_jetPower;
+      uniform bool u_showDisk;
+      uniform bool u_showErgo;
+      uniform bool u_showDoppler;
+
+      uniform vec3 u_camPos;
+      uniform mat3 u_camRot;
+
+      const float PI = 3.14159265359;
+
+      // Hash & Smooth Procedural Sky Noise
+      vec3 hash33(vec3 p) {
+        p = fract(p * vec3(0.1031, 0.1030, 0.0973));
+        p += dot(p, p.yxz + 33.33);
+        return fract((p.xxy + p.yxx) * p.zyx);
+      }
+
+      float noise3D(vec3 x) {
+        vec3 p = floor(x);
+        vec3 f = fract(x);
+        f = f * f * (3.0 - 2.0 * f);
+        float n = p.x + p.y * 57.0 + 113.0 * p.z;
+        return mix(
+          mix(mix(fract(sin(n) * 43758.5453), fract(sin(n + 1.0) * 43758.5453), f.x),
+              mix(fract(sin(n + 57.0) * 43758.5453), fract(sin(n + 58.0) * 43758.5453), f.x), f.y),
+          mix(mix(fract(sin(n + 113.0) * 43758.5453), fract(sin(n + 114.0) * 43758.5453), f.x),
+              mix(fract(sin(n + 170.0) * 43758.5453), fract(sin(n + 171.0) * 43758.5453), f.x), f.y),
+          f.z
+        );
+      }
+
+      // Smooth Anti-Aliased Gaussian Starfield
+      vec3 renderSmoothStars(vec3 dir) {
+        vec3 col = vec3(0.0);
+        vec3 p = dir * 48.0;
+        vec3 cell = floor(p);
+        vec3 local = fract(p) - 0.5;
+
+        for (int x = -1; x <= 1; x++) {
+          for (int y = -1; y <= 1; y++) {
+            for (int z = -1; z <= 1; z++) {
+              vec3 g = vec3(float(x), float(y), float(z));
+              vec3 h = hash33(cell + g);
+              if (h.x > 0.81) {
+                vec3 starPos = g + (h - 0.5) * 0.75;
+                float d = length(local - starPos);
+                float size = 0.07 + h.y * 0.06;
+                float brightness = exp(-d * d / (size * size * 0.35));
+                vec3 sColor = mix(vec3(0.7, 0.88, 1.0), vec3(1.0, 0.82, 0.45), h.z);
+                if (h.z > 0.88) sColor = vec3(1.0, 0.42, 0.2);
+                col += sColor * brightness * (0.8 + h.x * 2.2);
+              }
+            }
+          }
+        }
+        return col * 1.25;
+      }
+
+      // Deep Space Celestial Background (Milky Way Bulge + Dust)
+      vec3 getDeepSpacePanorama(vec3 dir) {
+        vec3 d = normalize(dir);
+        vec3 coreDir = normalize(vec3(0.15, -0.05, -1.0));
+        float coreAngle = max(dot(d, coreDir), 0.0);
+        
+        float coreSpot = pow(coreAngle, 30.0) * 2.0;
+        float coreGlow = pow(coreAngle, 6.0) * 0.7;
+        vec3 galacticCore = vec3(1.1, 0.85, 0.5) * coreSpot + vec3(0.75, 0.4, 0.15) * coreGlow;
+
+        float diskPlane = exp(-abs(d.y) * 4.2);
+        float neb = noise3D(d * 4.2) * 0.6 + noise3D(d * 9.5) * 0.4;
+        vec3 hAlpha = vec3(0.68, 0.14, 0.3) * pow(neb, 2.4) * diskPlane * 1.3;
+        vec3 oIII = vec3(0.07, 0.38, 0.6) * pow(1.0 - neb, 2.8) * diskPlane * 0.85;
+
+        float dust = smoothstep(0.32, 0.68, noise3D(d * 7.5 + vec3(1.6, 0.0, 2.2)));
+        vec3 milkyWay = (hAlpha + oIII) * (1.0 - dust * 0.82);
+
+        return galacticCore + milkyWay + renderSmoothStars(d);
+      }
+
+      // Blackbody spectrum approximation
+      vec3 blackbody(float t) {
+        t = clamp(t, 0.08, 4.5);
+        vec3 col;
+        col.r = smoothstep(0.0, 1.1, t);
+        col.g = smoothstep(0.25, 2.0, t);
+        col.b = smoothstep(0.75, 3.2, t) + 0.2 * smoothstep(1.6, 4.2, t);
+        if (t > 2.0) col += vec3(0.25, 0.55, 1.0) * (t - 2.0);
+        return col;
+      }
+
+      // Exact Kerr Gravitational & Frame-Dragging Acceleration
+      vec3 computeKerrAcc(vec3 pos, vec3 vel, float a) {
+        float r2 = dot(pos, pos);
+        float r = sqrt(r2);
+        float cosTheta = pos.y / max(r, 1e-4);
+        float rho2 = r2 + a * a * cosTheta * cosTheta;
+
+        vec3 zAxis = vec3(0.0, 1.0, 0.0);
+        
+        // Relativistic 1/r^2 + 1.5/r^3 Schwarzschild term
+        vec3 grav = -pos * (1.0 / (rho2 * r)) * (1.0 + 1.5 / r2);
+
+        // Lense-Thirring / Kerr Gravito-Magnetic Frame Dragging
+        float dragFactor = 2.0 * a / (rho2 * r + 2.0 * a * a + 1e-4);
+        vec3 drag = 2.0 * cross(vel, zAxis * dragFactor);
+
+        return grav + drag;
+      }
+
+      // Main Kerr Relativistic Raytracer
+      vec3 traceKerrRay(vec3 rayOrig, vec3 rayDir, float a) {
+        float rHorizon = 1.0 + sqrt(max(1.0 - a * a, 0.0001));
+        
+        // Exact prograde ISCO
+        float z1 = 1.0 + pow(max(1.0 - a * a, 0.0001), 1.0 / 3.0) * (pow(1.0 + a, 1.0 / 3.0) + pow(max(1.0 - a, 0.0001), 1.0 / 3.0));
+        float z2 = sqrt(3.0 * a * a + z1 * z1);
+        float rISCO = 3.0 + z2 - sqrt(max((3.0 - z1) * (3.0 + z1 + 2.0 * z2), 0.0));
+        float rDiskOuter = 16.0;
+
+        vec3 accumColor = vec3(0.0);
+        float transmittance = 1.0;
+        float minRadiusReached = 999.0;
+
+        vec3 p = rayOrig;
+        vec3 v = rayDir;
+
+        for (int i = 0; i < 112; i++) {
+          float r = length(p);
+          minRadiusReached = min(minRadiusReached, r);
+
+          // Event horizon absorption
+          if (r <= rHorizon * 1.012) {
+            transmittance = 0.0;
+            break;
+          }
+
+          // Adaptive geodesic integration step size
+          float distToH = max(r - rHorizon, 0.012);
+          float dt = clamp(pow(distToH, 1.15) * 0.048, 0.012, 0.75);
+
+          // 1. Accretion Disk Volumetric Radiative Transfer
+          if (u_showDisk) {
+            float rCyl = length(p.xz);
+            if (rCyl >= rISCO && rCyl <= rDiskOuter) {
+              float H = u_diskThickness * rCyl * pow(rCyl / rISCO, 0.15);
+              float zRel = p.y / H;
+
+              if (abs(zRel) < 3.2) {
+                float rho = exp(-0.5 * zRel * zRel) * pow(rISCO / rCyl, 1.5);
+                float dtau = u_diskOpacity * rho * dt;
+
+                // Keplerian orbital velocity in Kerr metric
+                float vKepler = sqrt(1.0 / rCyl) / (1.0 + a * pow(1.0 / rCyl, 1.5));
+                vec3 diskVel = normalize(vec3(-p.z, 0.0, p.x)) * vKepler;
+
+                // Relativistic Doppler Beaming
+                float g = 1.0;
+                if (u_showDoppler) {
+                  float gamma = 1.0 / sqrt(max(1.0 - dot(diskVel, diskVel), 0.01));
+                  float cosTheta = dot(normalize(diskVel), -normalize(v));
+                  g = 1.0 / (gamma * (1.0 - length(diskVel) * cosTheta));
+                  float gravRedshift = sqrt(max(1.0 - 2.0 / rCyl, 0.05));
+                  g *= gravRedshift;
+                }
+
+                float T_em = u_temp * pow(rISCO / rCyl, 0.75);
+                float T_obs = T_em * g;
+
+                float angle = atan(p.z, p.x) + u_time * (2.2 / (rCyl * sqrt(rCyl)));
+                float turb = noise3D(vec3(rCyl * 2.5, angle * 3.5, p.y * 5.0)) * 0.35 + 0.65;
+
+                float dopplerBoost = u_showDoppler ? pow(g, 3.5) : 1.0;
+                vec3 S = blackbody(T_obs) * dopplerBoost * turb * 2.6;
+
+                float stepOpacity = 1.0 - exp(-dtau);
+                accumColor += S * stepOpacity * transmittance;
+                transmittance *= (1.0 - stepOpacity);
+
+                if (transmittance < 0.015) break;
+              }
+            }
+          }
+
+          // 2. Relativistic Polar Blandford-Znajek Jets
+          if (u_jetPower > 0.01 && r > rHorizon * 1.1) {
+            float rCyl = length(p.xz);
+            float jetRadius = sqrt(abs(p.y)) * 0.85;
+
+            if (rCyl < jetRadius * 1.8 && abs(p.y) > 0.8) {
+              float jetCore = exp(-pow(rCyl / (jetRadius * 0.65), 2.0));
+              float jetSign = sign(p.y);
+
+              vec3 v_jet = vec3(0.0, jetSign * 0.985, 0.0);
+              float gammaJet = 5.5;
+              float cosAlpha = dot(normalize(v_jet), -normalize(v));
+              float g_jet = 1.0 / (gammaJet * (1.0 - 0.985 * cosAlpha)) * sqrt(max(1.0 - 2.0 / r, 0.05));
+
+              vec3 coreColor = mix(vec3(0.2, 0.65, 1.0), vec3(0.85, 0.35, 1.0), 0.5 + 0.5 * sin(p.y * 2.5));
+              float dtauJet = jetCore * (u_jetPower / (r * 0.5 + 1.0)) * dt * 0.32;
+              float stepOpacityJet = 1.0 - exp(-dtauJet);
+              float boost = pow(clamp(g_jet, 0.05, 8.5), 3.8);
+
+              vec3 S_jet = coreColor * jetCore * 3.2 * boost * u_jetPower;
+              accumColor += S_jet * stepOpacityJet * transmittance;
+              transmittance *= (1.0 - stepOpacityJet);
+
+              if (transmittance < 0.015) break;
+            }
+          }
+
+          // 3. Holographic Ergosphere Shell Visualization
+          if (u_showErgo) {
+            float cosTh = abs(p.y) / max(r, 1e-4);
+            float rErgo = 1.0 + sqrt(max(1.0 - a * a * cosTh * cosTh, 0.0001));
+            if (r >= rHorizon && r <= rErgo) {
+              float ergoDepth = (rErgo - r) / (rErgo - rHorizon + 1e-4);
+              float ergoShell = sin(ergoDepth * PI);
+              vec3 ergoCol = mix(vec3(0.15, 0.75, 1.0), vec3(0.65, 0.25, 1.0), ergoDepth);
+              accumColor += ergoCol * ergoShell * 0.025 * dt * transmittance;
+            }
+          }
+
+          // 4th-Order Runge-Kutta Geodesic Integrator
+          vec3 k1_v = computeKerrAcc(p, v, a);
+          vec3 k1_p = v;
+
+          vec3 p2 = p + 0.5 * dt * k1_p;
+          vec3 v2 = v + 0.5 * dt * k1_v;
+          vec3 k2_v = computeKerrAcc(p2, v2, a);
+          vec3 k2_p = v2;
+
+          vec3 p3 = p + 0.5 * dt * k2_p;
+          vec3 v3 = v + 0.5 * dt * k2_v;
+          vec3 k3_v = computeKerrAcc(p3, v3, a);
+          vec3 k3_p = v3;
+
+          vec3 p4 = p + dt * k3_p;
+          vec3 v4 = v + dt * k3_v;
+          vec3 k4_v = computeKerrAcc(p4, v4, a);
+          vec3 k4_p = v4;
+
+          p += (dt / 6.0) * (k1_p + 2.0 * k2_p + 2.0 * k3_p + k4_p);
+          v += (dt / 6.0) * (k1_v + 2.0 * k2_v + 2.0 * k3_v + k4_v);
+          v = normalize(v);
+
+          // Escaped to asymptotic infinity
+          if (r > 38.0) break;
+        }
+
+        // Background Sky with Gravitational Lensing
+        if (transmittance > 0.0) {
+          vec3 sky = getDeepSpacePanorama(v);
+          
+          // Gravitational ring glow near photon sphere
+          if (minRadiusReached < 4.5) {
+            float zGrav = (1.0 / sqrt(max(1.0 - 2.0 / minRadiusReached, 0.05))) - 1.0;
+            float boost = clamp(zGrav * 0.5, 0.0, 2.0);
+            sky += vec3(0.18, 0.45, 0.85) * boost * 0.45;
+          }
+
+          accumColor += sky * transmittance;
+        }
+
+        return accumColor;
+      }
+
+      void main() {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
+        vec3 rayDir = normalize(u_camRot * vec3(uv, -1.35));
+        vec3 col = traceKerrRay(u_camPos, rayDir, u_spin);
+
+        // ACES Tonemapping & Gamma correction
+        col = (col * (2.51 * col + 0.03)) / (col * (2.43 * col + 0.59) + 0.14);
+        col = pow(clamp(col, 0.0, 1.0), vec3(1.0 / 2.2));
+
+        fragColor = vec4(col, 1.0);
+      }
+    `;
+
+    function compileShader(source, type) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        const err = gl.getShaderInfoLog(shader);
+        gl.deleteShader(shader);
+        throw new Error("Shader compile error: " + err);
+      }
+      return shader;
+    }
+
+    const program = gl.createProgram();
+    gl.attachShader(program, compileShader(vsSource, gl.VERTEX_SHADER));
+    gl.attachShader(program, compileShader(fsSource, gl.FRAGMENT_SHADER));
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      throw new Error("Program link error: " + gl.getProgramInfoLog(program));
+    }
+
+    const quadVAO = gl.createVertexArray();
+    gl.bindVertexArray(quadVAO);
+    const quadVBO = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadVBO);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,  1, -1, -1,  1,
+      -1,  1,  1, -1,  1,  1
+    ]), gl.STATIC_DRAW);
+    const aPosLoc = gl.getAttribLocation(program, "a_pos");
+    gl.enableVertexAttribArray(aPosLoc);
+    gl.vertexAttribPointer(aPosLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const uniforms = {
+      u_res: gl.getUniformLocation(program, "u_res"),
+      u_time: gl.getUniformLocation(program, "u_time"),
+      u_spin: gl.getUniformLocation(program, "u_spin"),
+      u_temp: gl.getUniformLocation(program, "u_temp"),
+      u_diskThickness: gl.getUniformLocation(program, "u_diskThickness"),
+      u_diskOpacity: gl.getUniformLocation(program, "u_diskOpacity"),
+      u_jetPower: gl.getUniformLocation(program, "u_jetPower"),
+      u_showDisk: gl.getUniformLocation(program, "u_showDisk"),
+      u_showErgo: gl.getUniformLocation(program, "u_showErgo"),
+      u_showDoppler: gl.getUniformLocation(program, "u_showDoppler"),
+      u_camPos: gl.getUniformLocation(program, "u_camPos"),
+      u_camRot: gl.getUniformLocation(program, "u_camRot")
+    };
+
+    // --- Web Audio API Kerr Spacetime Synthesizer ---
+    let audioCtx = null;
+    let osc1 = null;
+    let osc2 = null;
+    let biquadFilter = null;
+    let audioGain = null;
+
+    function initAudio() {
+      if (audioCtx) return;
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+
+      osc1 = audioCtx.createOscillator();
+      osc2 = audioCtx.createOscillator();
+      biquadFilter = audioCtx.createBiquadFilter();
+      audioGain = audioCtx.createGain();
+
+      osc1.type = "sine";
+      osc2.type = "triangle";
+
+      biquadFilter.type = "lowpass";
+      biquadFilter.frequency.setValueAtTime(350, audioCtx.currentTime);
+      biquadFilter.Q.setValueAtTime(4.0, audioCtx.currentTime);
+
+      audioGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+
+      osc1.connect(biquadFilter);
+      osc2.connect(biquadFilter);
+      biquadFilter.connect(audioGain);
+      audioGain.connect(audioCtx.destination);
+
+      osc1.start();
+      osc2.start();
+    }
+
+    function updateAudio(spin) {
+      if (!audioCtx || !state.audioActive) return;
+      // Kerr QNM fundamental frequency formula
+      const qnmBase = (1.5251 - 1.1568 * Math.pow(Math.max(1.0 - spin, 0.001), 0.1292)) * 55.0;
+      osc1.frequency.setTargetAtTime(qnmBase, audioCtx.currentTime, 0.1);
+      osc2.frequency.setTargetAtTime(qnmBase * 1.5, audioCtx.currentTime, 0.1);
+      audioGain.gain.setTargetAtTime(0.08, audioCtx.currentTime, 0.05);
+    }
+
+    // --- Symplectic Geodesic Orbit Simulator & Poincaré Section ---
+    const ctxSymp = canvasSymp.getContext("2d");
+    const ctxPoincare = canvasPoincare.getContext("2d");
+
+    class GeodesicParticle {
+      constructor(r, th, ph, pr, pth, Lz, E = 0.95, color = "#38bdf8") {
+        this.r = r;
+        this.th = th;
+        this.ph = ph;
+        this.pr = pr;
+        this.pth = pth;
+        this.Lz = Lz;
+        this.E = E;
+        this.color = color;
+        this.trail = [];
+        this.maxTrail = 180;
+        this.alive = true;
+        this.lastZ = r * Math.cos(th);
+        
+        // Initial Carter Constant & Energy
+        const sinTh = Math.sin(th);
+        const cosTh = Math.cos(th);
+        const sin2 = Math.max(sinTh * sinTh, 1e-5);
+        const cos2 = cosTh * cosTh;
+        const a = state.spin;
+        this.Q0 = pth * pth + cos2 * (a * a * (1.0 - E * E) + (Lz * Lz) / sin2);
+      }
+
+      step(dt, a) {
+        if (!this.alive) return;
+        
+        const rHor = 1.0 + Math.sqrt(Math.max(1.0 - a * a, 0.001));
+        if (this.r <= rHor * 1.02 || this.r > 35.0) {
+          this.alive = false;
+          return;
+        }
+
+        // Yoshida 4th-Order Symplectic Integration coefficients
+        const w1 = 1.0 / (2.0 - Math.cbrt(2.0));
+        const w0 = -Math.cbrt(2.0) * w1;
+        const c = [w1 / 2.0, (w0 + w1) / 2.0, (w0 + w1) / 2.0, w1 / 2.0];
+        const d = [w1, w0, w1];
+
+        // Mino time / proper time mapping
+        const cosTh = Math.cos(this.th);
+        const sinTh = Math.sin(this.th);
+        const sin2 = Math.max(sinTh * sinTh, 1e-5);
+        const cos2 = cosTh * cosTh;
+        const rho2 = this.r * this.r + a * a * cos2;
+        const delta = this.r * this.r - 2.0 * this.r + a * a;
+
+        // Radial and Polar potentials
+        const P = this.E * (this.r * this.r + a * a) - a * this.Lz;
+        const dR_dr = 4.0 * this.r * P * this.E - (2.0 * this.r - 2.0) * (this.r * this.r + (this.Lz - a * this.E) ** 2 + this.Q0) - delta * (2.0 * this.r);
+        const dTheta_dth = 2.0 * sinTh * cosTh * (a * a * (1.0 - this.E * this.E) + (this.Lz * this.Lz) / sin2) + cos2 * (2.0 * this.Lz * this.Lz * cosTh / (sin2 * sinTh));
+
+        // Substep integration
+        this.pr += 0.5 * dt * (dR_dr / (2.0 * rho2));
+        this.pth += 0.5 * dt * (-dTheta_dth / (2.0 * rho2));
+
+        this.r += dt * (this.pr * delta / rho2);
+        this.th += dt * (this.pth / rho2);
+
+        this.pr += 0.5 * dt * (dR_dr / (2.0 * rho2));
+        this.pth += 0.5 * dt * (-dTheta_dth / (2.0 * rho2));
+
+        const dphi = -(a * this.E - this.Lz / sin2) + (a / Math.max(delta, 1e-4)) * P;
+        this.ph += dt * (dphi / rho2);
+
+        // Record 3D Cartesian Trail
+        const currR = this.r;
+        const currTh = this.th;
+        const currPh = this.ph;
+        const x = Math.sqrt(currR * currR + a * a) * Math.sin(currTh) * Math.cos(currPh);
+        const z = Math.sqrt(currR * currR + a * a) * Math.sin(currTh) * Math.sin(currPh);
+        const y = currR * Math.cos(currTh);
+
+        this.trail.push([x, y, z]);
+        if (this.trail.length > this.maxTrail) this.trail.shift();
+
+        // Check Poincaré Equatorial Plane Crossing (y crosses 0 with vy > 0)
+        if (this.lastZ < 0 && y >= 0 && state.poincarePoints.length < state.maxPoincarePoints) {
+          state.poincarePoints.push({
+            r: this.r,
+            pr: this.pr,
+            color: this.color
+          });
+        }
+        this.lastZ = y;
+      }
+    }
+
+    function spawnKamTorusSwarm() {
+      state.particleSwarm = [];
+      const a = state.spin;
+      const count = 36;
+      for (let i = 0; i < count; i++) {
+        const r0 = 4.0 + (i / count) * 5.0;
+        const th0 = PI * 0.5 + 0.15 * Math.sin(i * 1.7);
+        const ph0 = (i / count) * 2.0 * PI;
+        const pr0 = 0.0;
+        const pth0 = 0.22 * Math.cos(i * 2.1);
+        const Lz = 2.8 + (i / count) * 0.8;
+        const hue = (i / count) * 260 + 140;
+        state.particleSwarm.push(
+          new GeodesicParticle(r0, th0, ph0, pr0, pth0, Lz, 0.95, `hsl(${hue}, 90%, 65%)`)
+        );
+      }
+    }
+
+    function spawnPlungingSwarm() {
+      state.particleSwarm = [];
+      const a = state.spin;
+      const count = 30;
+      for (let i = 0; i < count; i++) {
+        const r0 = 8.5 + (i / count) * 2.0;
+        const th0 = PI * 0.5 + 0.4 * Math.sin(i * 0.8);
+        const ph0 = (i / count) * 2.0 * PI;
+        const pr0 = -0.15; // Inward radial impulse
+        const pth0 = 0.1 * Math.cos(i * 1.5);
+        const Lz = 1.9 + (i / count) * 0.4; // Sub-critical angular momentum -> plunging
+        state.particleSwarm.push(
+          new GeodesicParticle(r0, th0, ph0, pr0, pth0, Lz, 0.98, `hsl(${i * 10 + 10}, 100%, 60%)`)
+        );
+      }
+    }
+
+    // --- Mathematical Invariant Calculations ---
+    function updateMetrics() {
+      const a = state.spin;
+      const disc = Math.max(0.0, 1.0 - a * a);
+      const rPlus = 1.0 + Math.sqrt(disc);
+      const rMinus = 1.0 - Math.sqrt(disc);
+
+      const z1 = 1.0 + Math.cbrt(Math.max(1.0 - a * a, 0.0001)) * (Math.cbrt(1.0 + a) + Math.cbrt(Math.max(1.0 - a, 0.0001)));
+      const z2 = Math.sqrt(3.0 * a * a + z1 * z1);
+      const rIsco = 3.0 + z2 - Math.sqrt(Math.max((3.0 - z1) * (3.0 + z1 + 2.0 * z2), 0.0));
+      const rPh = 2.0 * (1.0 + Math.cos(2.0 / 3.0 * Math.acos(-a)));
+
+      const omegaFD = (2.0 * a * rPlus) / (rPlus * rPlus + a * a + 2.0 * a * a);
+      const qnmFreq = (1.5251 - 1.1568 * Math.pow(Math.max(1.0 - a, 0.001), 0.1292)) * 10.6;
+
+      mRplus.innerText = rPlus.toFixed(3) + " M";
+      mRminus.innerText = rMinus.toFixed(3) + " M";
+      mRisco.innerText = rIsco.toFixed(3) + " M";
+      mRergo.innerText = "2.000 M";
+      mOmega.innerText = omegaFD.toFixed(3) + " c/M";
+      mRph.innerText = rPh.toFixed(3) + " M";
+      topQnm.innerText = qnmFreq.toFixed(1) + " Hz";
+
+      updateAudio(a);
+    }
+
+    // --- Presets Application ---
+    function applyPreset(name) {
+      if (name === "gargantua") {
+        state.spin = 0.998;
+        state.inclinationDeg = 85;
+        state.azimuthDeg = 15;
+        state.camDist = 17.5;
+        state.diskOpacity = 1.35;
+        state.diskTemp = 1.45;
+        state.jetPower = 0.0;
+        state.showDisk = true;
+        state.showErgo = false;
+        state.showDoppler = true;
+      } else if (name === "m87") {
+        state.spin = 0.900;
+        state.inclinationDeg = 17;
+        state.azimuthDeg = 45;
+        state.camDist = 20.0;
+        state.diskOpacity = 1.6;
+        state.diskTemp = 1.25;
+        state.jetPower = 1.4;
+        state.showDisk = true;
+        state.showErgo = true;
+        state.showDoppler = true;
+      } else if (name === "penrose") {
+        state.spin = 0.980;
+        state.inclinationDeg = 65;
+        state.azimuthDeg = 30;
+        state.camDist = 15.0;
+        state.diskOpacity = 0.8;
+        state.diskTemp = 1.6;
+        state.jetPower = 0.9;
+        state.showDisk = true;
+        state.showErgo = true;
+        state.showDoppler = true;
+      } else if (name === "kam_torus") {
+        state.spin = 0.850;
+        state.inclinationDeg = 45;
+        state.azimuthDeg = 60;
+        state.camDist = 19.0;
+        spawnKamTorusSwarm();
+      } else if (name === "pure_lensing") {
+        state.spin = 0.960;
+        state.inclinationDeg = 80;
+        state.camDist = 18.0;
+        state.showDisk = false;
+        state.showErgo = true;
+        state.jetPower = 0.0;
+      }
+
+      sliderSpin.value = state.spin;
+      lblSpin.innerText = state.spin.toFixed(3);
+      sliderIncl.value = state.inclinationDeg;
+      lblIncl.innerText = state.inclinationDeg + "°";
+      sliderOpacity.value = state.diskOpacity;
+      lblOpacity.innerText = state.diskOpacity.toFixed(2);
+      sliderTemp.value = state.diskTemp;
+      lblTemp.innerText = state.diskTemp.toFixed(2);
+      sliderJet.value = state.jetPower;
+      lblJet.innerText = state.jetPower.toFixed(2);
+
+      btnToggleDisk.classList.toggle("active", state.showDisk);
+      btnToggleDisk.innerText = state.showDisk ? "Disk: Active" : "Disk: Muted";
+      btnToggleErgo.classList.toggle("active", state.showErgo);
+      btnToggleDoppler.classList.toggle("active", state.showDoppler);
+
+      updateMetrics();
+    }
+
+    // --- View Mode Tabs Switching ---
+    function setViewMode(mode) {
+      state.viewMode = mode;
+      tabRaymarch.classList.toggle("active", mode === "raymarch");
+      tabDual.classList.toggle("active", mode === "dual");
+      tabPhase.classList.toggle("active", mode === "phase");
+
+      if (mode === "raymarch") {
+        paneRaymarch.style.display = "block";
+        paneRaymarch.style.width = "100%";
+        paneSymplectic.style.display = "none";
+      } else if (mode === "dual") {
+        paneRaymarch.style.display = "block";
+        paneRaymarch.style.width = "50%";
+        paneSymplectic.style.display = "block";
+        paneSymplectic.style.width = "50%";
+      } else if (mode === "phase") {
+        paneRaymarch.style.display = "none";
+        paneSymplectic.style.display = "block";
+        paneSymplectic.style.width = "100%";
+      }
+      handleResize();
+    }
+
+    // --- Resize Handler ---
+    function handleResize() {
+      const dpr = window.devicePixelRatio || 1;
+
+      if (state.viewMode !== "phase") {
+        const rw = paneRaymarch.clientWidth;
+        const rh = paneRaymarch.clientHeight;
+        const targetW = Math.max(1, Math.floor(rw * dpr * state.resolutionScale));
+        const targetH = Math.max(1, Math.floor(rh * dpr * state.resolutionScale));
+        if (canvasRay.width !== targetW || canvasRay.height !== targetH) {
+          canvasRay.width = targetW;
+          canvasRay.height = targetH;
+          gl.viewport(0, 0, targetW, targetH);
+        }
+      }
+
+      if (state.viewMode !== "raymarch") {
+        const sw = paneSymplectic.clientWidth;
+        const sh = paneSymplectic.clientHeight;
+        canvasSymp.width = Math.max(1, Math.floor(sw * dpr));
+        canvasSymp.height = Math.max(1, Math.floor(sh * dpr));
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    // --- Interactive Mouse & Touch Camera Controls ---
+    let isDragging = false;
+    let dragMode = "orbit"; // "orbit" | "pan"
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
+    window.addEventListener("mousedown", (e) => {
+      if (e.target.closest("#hud-panel") || e.target.closest("#hud-topbar")) return;
+      isDragging = true;
+      dragMode = (e.button === 2) ? "pan" : "orbit";
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - lastMouseX;
+      const dy = e.clientY - lastMouseY;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+
+      if (dragMode === "orbit") {
+        state.azimuthDeg = (state.azimuthDeg + dx * 0.4) % 360;
+        state.inclinationDeg = Math.max(5, Math.min(89, state.inclinationDeg - dy * 0.35));
+        sliderIncl.value = Math.round(state.inclinationDeg);
+        lblIncl.innerText = Math.round(state.inclinationDeg) + "°";
+      } else if (dragMode === "pan") {
+        state.camTarget[0] -= dx * 0.015;
+        state.camTarget[1] += dy * 0.015;
+      }
+    });
+
+    window.addEventListener("mouseup", () => { isDragging = false; });
+    window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
+
+    window.addEventListener("wheel", (e) => {
+      if (e.target.closest("#hud-panel")) return;
+      state.camDist = Math.max(4.5, Math.min(60.0, state.camDist + e.deltaY * 0.02));
+    }, { passive: true });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space") {
+        state.simPaused = !state.simPaused;
+      }
+    });
+
+    // --- UI Controls Binding ---
+    sliderSpin.addEventListener("input", (e) => {
+      state.spin = parseFloat(e.target.value);
+      lblSpin.innerText = state.spin.toFixed(3);
+      updateMetrics();
+    });
+
+    sliderIncl.addEventListener("input", (e) => {
+      state.inclinationDeg = parseFloat(e.target.value);
+      lblIncl.innerText = state.inclinationDeg + "°";
+    });
+
+    sliderOpacity.addEventListener("input", (e) => {
+      state.diskOpacity = parseFloat(e.target.value);
+      lblOpacity.innerText = state.diskOpacity.toFixed(2);
+    });
+
+    sliderTemp.addEventListener("input", (e) => {
+      state.diskTemp = parseFloat(e.target.value);
+      lblTemp.innerText = state.diskTemp.toFixed(2);
+    });
+
+    sliderJet.addEventListener("input", (e) => {
+      state.jetPower = parseFloat(e.target.value);
+      lblJet.innerText = state.jetPower.toFixed(2);
+    });
+
+    selPreset.addEventListener("change", (e) => {
+      applyPreset(e.target.value);
+    });
+
+    btnToggleDisk.addEventListener("click", () => {
+      state.showDisk = !state.showDisk;
+      btnToggleDisk.classList.toggle("active", state.showDisk);
+      btnToggleDisk.innerText = state.showDisk ? "Disk: Active" : "Disk: Muted";
+    });
+
+    btnToggleErgo.addEventListener("click", () => {
+      state.showErgo = !state.showErgo;
+      btnToggleErgo.classList.toggle("active", state.showErgo);
+    });
+
+    btnToggleDoppler.addEventListener("click", () => {
+      state.showDoppler = !state.showDoppler;
+      btnToggleDoppler.classList.toggle("active", state.showDoppler);
+    });
+
+    btnToggleAudio.addEventListener("click", () => {
+      initAudio();
+      state.audioActive = !state.audioActive;
+      btnToggleAudio.classList.toggle("active", state.audioActive);
+      btnToggleAudio.innerText = state.audioActive ? "QNM Tone: ON" : "QNM Tone: OFF";
+      if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+      if (!state.audioActive && audioGain) audioGain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.05);
+      if (state.audioActive) updateAudio(state.spin);
+    });
+
+    btnInjectKam.addEventListener("click", () => {
+      spawnKamTorusSwarm();
+    });
+
+    btnInjectPlunge.addEventListener("click", () => {
+      spawnPlungingSwarm();
+    });
+
+    btnClearPoincare.addEventListener("click", () => {
+      state.poincarePoints = [];
+      ctxPoincare.fillStyle = "#000000";
+      ctxPoincare.fillRect(0, 0, canvasPoincare.width, canvasPoincare.height);
+      poincareCountLbl.innerText = "Points: 0";
+    });
+
+    btnToggleIntegrator.addEventListener("click", () => {
+      state.integratorOrder = (state.integratorOrder === 4) ? 2 : 4;
+      btnToggleIntegrator.innerText = `Integrator: ${state.integratorOrder === 4 ? "Yoshida 4th" : "Verlet 2nd"}`;
+    });
+
+    btnRes.addEventListener("click", () => {
+      if (state.resolutionScale === 1.0) state.resolutionScale = 0.65;
+      else if (state.resolutionScale === 0.65) state.resolutionScale = 1.5;
+      else state.resolutionScale = 1.0;
+      btnRes.innerText = `Res: ${state.resolutionScale}x`;
+      handleResize();
+    });
+
+    btnResetCam.addEventListener("click", () => {
+      state.inclinationDeg = 80;
+      state.azimuthDeg = 25;
+      state.camDist = 18.0;
+      state.camTarget = [0, 0, 0];
+      sliderIncl.value = 80;
+      lblIncl.innerText = "80°";
+    });
+
+    btnCapture4k.addEventListener("click", () => {
+      const oldScale = state.resolutionScale;
+      state.resolutionScale = 2.5;
+      handleResize();
+      renderFrame(performance.now());
+      setTimeout(() => {
+        const link = document.createElement("a");
+        link.download = `kerr_black_hole_a${state.spin.toFixed(3)}_4k.png`;
+        link.href = canvasRay.toDataURL("image/png");
+        link.click();
+        state.resolutionScale = oldScale;
+        handleResize();
+      }, 100);
+    });
+
+    tabRaymarch.addEventListener("click", () => setViewMode("raymarch"));
+    tabDual.addEventListener("click", () => setViewMode("dual"));
+    tabPhase.addEventListener("click", () => setViewMode("phase"));
+
+    // --- Symplectic 3D Particle Swarm & Poincaré Renderer ---
+    function renderSymplecticStudio(camPos, camRot) {
+      const w = canvasSymp.width;
+      const h = canvasSymp.height;
+      ctxSymp.fillStyle = "#000206";
+      ctxSymp.fillRect(0, 0, w, h);
+
+      // Draw Boyer-Lindquist Coordinate Grid
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      const fovScale = Math.min(w, h) * 0.95;
+
+      function project3D(x, y, z) {
+        const dx = x - camPos[0];
+        const dy = y - camPos[1];
+        const dz = z - camPos[2];
+
+        // Inverse camera rotation
+        const rx = camRot[0] * dx + camRot[1] * dy + camRot[2] * dz;
+        const ry = camRot[3] * dx + camRot[4] * dy + camRot[5] * dz;
+        const rz = camRot[6] * dx + camRot[7] * dy + camRot[8] * dz;
+
+        if (rz >= -0.1) return null;
+        const scale = fovScale / (-rz * 1.35);
+        return [cx + rx * scale, cy - ry * scale, rz];
+      }
+
+      // Draw Kerr Horizon Sphere & Ergosphere Mesh
+      const a = state.spin;
+      const rH = 1.0 + Math.sqrt(Math.max(1.0 - a * a, 0.001));
+      
+      // Ergosphere Wireframe
+      ctxSymp.strokeStyle = "rgba(56, 189, 248, 0.2)";
+      ctxSymp.lineWidth = 1;
+      for (let th = 0.15; th < PI; th += 0.35) {
+        ctxSymp.beginPath();
+        const rE = 1.0 + Math.sqrt(Math.max(1.0 - a * a * Math.cos(th) * Math.cos(th), 0.001));
+        let started = false;
+        for (let ph = 0; ph <= 2.0 * PI; ph += 0.2) {
+          const px = rE * Math.sin(th) * Math.cos(ph);
+          const py = rE * Math.cos(th);
+          const pz = rE * Math.sin(th) * Math.sin(ph);
+          const p2d = project3D(px, py, pz);
+          if (p2d) {
+            if (!started) { ctxSymp.moveTo(p2d[0], p2d[1]); started = true; }
+            else { ctxSymp.lineTo(p2d[0], p2d[1]); }
+          }
+        }
+        ctxSymp.stroke();
+      }
+
+      // Event Horizon Silhouette
+      ctxSymp.fillStyle = "#000000";
+      ctxSymp.strokeStyle = "#38bdf8";
+      ctxSymp.lineWidth = 2;
+      const hor2d = project3D(0, 0, 0);
+      if (hor2d) {
+        const horRadius = (fovScale / (-hor2d[2] * 1.35)) * rH * 0.9;
+        ctxSymp.beginPath();
+        ctxSymp.arc(hor2d[0], hor2d[1], Math.max(1, horRadius), 0, 2 * PI);
+        ctxSymp.fill();
+        ctxSymp.stroke();
+      }
+
+      // Render Particle Swarm Trails
+      for (const p of state.particleSwarm) {
+        if (p.trail.length > 1) {
+          ctxSymp.strokeStyle = p.color;
+          ctxSymp.lineWidth = 1.5;
+          ctxSymp.beginPath();
+          let started = false;
+          for (const pt of p.trail) {
+            const p2d = project3D(pt[0], pt[1], pt[2]);
+            if (p2d) {
+              if (!started) { ctxSymp.moveTo(p2d[0], p2d[1]); started = true; }
+              else { ctxSymp.lineTo(p2d[0], p2d[1]); }
+            }
+          }
+          ctxSymp.stroke();
+        }
+
+        // Particle Head
+        if (p.alive && p.trail.length > 0) {
+          const head = p.trail[p.trail.length - 1];
+          const head2d = project3D(head[0], head[1], head[2]);
+          if (head2d) {
+            ctxSymp.fillStyle = "#ffffff";
+            ctxSymp.beginPath();
+            ctxSymp.arc(head2d[0], head2d[1], 2.5, 0, 2 * PI);
+            ctxSymp.fill();
+          }
+        }
+      }
+
+      // 2D Poincaré Section Canvas Rendering
+      renderPoincareCanvas();
+    }
+
+    function renderPoincareCanvas() {
+      const pw = canvasPoincare.width;
+      const ph = canvasPoincare.height;
+      ctxPoincare.fillStyle = "rgba(0, 0, 0, 0.08)";
+      ctxPoincare.fillRect(0, 0, pw, ph);
+
+      // Grid Lines
+      ctxPoincare.strokeStyle = "rgba(255, 255, 255, 0.06)";
+      ctxPoincare.lineWidth = 1;
+      ctxPoincare.beginPath();
+      ctxPoincare.moveTo(0, ph * 0.5);
+      ctxPoincare.lineTo(pw, ph * 0.5);
+      ctxPoincare.moveTo(pw * 0.35, 0);
+      ctxPoincare.lineTo(pw * 0.35, ph);
+      ctxPoincare.stroke();
+
+      // Plot Points: r on X-axis [1.0, 14.0], pr on Y-axis [-0.4, 0.4]
+      const rMin = 1.0;
+      const rMax = 14.0;
+      const prMax = 0.35;
+
+      for (let i = Math.max(0, state.poincarePoints.length - 200); i < state.poincarePoints.length; i++) {
+        const pt = state.poincarePoints[i];
+        const px = ((pt.r - rMin) / (rMax - rMin)) * pw;
+        const py = (0.5 - (pt.pr / (2.0 * prMax))) * ph;
+        ctxPoincare.fillStyle = pt.color || "#38bdf8";
+        ctxPoincare.fillRect(px - 1, py - 1, 2, 2);
+      }
+
+      poincareCountLbl.innerText = `Points: ${state.poincarePoints.length}`;
+    }
+
+    // --- Main Simulation & Animation Loop ---
+    let lastTime = performance.now();
+    let frameCount = 0;
+    let lastFpsTime = lastTime;
+
+    function renderFrame(now) {
+      requestAnimationFrame(renderFrame);
+
+      const dt = Math.min((now - lastTime) * 0.001, 0.1);
+      lastTime = now;
+
+      // FPS Counter
+      frameCount++;
+      if (now - lastFpsTime >= 500) {
+        const fps = Math.round((frameCount * 1000) / (now - lastFpsTime));
+        fpsBadge.innerText = `${fps} FPS`;
+        frameCount = 0;
+        lastFpsTime = now;
+      }
+
+      // Spherical to Cartesian Camera Position
+      const inclRad = (state.inclinationDeg * PI) / 180.0;
+      const azimRad = (state.azimuthDeg * PI) / 180.0;
+      const cy = state.camDist * Math.cos(inclRad);
+      const cx = state.camDist * Math.sin(inclRad) * Math.sin(azimRad);
+      const cz = state.camDist * Math.sin(inclRad) * Math.cos(azimRad);
+      const camPos = [cx + state.camTarget[0], cy + state.camTarget[1], cz + state.camTarget[2]];
+
+      // LookAt Rotation Matrix
+      const forward = [
+        state.camTarget[0] - camPos[0],
+        state.camTarget[1] - camPos[1],
+        state.camTarget[2] - camPos[2]
+      ];
+      const fLen = Math.hypot(forward[0], forward[1], forward[2]);
+      forward[0] /= fLen; forward[1] /= fLen; forward[2] /= fLen;
+
+      let up = [0, 1, 0];
+      if (Math.abs(forward[1]) > 0.99) up = [0, 0, 1];
+
+      // right = forward x up
+      const right = [
+        forward[1] * up[2] - forward[2] * up[1],
+        forward[2] * up[0] - forward[0] * up[2],
+        forward[0] * up[1] - forward[1] * up[0]
+      ];
+      const rLen = Math.hypot(right[0], right[1], right[2]);
+      right[0] /= rLen; right[1] /= rLen; right[2] /= rLen;
+
+      // realUp = right x forward
+      const realUp = [
+        right[1] * forward[2] - right[2] * forward[1],
+        right[2] * forward[0] - right[0] * forward[2],
+        right[0] * forward[1] - right[1] * forward[0]
+      ];
+
+      // 3x3 Camera Rotation Matrix (row-major for shader)
+      const camRot = [
+        right[0], realUp[0], -forward[0],
+        right[1], realUp[1], -forward[1],
+        right[2], realUp[2], -forward[2]
+      ];
+
+      // 1. Render Volumetric Kerr Shader
+      if (state.viewMode !== "phase") {
+        gl.useProgram(program);
+        gl.bindVertexArray(quadVAO);
+
+        gl.uniform2f(uniforms.u_res, canvasRay.width, canvasRay.height);
+        gl.uniform1f(uniforms.u_time, now * 0.001);
+        gl.uniform1f(uniforms.u_spin, state.spin);
+        gl.uniform1f(uniforms.u_temp, state.diskTemp);
+        gl.uniform1f(uniforms.u_diskThickness, state.diskThickness);
+        gl.uniform1f(uniforms.u_diskOpacity, state.diskOpacity);
+        gl.uniform1f(uniforms.u_jetPower, state.jetPower);
+        gl.uniform1i(uniforms.u_showDisk, state.showDisk ? 1 : 0);
+        gl.uniform1i(uniforms.u_showErgo, state.showErgo ? 1 : 0);
+        gl.uniform1i(uniforms.u_showDoppler, state.showDoppler ? 1 : 0);
+
+        gl.uniform3f(uniforms.u_camPos, camPos[0], camPos[1], camPos[2]);
+        gl.uniformMatrix3fv(uniforms.u_camRot, false, camRot);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
+
+      // 2. Step & Render Symplectic Geodesic Swarm
+      if (!state.simPaused && state.particleSwarm.length > 0) {
+        const simDt = 0.035;
+        for (const p of state.particleSwarm) {
+          p.step(simDt, state.spin);
+        }
+      }
+
+      if (state.viewMode !== "raymarch") {
+        renderSymplecticStudio(camPos, camRot);
+      }
+    }
+
+    // --- Initialization ---
+    handleResize();
+    updateMetrics();
+    spawnKamTorusSwarm();
+    document.title = "KERR-SYMPLECTIC 4D: RUNNING [60 FPS]";
+    requestAnimationFrame(renderFrame);
+  })();
+  </script>
+</body>
+</html>
