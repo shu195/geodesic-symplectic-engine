@@ -804,7 +804,7 @@
 
         // Lense-Thirring / Kerr Gravito-Magnetic Frame Dragging
         float dragFactor = 2.0 * a / (rho2 * r + 2.0 * a * a + 1e-4);
-        vec3 drag = 2.0 * cross(vel, zAxis * dragFactor);
+        vec3 drag = 2.0 * cross(zAxis * dragFactor, vel);
 
         return grav + drag;
       }
@@ -1085,61 +1085,124 @@
         this.E = E;
         this.color = color;
         this.trail = [];
-        this.maxTrail = 180;
+        this.maxTrail = 200;
         this.alive = true;
-        this.lastZ = r * Math.cos(th);
+        this.lastY = r * Math.cos(th);
         
-        // Initial Carter Constant & Energy
+        // Initial Carter Constant & Super-Hamiltonian
         const sinTh = Math.sin(th);
         const cosTh = Math.cos(th);
-        const sin2 = Math.max(sinTh * sinTh, 1e-5);
+        const sin2 = Math.max(sinTh * sinTh, 1e-6);
         const cos2 = cosTh * cosTh;
         const a = state.spin;
+        const rho2 = r * r + a * a * cos2;
+        const delta = Math.max(r * r - 2.0 * r + a * a, 1e-5);
+        const P = E * (r * r + a * a) - a * Lz;
         this.Q0 = pth * pth + cos2 * (a * a * (1.0 - E * E) + (Lz * Lz) / sin2);
+        this.H0 = 0.5 * (delta * pr * pr + pth * pth - (P * P) / delta + Math.pow(Lz - a * E * sin2, 2) / sin2) / rho2;
+      }
+
+      getDerivs(r, th, pr, pth, a) {
+        const sinTh = Math.sin(th);
+        const cosTh = Math.cos(th);
+        const sin2 = Math.max(sinTh * sinTh, 1e-6);
+        const cos2 = cosTh * cosTh;
+        const rho2 = r * r + a * a * cos2;
+        const delta = Math.max(r * r - 2.0 * r + a * a, 1e-5);
+
+        const P = this.E * (r * r + a * a) - a * this.Lz;
+        const dR_dr = 4.0 * r * P * this.E - (2.0 * r - 2.0) * (r * r + Math.pow(this.Lz - a * this.E, 2) + this.Q0) - delta * (2.0 * r);
+
+        // Correct canonical momentum rates in Mino time:
+        const dpr_dlambda = dR_dr / (2.0 * delta) - 2.0 * (r - 1.0) * (pr * pr);
+        // Correct sign of polar restoring force:
+        const dpth_dlambda = cosTh * (a * a * (1.0 - this.E * this.E) * sinTh + (this.Lz * this.Lz) / (sin2 * sinTh));
+
+        const dr_dlambda = delta * pr;
+        const dth_dlambda = pth;
+        const dphi_dlambda = -(a * this.E - this.Lz / sin2) + (a / delta) * P;
+
+        return {
+          dr: dr_dlambda / rho2,
+          dth: dth_dlambda / rho2,
+          dph: dphi_dlambda / rho2,
+          dpr: dpr_dlambda / rho2,
+          dpth: dpth_dlambda / rho2
+        };
+      }
+
+      getDrifts(a) {
+        if (!this.alive) return { hDrift: 0, qDrift: 0 };
+        const sinTh = Math.sin(this.th);
+        const cosTh = Math.cos(this.th);
+        const sin2 = Math.max(sinTh * sinTh, 1e-6);
+        const cos2 = cosTh * cosTh;
+        const rho2 = this.r * this.r + a * a * cos2;
+        const delta = Math.max(this.r * this.r - 2.0 * this.r + a * a, 1e-5);
+        const P = this.E * (this.r * this.r + a * a) - a * this.Lz;
+
+        const Q = this.pth * this.pth + cos2 * (a * a * (1.0 - this.E * this.E) + (this.Lz * this.Lz) / sin2);
+        const H = 0.5 * (delta * this.pr * this.pr + this.pth * this.pth - (P * P) / delta + Math.pow(this.Lz - a * this.E * sin2, 2) / sin2) / rho2;
+
+        return {
+          hDrift: Math.abs((H - this.H0) / (this.H0 || 1.0)),
+          qDrift: Math.abs((Q - this.Q0) / (this.Q0 || 1.0))
+        };
       }
 
       step(dt, a) {
         if (!this.alive) return;
         
         const rHor = 1.0 + Math.sqrt(Math.max(1.0 - a * a, 0.001));
-        if (this.r <= rHor * 1.02 || this.r > 35.0) {
+        if (this.r <= rHor * 1.015 || this.r > 38.0) {
           this.alive = false;
           return;
         }
 
-        // Yoshida 4th-Order Symplectic Integration coefficients
-        const w1 = 1.0 / (2.0 - Math.cbrt(2.0));
-        const w0 = -Math.cbrt(2.0) * w1;
-        const c = [w1 / 2.0, (w0 + w1) / 2.0, (w0 + w1) / 2.0, w1 / 2.0];
-        const d = [w1, w0, w1];
+        const prevY = this.r * Math.cos(this.th);
+        const prevR = this.r;
+        const prevPr = this.pr;
 
-        // Mino time / proper time mapping
-        const cosTh = Math.cos(this.th);
-        const sinTh = Math.sin(this.th);
-        const sin2 = Math.max(sinTh * sinTh, 1e-5);
-        const cos2 = cosTh * cosTh;
-        const rho2 = this.r * this.r + a * a * cos2;
-        const delta = this.r * this.r - 2.0 * this.r + a * a;
+        if (state.integratorOrder === 4) {
+          // Exact 4th-Order Yoshida Symplectic Integrator
+          const w1 = 1.0 / (2.0 - Math.cbrt(2.0));
+          const w0 = 1.0 - 2.0 * w1;
+          const substeps = [w1 * dt, w0 * dt, w1 * dt];
 
-        // Radial and Polar potentials
-        const P = this.E * (this.r * this.r + a * a) - a * this.Lz;
-        const dR_dr = 4.0 * this.r * P * this.E - (2.0 * this.r - 2.0) * (this.r * this.r + (this.Lz - a * this.E) ** 2 + this.Q0) - delta * (2.0 * this.r);
-        const dTheta_dth = 2.0 * sinTh * cosTh * (a * a * (1.0 - this.E * this.E) + (this.Lz * this.Lz) / sin2) + cos2 * (2.0 * this.Lz * this.Lz * cosTh / (sin2 * sinTh));
+          for (let s of substeps) {
+            const d1 = this.getDerivs(this.r, this.th, this.pr, this.pth, a);
+            this.pr += 0.5 * s * d1.dpr;
+            this.pth += 0.5 * s * d1.dpth;
 
-        // Substep integration
-        this.pr += 0.5 * dt * (dR_dr / (2.0 * rho2));
-        this.pth += 0.5 * dt * (-dTheta_dth / (2.0 * rho2));
+            const dMid = this.getDerivs(this.r, this.th, this.pr, this.pth, a);
+            this.r += s * dMid.dr;
+            this.th += s * dMid.dth;
+            this.ph += s * dMid.dph;
 
-        this.r += dt * (this.pr * delta / rho2);
-        this.th += dt * (this.pth / rho2);
+            const d2 = this.getDerivs(this.r, this.th, this.pr, this.pth, a);
+            this.pr += 0.5 * s * d2.dpr;
+            this.pth += 0.5 * s * d2.dpth;
+          }
+        } else {
+          // 2nd-Order Symplectic Verlet
+          const d1 = this.getDerivs(this.r, this.th, this.pr, this.pth, a);
+          this.pr += 0.5 * dt * d1.dpr;
+          this.pth += 0.5 * dt * d1.dpth;
 
-        this.pr += 0.5 * dt * (dR_dr / (2.0 * rho2));
-        this.pth += 0.5 * dt * (-dTheta_dth / (2.0 * rho2));
+          const dMid = this.getDerivs(this.r, this.th, this.pr, this.pth, a);
+          this.r += dt * dMid.dr;
+          this.th += dt * dMid.dth;
+          this.ph += dt * dMid.dph;
 
-        const dphi = -(a * this.E - this.Lz / sin2) + (a / Math.max(delta, 1e-4)) * P;
-        this.ph += dt * (dphi / rho2);
+          const d2 = this.getDerivs(this.r, this.th, this.pr, this.pth, a);
+          this.pr += 0.5 * dt * d2.dpr;
+          this.pth += 0.5 * dt * d2.dpth;
+        }
 
-        // Record 3D Cartesian Trail
+        // Keep away from polar coordinate singularities
+        this.th = Math.max(0.015, Math.min(PI - 0.015, this.th));
+
+        // 3D Cartesian coordinates
         const currR = this.r;
         const currTh = this.th;
         const currPh = this.ph;
@@ -1150,15 +1213,19 @@
         this.trail.push([x, y, z]);
         if (this.trail.length > this.maxTrail) this.trail.shift();
 
-        // Check Poincaré Equatorial Plane Crossing (y crosses 0 with vy > 0)
-        if (this.lastZ < 0 && y >= 0 && state.poincarePoints.length < state.maxPoincarePoints) {
+        // Exact linearly interpolated equatorial plane puncture (Poincaré section)
+        if (prevY < 0 && y >= 0 && state.poincarePoints.length < state.maxPoincarePoints) {
+          const denom = (y - prevY);
+          const alpha = Math.abs(denom) > 1e-7 ? (-prevY) / denom : 0.0;
+          const rCross = prevR + alpha * (this.r - prevR);
+          const prCross = prevPr + alpha * (this.pr - prevPr);
           state.poincarePoints.push({
-            r: this.r,
-            pr: this.pr,
+            r: rCross,
+            pr: prCross,
             color: this.color
           });
         }
-        this.lastZ = y;
+        this.lastY = y;
       }
     }
 
@@ -1486,7 +1553,7 @@
       const oldScale = state.resolutionScale;
       state.resolutionScale = 2.5;
       handleResize();
-      renderFrame(performance.now());
+      drawPass(performance.now());
       setTimeout(() => {
         const link = document.createElement("a");
         link.download = `kerr_black_hole_a${state.spin.toFixed(3)}_4k.png`;
@@ -1602,33 +1669,59 @@
     function renderPoincareCanvas() {
       const pw = canvasPoincare.width;
       const ph = canvasPoincare.height;
-      ctxPoincare.fillStyle = "rgba(0, 0, 0, 0.08)";
+      ctxPoincare.fillStyle = "#000000";
       ctxPoincare.fillRect(0, 0, pw, ph);
 
-      // Grid Lines
-      ctxPoincare.strokeStyle = "rgba(255, 255, 255, 0.06)";
+      // Grid Lines & Coordinate Axes
+      ctxPoincare.strokeStyle = "rgba(56, 189, 248, 0.12)";
       ctxPoincare.lineWidth = 1;
-      ctxPoincare.beginPath();
-      ctxPoincare.moveTo(0, ph * 0.5);
-      ctxPoincare.lineTo(pw, ph * 0.5);
-      ctxPoincare.moveTo(pw * 0.35, 0);
-      ctxPoincare.lineTo(pw * 0.35, ph);
-      ctxPoincare.stroke();
 
-      // Plot Points: r on X-axis [1.0, 14.0], pr on Y-axis [-0.4, 0.4]
+      // Axis bounds: r in [1.0, 14.0], pr in [-0.35, 0.35]
       const rMin = 1.0;
       const rMax = 14.0;
       const prMax = 0.35;
 
-      for (let i = Math.max(0, state.poincarePoints.length - 200); i < state.poincarePoints.length; i++) {
-        const pt = state.poincarePoints[i];
+      const yZero = ph * 0.5;
+      ctxPoincare.beginPath();
+      ctxPoincare.moveTo(0, yZero);
+      ctxPoincare.lineTo(pw, yZero);
+      ctxPoincare.stroke();
+
+      // ISCO demarcation line
+      const a = state.spin;
+      const z1 = 1.0 + Math.cbrt(Math.max(1.0 - a * a, 0.0001)) * (Math.cbrt(1.0 + a) + Math.cbrt(Math.max(1.0 - a, 0.0001)));
+      const z2 = Math.sqrt(3.0 * a * a + z1 * z1);
+      const rIsco = 3.0 + z2 - Math.sqrt(Math.max((3.0 - z1) * (3.0 + z1 + 2.0 * z2), 0.0));
+      const xIsco = ((rIsco - rMin) / (rMax - rMin)) * pw;
+
+      ctxPoincare.strokeStyle = "rgba(52, 211, 153, 0.3)";
+      ctxPoincare.setLineDash([3, 3]);
+      ctxPoincare.beginPath();
+      ctxPoincare.moveTo(xIsco, 0);
+      ctxPoincare.lineTo(xIsco, ph);
+      ctxPoincare.stroke();
+      ctxPoincare.setLineDash([]);
+
+      // Axis labels
+      ctxPoincare.font = "9px ui-monospace, SFMono-Regular, monospace";
+      ctxPoincare.fillStyle = "rgba(148, 163, 184, 0.75)";
+      ctxPoincare.fillText("r=ISCO", xIsco + 4, 12);
+      ctxPoincare.fillText("p_r = 0", 6, yZero - 4);
+      ctxPoincare.fillText("+0.35", 6, 12);
+      ctxPoincare.fillText("-0.35", 6, ph - 4);
+      ctxPoincare.fillText("r = 14M", pw - 44, yZero - 4);
+
+      // Render ALL accumulated puncture points (persists KAM closed tori!)
+      const pts = state.poincarePoints;
+      for (let i = 0; i < pts.length; i++) {
+        const pt = pts[i];
         const px = ((pt.r - rMin) / (rMax - rMin)) * pw;
         const py = (0.5 - (pt.pr / (2.0 * prMax))) * ph;
         ctxPoincare.fillStyle = pt.color || "#38bdf8";
         ctxPoincare.fillRect(px - 1, py - 1, 2, 2);
       }
 
-      poincareCountLbl.innerText = `Points: ${state.poincarePoints.length}`;
+      poincareCountLbl.innerText = `Points: ${pts.length}`;
     }
 
     // --- Main Simulation & Animation Loop ---
@@ -1636,22 +1729,7 @@
     let frameCount = 0;
     let lastFpsTime = lastTime;
 
-    function renderFrame(now) {
-      requestAnimationFrame(renderFrame);
-
-      const dt = Math.min((now - lastTime) * 0.001, 0.1);
-      lastTime = now;
-
-      // FPS Counter
-      frameCount++;
-      if (now - lastFpsTime >= 500) {
-        const fps = Math.round((frameCount * 1000) / (now - lastFpsTime));
-        fpsBadge.innerText = `${fps} FPS`;
-        frameCount = 0;
-        lastFpsTime = now;
-      }
-
-      // Spherical to Cartesian Camera Position
+    function getCameraOrientation() {
       const inclRad = (state.inclinationDeg * PI) / 180.0;
       const azimRad = (state.azimuthDeg * PI) / 180.0;
       const cy = state.camDist * Math.cos(inclRad);
@@ -1659,7 +1737,6 @@
       const cz = state.camDist * Math.sin(inclRad) * Math.cos(azimRad);
       const camPos = [cx + state.camTarget[0], cy + state.camTarget[1], cz + state.camTarget[2]];
 
-      // LookAt Rotation Matrix
       const forward = [
         state.camTarget[0] - camPos[0],
         state.camTarget[1] - camPos[1],
@@ -1671,7 +1748,6 @@
       let up = [0, 1, 0];
       if (Math.abs(forward[1]) > 0.99) up = [0, 0, 1];
 
-      // right = forward x up
       const right = [
         forward[1] * up[2] - forward[2] * up[1],
         forward[2] * up[0] - forward[0] * up[2],
@@ -1680,19 +1756,27 @@
       const rLen = Math.hypot(right[0], right[1], right[2]);
       right[0] /= rLen; right[1] /= rLen; right[2] /= rLen;
 
-      // realUp = right x forward
       const realUp = [
         right[1] * forward[2] - right[2] * forward[1],
         right[2] * forward[0] - right[0] * forward[2],
         right[0] * forward[1] - right[1] * forward[0]
       ];
 
-      // 3x3 Camera Rotation Matrix (row-major for shader)
       const camRot = [
         right[0], realUp[0], -forward[0],
         right[1], realUp[1], -forward[1],
         right[2], realUp[2], -forward[2]
       ];
+
+      return { camPos, camRot };
+    }
+
+    function drawPass(now, camPos, camRot) {
+      if (!camPos || !camRot) {
+        const cam = getCameraOrientation();
+        camPos = cam.camPos;
+        camRot = cam.camRot;
+      }
 
       // 1. Render Volumetric Kerr Shader
       if (state.viewMode !== "phase") {
@@ -1716,7 +1800,28 @@
         gl.drawArrays(gl.TRIANGLES, 0, 6);
       }
 
-      // 2. Step & Render Symplectic Geodesic Swarm
+      // 2. Render Symplectic Studio & Poincaré Section
+      if (state.viewMode !== "raymarch") {
+        renderSymplecticStudio(camPos, camRot);
+      }
+    }
+
+    function renderFrame(now) {
+      requestAnimationFrame(renderFrame);
+
+      const dt = Math.min((now - lastTime) * 0.001, 0.1);
+      lastTime = now;
+
+      // FPS Counter
+      frameCount++;
+      if (now - lastFpsTime >= 500) {
+        const fps = Math.round((frameCount * 1000) / (now - lastFpsTime));
+        fpsBadge.innerText = `${fps} FPS`;
+        frameCount = 0;
+        lastFpsTime = now;
+      }
+
+      // 1. Step Symplectic Geodesic Swarm
       if (!state.simPaused && state.particleSwarm.length > 0) {
         const simDt = 0.035;
         for (const p of state.particleSwarm) {
@@ -1724,9 +1829,28 @@
         }
       }
 
-      if (state.viewMode !== "raymarch") {
-        renderSymplecticStudio(camPos, camRot);
+      // 2. Compute Real Symplectic Drift & Update Telemetry HUD
+      let maxHDrift = 0;
+      let maxQDrift = 0;
+      let activeCount = 0;
+      for (const p of state.particleSwarm) {
+        if (p.alive) {
+          const drifts = p.getDrifts(state.spin);
+          if (drifts.hDrift > maxHDrift) maxHDrift = drifts.hDrift;
+          if (drifts.qDrift > maxQDrift) maxQDrift = drifts.qDrift;
+          activeCount++;
+        }
       }
+      if (activeCount > 0) {
+        topHdrift.innerText = maxHDrift.toExponential(2);
+        topQdrift.innerText = maxQDrift.toExponential(2);
+      } else {
+        topHdrift.innerText = "0.00e+0";
+        topQdrift.innerText = "0.00e+0";
+      }
+
+      const { camPos, camRot } = getCameraOrientation();
+      drawPass(now, camPos, camRot);
     }
 
     // --- Initialization ---
