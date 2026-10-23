@@ -127,6 +127,17 @@ class GeodesicMemoryClient:
             "max_edges_per_node": max_edges_per_node
         })
 
+    def read_full(self, concept_or_id: str, file_name: str = None, start_line: int = 1, max_lines: int = 300) -> dict:
+        """Holographic Source Dereferencer: pulls full source code, papers, or transcripts from disk."""
+        args = {
+            "concept_or_id": concept_or_id,
+            "start_line": start_line,
+            "max_lines": max_lines
+        }
+        if file_name:
+            args["file_name"] = file_name
+        return self._call_tool("memory_read_full", args)
+
     def inspect(self) -> dict:
         """Inspects continuous manifold topology, Hamiltonian energy, and active latch states."""
         return self._call_tool("memory_inspect_manifold", {})
@@ -181,6 +192,13 @@ def main():
     e_parser.add_argument("--min-resonance", type=float, default=0.32)
     e_parser.add_argument("--max-edges", type=int, default=6)
 
+    # Read Full command
+    r_parser = subparsers.add_parser("read")
+    r_parser.add_argument("concept", help="Concept title or node ID to dereference")
+    r_parser.add_argument("--file", help="Specific file name inside suite/session", default=None)
+    r_parser.add_argument("--start", type=int, default=1)
+    r_parser.add_argument("--lines", type=int, default=200)
+
     # Inspect command
     subparsers.add_parser("inspect")
 
@@ -190,6 +208,9 @@ def main():
     try:
         if args.command == "query":
             res = client.query(args.text, top_k=args.top_k, min_resonance=args.min_res, resolution=args.res, temporal_octave=args.octave)
+            print(json.dumps(res, indent=2))
+        elif args.command == "read":
+            res = client.read_full(args.concept, file_name=args.file, start_line=args.start, max_lines=args.lines)
             print(json.dumps(res, indent=2))
         elif args.command == "traverse":
             res = client.traverse(args.concept, max_depth=args.depth, direction=args.direction, resolution=args.res)

@@ -16,6 +16,7 @@ import json
 import math
 import hashlib
 import time
+import re
 import numpy as np
 
 STATE_DIM = 64
@@ -634,6 +635,106 @@ class GeodesicMemoryGraph:
             "storage_file": STATE_FILE
         }
 
+    def read_full(self, concept_or_id: str, file_name: str = None, start_line: int = 1, max_lines: int = 300):
+        """
+        Holographic Source Dereferencer:
+        Resolves a memory node back to its underlying disk files (session transcripts,
+        research papers, C++ kernels, Python scripts), and returns 100% full ground truth.
+        """
+        clean = concept_or_id.strip().lower()
+        node = None
+        for nid, n in self.nodes.items():
+            if nid == clean or n["concept"].lower() == clean or clean in n["concept"].lower():
+                node = n
+                break
+
+        if not node:
+            return {"status": "NODE_NOT_FOUND", "concept_queried": concept_or_id}
+
+        micro = str(node.get("payload", {}).get("micro", ""))
+
+        # Identify source filesystem directory
+        target_dir = None
+        m_sid = re.search(r"Session ID:\s*([a-f0-9\-]+)", micro)
+        if m_sid:
+            target_dir = os.path.join(r"C:\Users\Admin\.gemini\antigravity\brain", m_sid.group(1))
+
+        if not target_dir:
+            m_root = re.search(r"Root Path:\s*([^\r\n]+)", micro)
+            if m_root:
+                target_dir = m_root.group(1).strip()
+
+        # If direct payload without filesystem directory:
+        if not target_dir or not os.path.exists(target_dir):
+            lines = micro.splitlines(keepends=True)
+            slice_lines = lines[start_line - 1 : start_line - 1 + max_lines]
+            return {
+                "status": "DIRECT_PAYLOAD_RETRIEVED",
+                "concept": node["concept"],
+                "total_lines": len(lines),
+                "start_line": start_line,
+                "lines_returned": len(slice_lines),
+                "content": "".join(slice_lines)
+            }
+
+        # Scan available files in target directory recursively
+        all_files = {}
+        for root, dirs, files in os.walk(target_dir):
+            dirs[:] = [d for d in dirs if d not in [".git", "__pycache__", "node_modules", ".tempmediaStorage"]]
+            for f in files:
+                rel = os.path.relpath(os.path.join(root, f), target_dir)
+                all_files[f] = rel
+                all_files[rel] = rel
+
+        resolved_file = None
+        if file_name:
+            if file_name in all_files:
+                resolved_file = all_files[file_name]
+            else:
+                for k in all_files:
+                    if file_name.lower() in k.lower():
+                        resolved_file = all_files[k]
+                        break
+
+        # If no file specified, pick primary document
+        if not resolved_file:
+            md_files = [all_files[f] for f in all_files if f.endswith(".md") and not f.endswith(".metadata.json")]
+            code_files = [all_files[f] for f in all_files if f.endswith(".py") or f.endswith(".cpp")]
+            if md_files:
+                resolved_file = md_files[0]
+            elif code_files:
+                resolved_file = max(code_files, key=lambda x: os.path.getsize(os.path.join(target_dir, x)))
+            elif all_files:
+                resolved_file = list(all_files.values())[0]
+            else:
+                return {
+                    "status": "NO_FILES_IN_DIRECTORY",
+                    "concept": node["concept"],
+                    "target_directory": target_dir
+                }
+
+        full_fp = os.path.join(target_dir, resolved_file)
+        try:
+            with open(full_fp, "r", encoding="utf-8", errors="ignore") as f:
+                lines = f.readlines()
+        except Exception as e:
+            return {"status": "READ_ERROR", "error": str(e), "file_path": full_fp}
+
+        slice_lines = lines[start_line - 1 : start_line - 1 + max_lines]
+        unique_file_names = list(dict.fromkeys(all_files.keys()))[:30]
+
+        return {
+            "status": "FULL_SOURCE_RETRIEVED",
+            "concept": node["concept"],
+            "file_name": resolved_file,
+            "file_path": full_fp,
+            "total_lines": len(lines),
+            "start_line": start_line,
+            "lines_returned": len(slice_lines),
+            "content": "".join(slice_lines),
+            "available_files_in_suite": unique_file_names
+        }
+
 GRAPH = GeodesicMemoryGraph()
 
 # ==============================================================================
@@ -764,6 +865,20 @@ def handle_request(req: dict):
                                 "category_filter": {"type": "string"}
                             }
                         }
+                    },
+                    {
+                        "name": "memory_read_full",
+                        "description": "Holographic Source Dereferencer: pulls 100% full uncompressed source code, research reports, or transcripts from any memory node on disk with line pagination.",
+                        "inputSchema": {
+                            "type": "object",
+                            "properties": {
+                                "concept_or_id": {"type": "string", "description": "Concept title or node ID to dereference."},
+                                "file_name": {"type": "string", "description": "Optional specific file name inside the suite/session (e.g. 'c_neuron_universal_math_prover.py')."},
+                                "start_line": {"type": "integer", "default": 1},
+                                "max_lines": {"type": "integer", "default": 300}
+                            },
+                            "required": ["concept_or_id"]
+                        }
                     }
                 ]
             }
@@ -820,6 +935,13 @@ def handle_request(req: dict):
             elif tool_name == "memory_inspect_manifold":
                 res = GRAPH.inspect_manifold(
                     category_filter=args.get("category_filter")
+                )
+            elif tool_name == "memory_read_full":
+                res = GRAPH.read_full(
+                    concept_or_id=args.get("concept_or_id", ""),
+                    file_name=args.get("file_name"),
+                    start_line=int(args.get("start_line", 1)),
+                    max_lines=int(args.get("max_lines", 300))
                 )
             else:
                 raise ValueError(f"Unknown tool: {tool_name}")
