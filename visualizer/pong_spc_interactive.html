@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Symplectic Geodesic Ping-Pong Agent</title>
+<style>
+  :root {
+    --bg: #030712;
+    --card: #0f172a;
+    --cyan: #38bdf8;
+    --emerald: #34d399;
+    --rose: #fb7185;
+    --amber: #fbbf24;
+    --text: #f8fafc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+  .subtitle {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  .game-container {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    height: 440px;
+    background: #020617;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .telemetry {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 11px;
+    line-height: 1.6;
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .badge.sys1 { background: rgba(52, 211, 153, 0.2); color: var(--emerald); border: 1px solid var(--emerald); }
+  .badge.sys2 { background: rgba(251, 191, 36, 0.2); color: var(--amber); border: 1px solid var(--amber); }
+  .controls {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+  .btn {
+    background: #1e293b;
+    border: 1px solid #475569;
+    color: #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+  .btn:hover { background: #334155; color: #fff; }
+  .btn.active { background: #0284c7; border-color: #38bdf8; color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="title">Symplectic Geodesic Ping-Pong Engine</div>
+    <div class="subtitle">System 1 / System 2 Predictor-Corrector Playing Closed-Loop Pong</div>
+  </div>
+  <div style="font-size: 11px; color: #64748b;">Autonomous Spacetime Geodesic Interception</div>
+</div>
+
+<div class="game-container">
+  <canvas id="pongCanvas"></canvas>
+
+  <div class="telemetry">
+    <div style="color: #94a3b8; font-weight: 700; margin-bottom: 2px;">NEURAL PHASE DYNAMICS</div>
+    <div>Current Mode: <span id="modeBadge" class="badge sys1">SYSTEM 1 (CLEAN)</span></div>
+    <div>Surprise Metric &epsilon;: <span id="valSurprise" style="font-weight: 700; color: #fff;">0.0021</span></div>
+    <div>Ball Spin / Magnus Drift: <span id="valSpin" style="font-weight: 700; color: #38bdf8;">+1.4 rad/s</span></div>
+    <div>Rally Streak: <span id="valRally" style="font-weight: 700; color: #34d399;">0</span></div>
+  </div>
+
+  <div class="controls">
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <button class="btn active" id="btnTurbulence">Toggle Spin Turbulence</button>
+      <button class="btn" id="btnReset">Reset Ball</button>
+    </div>
+    <div style="display: flex; gap: 14px; color: #94a3b8;">
+      <div><span style="color: #60a5fa;">&bull;</span> Opponent Paddle</div>
+      <div><span style="color: #34d399;">&bull;</span> Symplectic Agent</div>
+      <div><span style="color: #fb7185;">&bull;</span> Ball & Geodesic Trail</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('pongCanvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+function resize() {
+  width = canvas.clientWidth;
+  height = canvas.clientHeight;
+  canvas.width = width * window.devicePixelRatio;
+  canvas.height = height * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+window.addEventListener('resize', resize);
+resize();
+
+// Pong Physics
+const paddleW = 10;
+const paddleH = 75;
+let playerY = height / 2;
+let oppY = height / 2;
+let ballX = width / 2;
+let ballY = height / 2;
+let ballVx = 4.8;
+let ballVy = 1.2;
+let spin = 1.5;
+let turbulenceOn = true;
+let rallyCount = 0;
+let surpriseVal = 0.002;
+let isSystem2 = false;
+
+let ballTrail = [];
+let predictedPath = [];
+
+document.getElementById('btnTurbulence').addEventListener('click', () => {
+  turbulenceOn = !turbulenceOn;
+  document.getElementById('btnTurbulence').classList.toggle('active', turbulenceOn);
+});
+
+function resetBall() {
+  ballX = width / 2;
+  ballY = height / 2;
+  ballVx = (Math.random() > 0.5 ? 4.5 : -4.5);
+  ballVy = (Math.random() - 0.5) * 3.5;
+  spin = (Math.random() - 0.5) * 4.0;
+  ballTrail = [];
+}
+document.getElementById('btnReset').addEventListener('click', resetBall);
+
+// Compute Symplectic Predictive Geodesic Projection
+function computeGeodesicTrajectory() {
+  predictedPath = [];
+  let simX = ballX;
+  let simY = ballY;
+  let simVx = ballVx;
+  let simVy = ballVy;
+  let simSpin = spin;
+
+  for (let t = 0; t < 55; t++) {
+    // Magnus spin acceleration
+    if (turbulenceOn) {
+      simVy += simSpin * (simVx * 0.008);
+    }
+    simX += simVx;
+    simY += simVy;
+
+    // Bounce top/bottom
+    if (simY <= 10 || simY >= height - 10) {
+      simVy = -simVy;
+      simY = Math.max(10, Math.min(height - 10, simY));
+    }
+    predictedPath.push({ x: simX, y: simY });
+    if (simX >= width - 35) break;
+  }
+}
+
+function update() {
+  // Add trail
+  ballTrail.push({ x: ballX, y: ballY });
+  if (ballTrail.length > 22) ballTrail.shift();
+
+  // Magnus curve effect
+  if (turbulenceOn) {
+    ballVy += spin * (ballVx * 0.008);
+  }
+  ballX += ballVx;
+  ballY += ballVy;
+
+  // Wall collisions
+  if (ballY <= 10) {
+    ballY = 10;
+    ballVy = -ballVy;
+  }
+  if (ballY >= height - 10) {
+    ballY = height - 10;
+    ballVy = -ballVy;
+  }
+
+  // Left Opponent AI
+  const oppTarget = ballY;
+  oppY += (oppTarget - oppY) * 0.09;
+  oppY = Math.max(paddleH/2, Math.min(height - paddleH/2, oppY));
+
+  // Opponent Bounce
+  if (ballX <= 35 && Math.abs(ballY - oppY) < paddleH/2 + 8) {
+    ballVx = Math.abs(ballVx) * 1.03;
+    ballVy += (ballY - oppY) * 0.08;
+    spin = (Math.random() - 0.5) * 4.0;
+  }
+
+  // Symplectic SPC Neural Agent at Right Paddle (x = width - 25)
+  computeGeodesicTrajectory();
+  
+  // Cognitive Surprise Metric Calculation:
+  // Discrepancy between linear naive expectation and actual Magnus curvature
+  const linearExpY = ballY + ballVy * ((width - 25 - ballX) / Math.max(0.1, ballVx));
+  const trueGeodesicY = predictedPath.length > 0 ? predictedPath[predictedPath.length - 1].y : ballY;
+  surpriseVal = Math.min(0.85, Math.abs(trueGeodesicY - linearExpY) / 180.0);
+
+  // System 1 vs System 2 Gating (tau = 0.065)
+  isSystem2 = (surpriseVal > 0.065 && turbulenceOn);
+
+  // Agent Target Decision:
+  // In System 1: follow fast linear projection
+  // In System 2: activate top-down symplectic geodesic trajectory
+  const agentTargetY = isSystem2 ? trueGeodesicY : linearExpY;
+
+  // Player Paddle Moves Toward Interception Point
+  playerY += (agentTargetY - playerY) * (isSystem2 ? 0.16 : 0.11);
+  playerY = Math.max(paddleH/2, Math.min(height - paddleH/2, playerY));
+
+  // Player Paddle Bounce
+  if (ballX >= width - 35 && Math.abs(ballY - playerY) < paddleH/2 + 8) {
+    ballVx = -Math.abs(ballVx) * 1.04;
+    ballVy += (ballY - playerY) * 0.09;
+    spin = (Math.random() - 0.5) * 4.5;
+    rallyCount++;
+  }
+
+  // Reset if missed
+  if (ballX > width + 20 || ballX < -20) {
+    rallyCount = 0;
+    resetBall();
+  }
+
+  // Update UI Telemetry
+  document.getElementById('modeBadge').className = isSystem2 ? 'badge sys2' : 'badge sys1';
+  document.getElementById('modeBadge').textContent = isSystem2 ? 'SYSTEM 2 (ORBITAL CORRECTION)' : 'SYSTEM 1 (FAST EULER)';
+  document.getElementById('valSurprise').textContent = surpriseVal.toFixed(4);
+  document.getElementById('valSpin').textContent = (spin >= 0 ? '+' : '') + spin.toFixed(2) + ' rad/s';
+  document.getElementById('valRally').textContent = rallyCount;
+}
+
+function draw() {
+  ctx.clearRect(0, 0, width, height);
+
+  // Center Court Line
+  ctx.setLineDash([6, 6]);
+  ctx.strokeStyle = "rgba(51, 65, 85, 0.4)";
+  ctx.beginPath();
+  ctx.moveTo(width / 2, 0);
+  ctx.lineTo(width / 2, height);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Draw Geodesic Predicted Trajectory (when approaching agent)
+  if (ballVx > 0 && predictedPath.length > 1) {
+    ctx.beginPath();
+    for (let i = 0; i < predictedPath.length; i++) {
+      if (i === 0) ctx.moveTo(predictedPath[i].x, predictedPath[i].y);
+      else ctx.lineTo(predictedPath[i].x, predictedPath[i].y);
+    }
+    ctx.lineWidth = isSystem2 ? 2.5 : 1.5;
+    ctx.strokeStyle = isSystem2 ? "rgba(251, 191, 36, 0.7)" : "rgba(56, 189, 248, 0.4)";
+    ctx.stroke();
+
+    // Interception Marker
+    const last = predictedPath[predictedPath.length - 1];
+    ctx.beginPath();
+    ctx.arc(last.x, last.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = isSystem2 ? "#fbbf24" : "#38bdf8";
+    ctx.fill();
+  }
+
+  // Ball Trail
+  for (let i = 0; i < ballTrail.length; i++) {
+    const alpha = (i + 1) / ballTrail.length;
+    ctx.beginPath();
+    ctx.arc(ballTrail[i].x, ballTrail[i].y, 4 * alpha, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(251, 113, 133, ${alpha * 0.45})`;
+    ctx.fill();
+  }
+
+  // Ball
+  ctx.beginPath();
+  ctx.arc(ballX, ballY, 7, 0, Math.PI * 2);
+  ctx.fillStyle = "#fb7185";
+  ctx.shadowColor = "#fb7185";
+  ctx.shadowBlur = 12;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Opponent Paddle (Left, Blue)
+  ctx.fillStyle = "#60a5fa";
+  ctx.fillRect(20, oppY - paddleH / 2, paddleW, paddleH);
+
+  // Symplectic SPC Player Paddle (Right, Emerald/Amber)
+  ctx.fillStyle = isSystem2 ? "#fbbf24" : "#34d399";
+  ctx.shadowColor = isSystem2 ? "#fbbf24" : "#34d399";
+  ctx.shadowBlur = 14;
+  ctx.fillRect(width - 25 - paddleW, playerY - paddleH / 2, paddleW, paddleH);
+  ctx.shadowBlur = 0;
+}
+
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+loop();
+</script>
+
+</body>
+</html>
