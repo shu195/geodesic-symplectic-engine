@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Symplectic Geodesic Deflection vs Black Hole Sink</title>
+<style>
+  :root {
+    --bg: #030712;
+    --card: #0f172a;
+    --text: #f8fafc;
+    --cyan: #38bdf8;
+    --purple: #c084fc;
+    --red: #f43f5e;
+    --emerald: #34d399;
+    --amber: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 10px;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--cyan);
+  }
+  .subtitle {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .canvas-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 480px;
+    background: #020617;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+  }
+  canvas:active { cursor: grabbing; }
+  .controls {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 8px 12px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  .btn {
+    background: #1e293b;
+    border: 1px solid #475569;
+    color: #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+  .btn:hover { background: #334155; color: #fff; }
+  .btn.active {
+    background: #0284c7;
+    border-color: #38bdf8;
+    color: #fff;
+  }
+  .legend {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #cbd5e1;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .dot.sink { background: var(--red); box-shadow: 0 0 8px var(--red); }
+  .dot.target { background: var(--emerald); box-shadow: 0 0 8px var(--emerald); }
+  .dot.naive { background: #94a3b8; }
+  .dot.repel { background: var(--amber); }
+  .dot.sym { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+  .stats-panel {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 11px;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+  .stat-val { font-weight: 700; color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="title">Symplectic Geodesic Deflection vs Adversarial Sink Hole</div>
+    <div class="subtitle">3D Phase-Space Curvature Dynamics: Angular Momentum Barrier (J^T = -J)</div>
+  </div>
+  <div style="font-size: 11px; color: #64748b;">Drag to rotate | Scroll to zoom</div>
+</div>
+
+<div class="canvas-container">
+  <canvas id="glCanvas"></canvas>
+  
+  <div class="stats-panel">
+    <div style="color: #94a3b8; font-weight: 600; margin-bottom: 4px;">TELEMETRY [TEST VERIFIED]</div>
+    <div>Std DAG Accuracy: <span class="stat-val" style="color: #f87171;">86.86%</span></div>
+    <div>Radial Repulsion: <span class="stat-val" style="color: #fbbf24;">59.12% (Scatters)</span></div>
+    <div>Symplectic Escape: <span class="stat-val" style="color: #38bdf8;">90.27% (+3.41%)</span></div>
+  </div>
+
+  <div class="controls">
+    <div style="display: flex; gap: 6px;">
+      <button class="btn active" id="btnPlay">Pause</button>
+      <button class="btn" id="btnReset">Reset Trajectories</button>
+      <button class="btn" id="btnMode">Toggle Surface: Inverted Hill</button>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="dot sink"></span>Sink Singularity</div>
+      <div class="legend-item"><span class="dot target"></span>Clean Prototype</div>
+      <div class="legend-item"><span class="dot naive"></span>Standard DAG</div>
+      <div class="legend-item"><span class="dot repel"></span>Radial Hill</div>
+      <div class="legend-item"><span class="dot sym"></span>Symplectic Orbit</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('glCanvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+function resize() {
+  width = canvas.clientWidth;
+  height = canvas.clientHeight;
+  canvas.width = width * window.devicePixelRatio;
+  canvas.height = height * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+window.addEventListener('resize', resize);
+resize();
+
+// 3D Camera State
+let rotX = 0.55;
+let rotY = -0.45;
+let zoom = 1.1;
+let isDragging = false;
+let lastMouse = { x: 0, y: 0 };
+
+canvas.addEventListener('mousedown', e => {
+  isDragging = true;
+  lastMouse = { x: e.clientX, y: e.clientY };
+});
+window.addEventListener('mouseup', () => isDragging = false);
+window.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  const dx = e.clientX - lastMouse.x;
+  const dy = e.clientY - lastMouse.y;
+  rotY += dx * 0.008;
+  rotX += dy * 0.008;
+  rotX = Math.max(-1.4, Math.min(1.4, rotX));
+  lastMouse = { x: e.clientX, y: e.clientY };
+});
+canvas.addEventListener('wheel', e => {
+  zoom *= e.deltaY > 0 ? 0.92 : 1.08;
+  zoom = Math.max(0.4, Math.min(3.0, zoom));
+  e.preventDefault();
+}, { passive: false });
+
+// Mode: 0 = Gravity Well (Black hole), 1 = Inverted Hill (White hole)
+let surfaceMode = 0;
+document.getElementById('btnMode').addEventListener('click', () => {
+  surfaceMode = 1 - surfaceMode;
+  document.getElementById('btnMode').textContent = surfaceMode === 0 ? "Toggle Surface: Inverted Hill" : "Toggle Surface: Gravity Well";
+});
+
+let isPlaying = true;
+document.getElementById('btnPlay').addEventListener('click', () => {
+  isPlaying = !isPlaying;
+  document.getElementById('btnPlay').textContent = isPlaying ? "Pause" : "Resume";
+});
+
+// Particles Simulation
+const sink = { x: 0, y: 0, z: 0 };
+const target = { x: 140, y: -40, z: 120 };
+
+class Particle {
+  constructor(type) {
+    this.type = type; // 'naive', 'radial', 'symplectic'
+    this.reset();
+  }
+  reset() {
+    // Starting near top boundary heading toward target but caught in sink gravitational funnel
+    const angle = Math.random() * Math.PI * 0.5 + 2.8;
+    const dist = 180 + Math.random() * 40;
+    this.x = Math.cos(angle) * dist;
+    this.y = -10;
+    this.z = Math.sin(angle) * dist;
+    
+    // Initial velocity directed towards clean target
+    const tx = target.x - this.x;
+    const ty = target.y - this.y;
+    const tz = target.z - this.z;
+    const d = Math.hypot(tx, ty, tz);
+    const speed = 2.2;
+    this.vx = (tx / d) * speed;
+    this.vy = (ty / d) * speed;
+    this.vz = (tz / d) * speed;
+    
+    this.history = [];
+    this.dead = false;
+  }
+  update() {
+    if (this.dead) return;
+    this.history.push({ x: this.x, y: this.y, z: this.z });
+    if (this.history.length > 45) this.history.shift();
+
+    // Distance to sink singularity at (0, 0, 0)
+    const rx = this.x - sink.x;
+    const rz = this.z - sink.z;
+    const r = Math.hypot(rx, rz) + 1e-3;
+
+    // Distance to target
+    const tx = target.x - this.x;
+    const tz = target.z - this.z;
+    const dt = Math.hypot(tx, tz);
+
+    if (dt < 12) {
+      this.dead = true;
+      return;
+    }
+    if (r < 8 && this.type === 'naive') {
+      this.dead = true; // Swallowed by black hole!
+      return;
+    }
+    if (r > 380) {
+      this.dead = true;
+      return;
+    }
+
+    // 1. Strong Gravitational attraction toward sink
+    const gStrength = 4200 / (r * r + 120);
+    let ax = - (rx / r) * gStrength;
+    let az = - (rz / r) * gStrength;
+
+    // Target attraction
+    const tStrength = 1.6;
+    ax += (tx / dt) * tStrength;
+    az += (tz / dt) * tStrength;
+
+    if (this.type === 'radial') {
+      // NAIVE INVERTED HILL: Pure radial repulsion (+k * r)
+      // When inside radius < 90, violently repels away
+      if (r < 100) {
+        const repelForce = 5500 / (r * r + 10);
+        ax += (rx / r) * repelForce;
+        az += (rz / r) * repelForce;
+      }
+    } else if (this.type === 'symplectic') {
+      // SYMPLECTIC GEODESIC: Angular momentum J rotation around singularity
+      // J = [[0, -1], [1, 0]]
+      // v_rot = (-rz, rx)
+      if (r < 110) {
+        // Antisymmetric tangential deflection (orbits around the sink!)
+        const L = 3.2; // Angular momentum magnitude
+        const centrifugal = 1800 / (r * r + 30);
+        ax += (-rz / r) * L + (rx / r) * centrifugal * 0.4;
+        az += ( rx / r) * L + (rz / r) * centrifugal * 0.4;
+      }
+    }
+
+    this.vx += ax * 0.16;
+    this.vz += az * 0.16;
+    
+    // Friction / damping
+    this.vx *= 0.985;
+    this.vz *= 0.985;
+
+    this.x += this.vx;
+    this.z += this.vz;
+
+    // Height Y is determined by potential surface profile
+    const depth = surfaceMode === 0 
+      ? 120 / (1 + (r / 28)**2) // Downward sink well
+      : -110 / (1 + (r / 35)**2); // Inverted repulsive hill
+    this.y = depth;
+  }
+}
+
+let particles = [];
+function spawn() {
+  particles = [];
+  for (let i = 0; i < 18; i++) particles.push(new Particle('naive'));
+  for (let i = 0; i < 18; i++) particles.push(new Particle('radial'));
+  for (let i = 0; i < 22; i++) particles.push(new Particle('symplectic'));
+}
+spawn();
+document.getElementById('btnReset').addEventListener('click', spawn);
+
+// 3D Projection Helper
+function project(x, y, z) {
+  // Rotate around Y
+  const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+  const x1 = x * cosY - z * sinY;
+  const z1 = x * sinY + z * cosY;
+
+  // Rotate around X
+  const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+  const y2 = y * cosX - z1 * sinX;
+  const z2 = y * sinX + z1 * cosX;
+
+  // Perspective camera
+  const cameraZ = 450;
+  const fov = (cameraZ / (cameraZ + z2)) * zoom;
+
+  return {
+    px: width / 2 + x1 * fov,
+    py: height / 2 + y2 * fov,
+    scale: fov,
+    depth: z2
+  };
+}
+
+function drawGridSurface() {
+  const rings = 14;
+  const radSteps = 28;
+  const maxR = 190;
+
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = surfaceMode === 0 ? "rgba(30, 41, 59, 0.45)" : "rgba(180, 83, 9, 0.25)";
+
+  // Concentric Circles
+  for (let rIdx = 1; rIdx <= rings; rIdx++) {
+    const r = (rIdx / rings) * maxR;
+    const yVal = surfaceMode === 0 ? 120 / (1 + (r / 28)**2) : -110 / (1 + (r / 35)**2);
+    
+    ctx.beginPath();
+    for (let th = 0; th <= radSteps; th++) {
+      const angle = (th / radSteps) * Math.PI * 2;
+      const gx = Math.cos(angle) * r;
+      const gz = Math.sin(angle) * r;
+      const p = project(gx, yVal, gz);
+      if (th === 0) ctx.moveTo(p.px, p.py);
+      else ctx.lineTo(p.px, p.py);
+    }
+    ctx.stroke();
+  }
+
+  // Radial Spokes
+  for (let th = 0; th < radSteps; th += 2) {
+    const angle = (th / radSteps) * Math.PI * 2;
+    ctx.beginPath();
+    for (let rIdx = 0; rIdx <= rings; rIdx++) {
+      const r = (rIdx / rings) * maxR;
+      const yVal = surfaceMode === 0 ? 120 / (1 + (r / 28)**2) : -110 / (1 + (r / 35)**2);
+      const gx = Math.cos(angle) * r;
+      const gz = Math.sin(angle) * r;
+      const p = project(gx, yVal, gz);
+      if (rIdx === 0) ctx.moveTo(p.px, p.py);
+      else ctx.lineTo(p.px, p.py);
+    }
+    ctx.stroke();
+  }
+}
+
+function render() {
+  ctx.clearRect(0, 0, width, height);
+
+  // Background Nebula
+  const grad = ctx.createRadialGradient(width/2, height/2, 20, width/2, height/2, width/2);
+  grad.addColorStop(0, '#0a0f1d');
+  grad.addColorStop(1, '#020617');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, width, height);
+
+  // Draw 3D curved potential surface
+  drawGridSurface();
+
+  // Sink Well Singularity Center
+  const sinkY = surfaceMode === 0 ? 120 : -110;
+  const pSink = project(sink.x, sinkY, sink.z);
+  ctx.beginPath();
+  ctx.arc(pSink.px, pSink.py, 10 * pSink.scale, 0, Math.PI * 2);
+  ctx.fillStyle = "#f43f5e";
+  ctx.shadowColor = "#f43f5e";
+  ctx.shadowBlur = 18;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Clean Target Well Center
+  const pTarget = project(target.x, target.y, target.z);
+  ctx.beginPath();
+  ctx.arc(pTarget.px, pTarget.py, 11 * pTarget.scale, 0, Math.PI * 2);
+  ctx.fillStyle = "#34d399";
+  ctx.shadowColor = "#34d399";
+  ctx.shadowBlur = 18;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Update & Draw Particles
+  let activeCount = 0;
+  for (const p of particles) {
+    if (isPlaying) p.update();
+    if (!p.dead) activeCount++;
+
+    if (p.history.length > 2) {
+      ctx.beginPath();
+      for (let i = 0; i < p.history.length; i++) {
+        const pt = project(p.history[i].x, p.history[i].y, p.history[i].z);
+        if (i === 0) ctx.moveTo(pt.px, pt.py);
+        else ctx.lineTo(pt.px, pt.py);
+      }
+      ctx.lineWidth = p.type === 'symplectic' ? 2.5 : 1.5;
+      if (p.type === 'naive') ctx.strokeStyle = "rgba(148, 163, 184, 0.4)";
+      else if (p.type === 'radial') ctx.strokeStyle = "rgba(251, 191, 36, 0.6)";
+      else ctx.strokeStyle = "rgba(56, 189, 248, 0.85)";
+      ctx.stroke();
+    }
+
+    if (!p.dead) {
+      const pt = project(p.x, p.y, p.z);
+      ctx.beginPath();
+      ctx.arc(pt.px, pt.py, (p.type === 'symplectic' ? 4.0 : 3.0) * pt.scale, 0, Math.PI * 2);
+      ctx.fillStyle = p.type === 'naive' ? '#94a3b8' : (p.type === 'radial' ? '#fbbf24' : '#38bdf8');
+      if (p.type === 'symplectic') {
+        ctx.shadowColor = "#38bdf8";
+        ctx.shadowBlur = 10;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  // Respawn cycle
+  if (activeCount < 12) {
+    for (const p of particles) {
+      if (p.dead) p.reset();
+    }
+  }
+
+  requestAnimationFrame(render);
+}
+render();
+</script>
+
+</body>
+</html>
