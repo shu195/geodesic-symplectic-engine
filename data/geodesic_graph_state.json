@@ -1,6 +1,6 @@
 {
   "version": "3.0-symplectic-stdp",
-  "timestamp": 1792753050.439515,
+  "timestamp": 1793601458.0947566,
   "nodes": {
     "63236544084d": {
       "id": "63236544084d",
@@ -103,7 +103,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0f56310a40f4": {
       "id": "0f56310a40f4",
@@ -206,7 +206,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fd027207718b": {
       "id": "fd027207718b",
@@ -309,7 +309,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a22579520a96": {
       "id": "a22579520a96",
@@ -412,7 +412,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "899a3b9052b0": {
       "id": "899a3b9052b0",
@@ -515,7 +515,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "472fd461a247": {
       "id": "472fd461a247",
@@ -618,7 +618,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ec0322579d00": {
       "id": "ec0322579d00",
@@ -721,7 +721,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d22cd625bcc1": {
       "id": "d22cd625bcc1",
@@ -824,7 +824,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c366d3704800": {
       "id": "c366d3704800",
@@ -927,7 +927,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e55586e85b23": {
       "id": "e55586e85b23",
@@ -1030,7 +1030,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "78b9eedba1e2": {
       "id": "78b9eedba1e2",
@@ -1133,7 +1133,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "bd010ed1778e": {
       "id": "bd010ed1778e",
@@ -1236,7 +1236,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6a21ffafc4e5": {
       "id": "6a21ffafc4e5",
@@ -1339,7 +1339,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6331faaaad9d": {
       "id": "6331faaaad9d",
@@ -1442,7 +1442,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5fe70c0add39": {
       "id": "5fe70c0add39",
@@ -1545,7 +1545,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f4e0574b2ccb": {
       "id": "f4e0574b2ccb",
@@ -1648,7 +1648,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e3d47148faa5": {
       "id": "e3d47148faa5",
@@ -1751,7 +1751,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f299143a5369": {
       "id": "f299143a5369",
@@ -1854,7 +1854,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c1c734a44af7": {
       "id": "c1c734a44af7",
@@ -1957,7 +1957,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a132dadc34a8": {
       "id": "a132dadc34a8",
@@ -2060,7 +2060,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "923b8de25fe9": {
       "id": "923b8de25fe9",
@@ -2163,7 +2163,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c6c151320a08": {
       "id": "c6c151320a08",
@@ -2266,7 +2266,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "247f02a68824": {
       "id": "247f02a68824",
@@ -2369,7 +2369,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e2d157d09bee": {
       "id": "e2d157d09bee",
@@ -2472,7 +2472,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c50613304a90": {
       "id": "c50613304a90",
@@ -2575,7 +2575,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ebcce7d2e81c": {
       "id": "ebcce7d2e81c",
@@ -2678,7 +2678,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f993d20d6ba4": {
       "id": "f993d20d6ba4",
@@ -2781,7 +2781,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f0340a75e3c0": {
       "id": "f0340a75e3c0",
@@ -2884,7 +2884,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "63dcdcdd4e8c": {
       "id": "63dcdcdd4e8c",
@@ -2987,7 +2987,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4e06f0871b77": {
       "id": "4e06f0871b77",
@@ -3090,7 +3090,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "3849c2611c06": {
       "id": "3849c2611c06",
@@ -3193,7 +3193,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fd2b6fe5a70d": {
       "id": "fd2b6fe5a70d",
@@ -3296,7 +3296,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "abf83793a02a": {
       "id": "abf83793a02a",
@@ -3399,7 +3399,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7b7f6f3a9dd9": {
       "id": "7b7f6f3a9dd9",
@@ -3502,7 +3502,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b1de957d2689": {
       "id": "b1de957d2689",
@@ -3605,7 +3605,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9dbb3a90ee97": {
       "id": "9dbb3a90ee97",
@@ -3708,7 +3708,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6b7b6c2ae0f5": {
       "id": "6b7b6c2ae0f5",
@@ -3811,7 +3811,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6304f20ef989": {
       "id": "6304f20ef989",
@@ -3914,7 +3914,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "844385cee662": {
       "id": "844385cee662",
@@ -4017,7 +4017,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "495323786e7b": {
       "id": "495323786e7b",
@@ -4120,7 +4120,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ce68c56d07a1": {
       "id": "ce68c56d07a1",
@@ -4223,7 +4223,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b865ee0d1716": {
       "id": "b865ee0d1716",
@@ -4326,7 +4326,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a7061704dc55": {
       "id": "a7061704dc55",
@@ -4429,7 +4429,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9fae5be2d7f8": {
       "id": "9fae5be2d7f8",
@@ -4532,7 +4532,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "94319d36d4eb": {
       "id": "94319d36d4eb",
@@ -4635,7 +4635,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f141b017d793": {
       "id": "f141b017d793",
@@ -4738,7 +4738,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9e274bfec1f9": {
       "id": "9e274bfec1f9",
@@ -4841,7 +4841,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "99d6bc987047": {
       "id": "99d6bc987047",
@@ -4944,7 +4944,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "64c35e864936": {
       "id": "64c35e864936",
@@ -5047,7 +5047,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "39650ea53143": {
       "id": "39650ea53143",
@@ -5150,7 +5150,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "63fc45e7b458": {
       "id": "63fc45e7b458",
@@ -5253,7 +5253,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f60f511ce597": {
       "id": "f60f511ce597",
@@ -5356,7 +5356,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a06d88037c94": {
       "id": "a06d88037c94",
@@ -5459,7 +5459,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9ec7cea31e19": {
       "id": "9ec7cea31e19",
@@ -5562,7 +5562,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "64c94785e306": {
       "id": "64c94785e306",
@@ -5665,7 +5665,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6ea7fbfd8165": {
       "id": "6ea7fbfd8165",
@@ -5768,7 +5768,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "76a4ab7eeff5": {
       "id": "76a4ab7eeff5",
@@ -5871,7 +5871,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ba2af68c2b56": {
       "id": "ba2af68c2b56",
@@ -5974,7 +5974,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "bac620dd6b46": {
       "id": "bac620dd6b46",
@@ -6077,7 +6077,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0ab54ffce120": {
       "id": "0ab54ffce120",
@@ -6180,7 +6180,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "beba85323c8b": {
       "id": "beba85323c8b",
@@ -6283,7 +6283,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0bbc86960902": {
       "id": "0bbc86960902",
@@ -6386,7 +6386,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f9d274efd0f9": {
       "id": "f9d274efd0f9",
@@ -6489,7 +6489,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4e1e35d5edf4": {
       "id": "4e1e35d5edf4",
@@ -6592,7 +6592,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "98f4f00cddeb": {
       "id": "98f4f00cddeb",
@@ -6695,7 +6695,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "15d07e73b9a1": {
       "id": "15d07e73b9a1",
@@ -6798,7 +6798,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "3c6e856a8575": {
       "id": "3c6e856a8575",
@@ -6901,7 +6901,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "67dff82791b4": {
       "id": "67dff82791b4",
@@ -7004,7 +7004,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a43ced63d433": {
       "id": "a43ced63d433",
@@ -7107,7 +7107,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "465b0cbe2385": {
       "id": "465b0cbe2385",
@@ -7210,7 +7210,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "cb7693e13d49": {
       "id": "cb7693e13d49",
@@ -7313,7 +7313,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8c5ba18c9e41": {
       "id": "8c5ba18c9e41",
@@ -7416,7 +7416,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "30ea8b35313f": {
       "id": "30ea8b35313f",
@@ -7519,7 +7519,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "cbd316a9011d": {
       "id": "cbd316a9011d",
@@ -7622,7 +7622,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5ae9d55b45f9": {
       "id": "5ae9d55b45f9",
@@ -7725,7 +7725,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6a8a0da08529": {
       "id": "6a8a0da08529",
@@ -7828,7 +7828,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a1aab7f2ba63": {
       "id": "a1aab7f2ba63",
@@ -7931,7 +7931,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6f88e9ecd15d": {
       "id": "6f88e9ecd15d",
@@ -8034,7 +8034,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c46c06d01a6e": {
       "id": "c46c06d01a6e",
@@ -8137,7 +8137,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5a37e8d69482": {
       "id": "5a37e8d69482",
@@ -8240,7 +8240,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "cb9d848cc31e": {
       "id": "cb9d848cc31e",
@@ -8343,7 +8343,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f226527e1091": {
       "id": "f226527e1091",
@@ -8446,7 +8446,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8ec0042a51d1": {
       "id": "8ec0042a51d1",
@@ -8549,7 +8549,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9f7deb783759": {
       "id": "9f7deb783759",
@@ -8652,7 +8652,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e88099367351": {
       "id": "e88099367351",
@@ -8755,7 +8755,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1ce587381008": {
       "id": "1ce587381008",
@@ -8858,7 +8858,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1a1d941d170a": {
       "id": "1a1d941d170a",
@@ -8961,7 +8961,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "244a551e736f": {
       "id": "244a551e736f",
@@ -9064,7 +9064,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c09974211809": {
       "id": "c09974211809",
@@ -9167,7 +9167,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e3fbb61d1767": {
       "id": "e3fbb61d1767",
@@ -9270,7 +9270,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "60a28ef3f206": {
       "id": "60a28ef3f206",
@@ -9373,7 +9373,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "24e7855460b3": {
       "id": "24e7855460b3",
@@ -9476,7 +9476,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0b9cbec9c2e1": {
       "id": "0b9cbec9c2e1",
@@ -9579,7 +9579,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e77764b9a036": {
       "id": "e77764b9a036",
@@ -9682,7 +9682,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4f6199012ce4": {
       "id": "4f6199012ce4",
@@ -9785,7 +9785,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f4d0ebd099b8": {
       "id": "f4d0ebd099b8",
@@ -9888,7 +9888,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a94d9a937c90": {
       "id": "a94d9a937c90",
@@ -9991,7 +9991,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "73aa0517b974": {
       "id": "73aa0517b974",
@@ -10094,7 +10094,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4c40171f0281": {
       "id": "4c40171f0281",
@@ -10197,7 +10197,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4d3cf018e93a": {
       "id": "4d3cf018e93a",
@@ -10300,7 +10300,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "64fbb588b224": {
       "id": "64fbb588b224",
@@ -10403,7 +10403,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1eb4f12ce821": {
       "id": "1eb4f12ce821",
@@ -10506,7 +10506,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ba5ec6ddae49": {
       "id": "ba5ec6ddae49",
@@ -10609,7 +10609,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "48baa03c2b07": {
       "id": "48baa03c2b07",
@@ -10712,7 +10712,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f3c7cec2e0de": {
       "id": "f3c7cec2e0de",
@@ -10815,7 +10815,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0f723844d005": {
       "id": "0f723844d005",
@@ -10918,7 +10918,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9f60091931c6": {
       "id": "9f60091931c6",
@@ -11021,7 +11021,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b7e4ebcb2926": {
       "id": "b7e4ebcb2926",
@@ -11124,7 +11124,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "db7ff42be8d5": {
       "id": "db7ff42be8d5",
@@ -11227,7 +11227,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "048736d1f90c": {
       "id": "048736d1f90c",
@@ -11330,7 +11330,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "363b0876eb4f": {
       "id": "363b0876eb4f",
@@ -11433,7 +11433,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b898f51de0bf": {
       "id": "b898f51de0bf",
@@ -11536,7 +11536,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0eec7e4f7b40": {
       "id": "0eec7e4f7b40",
@@ -11639,7 +11639,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "aeaf5296423c": {
       "id": "aeaf5296423c",
@@ -11742,7 +11742,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ad9a49e4c2e9": {
       "id": "ad9a49e4c2e9",
@@ -11845,7 +11845,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "db205bd78d95": {
       "id": "db205bd78d95",
@@ -11948,7 +11948,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "32893517a039": {
       "id": "32893517a039",
@@ -12051,7 +12051,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ace07288656c": {
       "id": "ace07288656c",
@@ -12154,7 +12154,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2e1c9959cb50": {
       "id": "2e1c9959cb50",
@@ -12257,7 +12257,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4726f0fc67f2": {
       "id": "4726f0fc67f2",
@@ -12360,7 +12360,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "31742976ad59": {
       "id": "31742976ad59",
@@ -12463,7 +12463,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "08276d8a7f5e": {
       "id": "08276d8a7f5e",
@@ -12566,7 +12566,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "33a717fe35b1": {
       "id": "33a717fe35b1",
@@ -12669,7 +12669,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5151ebb05b55": {
       "id": "5151ebb05b55",
@@ -12772,7 +12772,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d3386306228e": {
       "id": "d3386306228e",
@@ -12875,7 +12875,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8fd8b8502db4": {
       "id": "8fd8b8502db4",
@@ -12978,7 +12978,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2fafd52159b3": {
       "id": "2fafd52159b3",
@@ -13081,7 +13081,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "485f8483eb6b": {
       "id": "485f8483eb6b",
@@ -13184,7 +13184,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "942ebae91313": {
       "id": "942ebae91313",
@@ -13287,7 +13287,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "13889b24fd06": {
       "id": "13889b24fd06",
@@ -13390,7 +13390,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "dce1779c9e41": {
       "id": "dce1779c9e41",
@@ -13493,7 +13493,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "98e924e924d6": {
       "id": "98e924e924d6",
@@ -13596,7 +13596,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d71a65bedf72": {
       "id": "d71a65bedf72",
@@ -13699,7 +13699,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b22ef6445896": {
       "id": "b22ef6445896",
@@ -13802,7 +13802,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ac4aebf4a3bf": {
       "id": "ac4aebf4a3bf",
@@ -13905,7 +13905,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f775a662ca07": {
       "id": "f775a662ca07",
@@ -14008,7 +14008,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e88ff5342b29": {
       "id": "e88ff5342b29",
@@ -14111,7 +14111,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b7c5b7a06536": {
       "id": "b7c5b7a06536",
@@ -14214,7 +14214,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d0bdecb1b2a8": {
       "id": "d0bdecb1b2a8",
@@ -14317,7 +14317,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9f829106d1c2": {
       "id": "9f829106d1c2",
@@ -14420,7 +14420,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9348cac40725": {
       "id": "9348cac40725",
@@ -14523,7 +14523,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "48b1621e7472": {
       "id": "48b1621e7472",
@@ -14626,7 +14626,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c4358c63241b": {
       "id": "c4358c63241b",
@@ -14729,7 +14729,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0c9d4b53ab76": {
       "id": "0c9d4b53ab76",
@@ -14832,7 +14832,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1c5cfb326e1d": {
       "id": "1c5cfb326e1d",
@@ -14935,7 +14935,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c7f0ce14d08c": {
       "id": "c7f0ce14d08c",
@@ -15038,7 +15038,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f8f7b4b36cef": {
       "id": "f8f7b4b36cef",
@@ -15141,7 +15141,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a277e200f44e": {
       "id": "a277e200f44e",
@@ -15244,7 +15244,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5d08e02f2ee8": {
       "id": "5d08e02f2ee8",
@@ -15347,7 +15347,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e0ff39aa553b": {
       "id": "e0ff39aa553b",
@@ -15450,7 +15450,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "367b95884eae": {
       "id": "367b95884eae",
@@ -15553,7 +15553,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "74fd8bd11852": {
       "id": "74fd8bd11852",
@@ -15656,7 +15656,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0424a7dc406e": {
       "id": "0424a7dc406e",
@@ -15759,7 +15759,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1138db031e5d": {
       "id": "1138db031e5d",
@@ -15862,7 +15862,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "abd05112846b": {
       "id": "abd05112846b",
@@ -15965,7 +15965,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "481f143ba59d": {
       "id": "481f143ba59d",
@@ -16068,7 +16068,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "3299fa07c2bc": {
       "id": "3299fa07c2bc",
@@ -16171,7 +16171,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "df13461e37ae": {
       "id": "df13461e37ae",
@@ -16274,7 +16274,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4a964b2030e2": {
       "id": "4a964b2030e2",
@@ -16377,7 +16377,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c9d487aa23f8": {
       "id": "c9d487aa23f8",
@@ -16480,7 +16480,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0fe14049e51b": {
       "id": "0fe14049e51b",
@@ -16583,7 +16583,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c212fd6f0416": {
       "id": "c212fd6f0416",
@@ -16686,7 +16686,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "96f8f9d8392b": {
       "id": "96f8f9d8392b",
@@ -16789,7 +16789,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8b60ffa7d47f": {
       "id": "8b60ffa7d47f",
@@ -16892,7 +16892,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ed4eee9a1cdc": {
       "id": "ed4eee9a1cdc",
@@ -16995,7 +16995,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "3c41388a16c6": {
       "id": "3c41388a16c6",
@@ -17098,7 +17098,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fbad774855f4": {
       "id": "fbad774855f4",
@@ -17201,7 +17201,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "75a86cf894b8": {
       "id": "75a86cf894b8",
@@ -17304,7 +17304,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a96a5e910c3d": {
       "id": "a96a5e910c3d",
@@ -17407,7 +17407,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "88e9b8956bf8": {
       "id": "88e9b8956bf8",
@@ -17510,7 +17510,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "11ce22c6662d": {
       "id": "11ce22c6662d",
@@ -17613,7 +17613,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8c3ef152752d": {
       "id": "8c3ef152752d",
@@ -17716,7 +17716,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "72178f204631": {
       "id": "72178f204631",
@@ -17819,7 +17819,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "59ba103623f6": {
       "id": "59ba103623f6",
@@ -17922,7 +17922,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "cd6477ae03b4": {
       "id": "cd6477ae03b4",
@@ -18025,7 +18025,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "da33a9680f61": {
       "id": "da33a9680f61",
@@ -18128,7 +18128,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "57049d29fe60": {
       "id": "57049d29fe60",
@@ -18231,7 +18231,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fcf9b3a2d021": {
       "id": "fcf9b3a2d021",
@@ -18334,7 +18334,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6a09343d10a5": {
       "id": "6a09343d10a5",
@@ -18437,7 +18437,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e671c39bc2bd": {
       "id": "e671c39bc2bd",
@@ -18540,7 +18540,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "145face70021": {
       "id": "145face70021",
@@ -18643,7 +18643,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ad322b386913": {
       "id": "ad322b386913",
@@ -18746,7 +18746,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "28af70f2b63c": {
       "id": "28af70f2b63c",
@@ -18849,7 +18849,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "57fa8affdfbd": {
       "id": "57fa8affdfbd",
@@ -18952,7 +18952,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5a71f5879b6c": {
       "id": "5a71f5879b6c",
@@ -19055,7 +19055,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4b1dc2a43452": {
       "id": "4b1dc2a43452",
@@ -19158,7 +19158,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "248ea3f23ac6": {
       "id": "248ea3f23ac6",
@@ -19261,7 +19261,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "19d90adfdcc2": {
       "id": "19d90adfdcc2",
@@ -19364,7 +19364,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d32c56b07eb0": {
       "id": "d32c56b07eb0",
@@ -19467,7 +19467,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "148442f082a7": {
       "id": "148442f082a7",
@@ -19570,7 +19570,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c5b8bca4fb50": {
       "id": "c5b8bca4fb50",
@@ -19673,7 +19673,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9672bd05eaed": {
       "id": "9672bd05eaed",
@@ -19776,7 +19776,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b1393ae43295": {
       "id": "b1393ae43295",
@@ -19879,7 +19879,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e4167a0c1c30": {
       "id": "e4167a0c1c30",
@@ -19982,7 +19982,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "23c182f1abd6": {
       "id": "23c182f1abd6",
@@ -20085,7 +20085,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "20c17c072339": {
       "id": "20c17c072339",
@@ -20188,7 +20188,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9e145d1f3c5f": {
       "id": "9e145d1f3c5f",
@@ -20291,7 +20291,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "cd319dc9deda": {
       "id": "cd319dc9deda",
@@ -20394,7 +20394,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d046f3b2e96a": {
       "id": "d046f3b2e96a",
@@ -20497,7 +20497,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "098534ad90a0": {
       "id": "098534ad90a0",
@@ -20600,7 +20600,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4b42d1162541": {
       "id": "4b42d1162541",
@@ -20703,7 +20703,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9578664ff539": {
       "id": "9578664ff539",
@@ -20806,7 +20806,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7308b1dd22f6": {
       "id": "7308b1dd22f6",
@@ -20909,7 +20909,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b69398de3e20": {
       "id": "b69398de3e20",
@@ -21012,7 +21012,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "3ada73182b15": {
       "id": "3ada73182b15",
@@ -21115,7 +21115,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7b9b6761e591": {
       "id": "7b9b6761e591",
@@ -21218,7 +21218,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7c929378ed1f": {
       "id": "7c929378ed1f",
@@ -21321,7 +21321,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0cf3f1fa0463": {
       "id": "0cf3f1fa0463",
@@ -21424,7 +21424,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8be08bf63aaa": {
       "id": "8be08bf63aaa",
@@ -21527,7 +21527,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "889c8c70f5ea": {
       "id": "889c8c70f5ea",
@@ -21630,7 +21630,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f8673660931d": {
       "id": "f8673660931d",
@@ -21733,7 +21733,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1f9b6ee853fe": {
       "id": "1f9b6ee853fe",
@@ -21836,7 +21836,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "430449c8bb7c": {
       "id": "430449c8bb7c",
@@ -21939,7 +21939,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4178324aa433": {
       "id": "4178324aa433",
@@ -22042,7 +22042,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "535fb0a55842": {
       "id": "535fb0a55842",
@@ -22145,7 +22145,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "aa044aa85ce0": {
       "id": "aa044aa85ce0",
@@ -22248,7 +22248,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1734c8ba4efb": {
       "id": "1734c8ba4efb",
@@ -22351,7 +22351,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a518a6af46dd": {
       "id": "a518a6af46dd",
@@ -22454,7 +22454,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5624b8ac85eb": {
       "id": "5624b8ac85eb",
@@ -22557,7 +22557,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "162433c3e4da": {
       "id": "162433c3e4da",
@@ -22660,7 +22660,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0eb8196221f7": {
       "id": "0eb8196221f7",
@@ -22763,7 +22763,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1e41c85e8e6c": {
       "id": "1e41c85e8e6c",
@@ -22866,7 +22866,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7a5464254d26": {
       "id": "7a5464254d26",
@@ -22969,7 +22969,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "121a3a3d1e09": {
       "id": "121a3a3d1e09",
@@ -23072,7 +23072,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fafe8b43c2e0": {
       "id": "fafe8b43c2e0",
@@ -23175,7 +23175,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fc2e4dd720ea": {
       "id": "fc2e4dd720ea",
@@ -23278,7 +23278,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7e113b348370": {
       "id": "7e113b348370",
@@ -23381,7 +23381,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5a20557191d2": {
       "id": "5a20557191d2",
@@ -23484,7 +23484,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "86b9d6da7a8d": {
       "id": "86b9d6da7a8d",
@@ -23587,7 +23587,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8b770fffe1f4": {
       "id": "8b770fffe1f4",
@@ -23690,7 +23690,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2962219f4a5c": {
       "id": "2962219f4a5c",
@@ -23793,7 +23793,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "118ff2bb449c": {
       "id": "118ff2bb449c",
@@ -23896,7 +23896,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "910788dbc118": {
       "id": "910788dbc118",
@@ -23999,7 +23999,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2db99174666e": {
       "id": "2db99174666e",
@@ -24102,7 +24102,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c5a5523faf97": {
       "id": "c5a5523faf97",
@@ -24205,7 +24205,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "be4e73e84d43": {
       "id": "be4e73e84d43",
@@ -24308,7 +24308,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "25b1acce891b": {
       "id": "25b1acce891b",
@@ -24411,7 +24411,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5c1fc0dc055b": {
       "id": "5c1fc0dc055b",
@@ -24514,7 +24514,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7f603123c0a5": {
       "id": "7f603123c0a5",
@@ -24617,7 +24617,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a079ce13e222": {
       "id": "a079ce13e222",
@@ -24720,7 +24720,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "12b2b1c29f0b": {
       "id": "12b2b1c29f0b",
@@ -24823,7 +24823,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1f12132b1d55": {
       "id": "1f12132b1d55",
@@ -24926,7 +24926,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5256053adb59": {
       "id": "5256053adb59",
@@ -25029,7 +25029,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "7a2b0829e4af": {
       "id": "7a2b0829e4af",
@@ -25132,7 +25132,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d71340aeda7f": {
       "id": "d71340aeda7f",
@@ -25235,7 +25235,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e6881c846b2b": {
       "id": "e6881c846b2b",
@@ -25338,7 +25338,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "da39f9d24a8a": {
       "id": "da39f9d24a8a",
@@ -25441,7 +25441,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b76cb503739c": {
       "id": "b76cb503739c",
@@ -25544,7 +25544,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "93390855833d": {
       "id": "93390855833d",
@@ -25647,7 +25647,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ec21aa31dd0e": {
       "id": "ec21aa31dd0e",
@@ -25750,7 +25750,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "16dc32015396": {
       "id": "16dc32015396",
@@ -25853,7 +25853,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "61a1582254f3": {
       "id": "61a1582254f3",
@@ -25956,7 +25956,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a9008de1f64b": {
       "id": "a9008de1f64b",
@@ -26059,7 +26059,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "754afedcf96f": {
       "id": "754afedcf96f",
@@ -26162,7 +26162,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b9df92b718f4": {
       "id": "b9df92b718f4",
@@ -26265,7 +26265,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2ca476054bed": {
       "id": "2ca476054bed",
@@ -26368,7 +26368,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2fb785d6a067": {
       "id": "2fb785d6a067",
@@ -26471,7 +26471,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "33a4255fee74": {
       "id": "33a4255fee74",
@@ -26574,7 +26574,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1b36ca3bb4d1": {
       "id": "1b36ca3bb4d1",
@@ -26677,7 +26677,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "05d3723e186b": {
       "id": "05d3723e186b",
@@ -26780,7 +26780,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "59d15cf33b97": {
       "id": "59d15cf33b97",
@@ -26883,7 +26883,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ea983dda7b04": {
       "id": "ea983dda7b04",
@@ -26986,7 +26986,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4f671f48850c": {
       "id": "4f671f48850c",
@@ -27089,7 +27089,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6a2d81da84d9": {
       "id": "6a2d81da84d9",
@@ -27192,7 +27192,7 @@
           0.0
         ]
       },
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d48a1fc2f7a5": {
       "id": "d48a1fc2f7a5",
@@ -27295,7 +27295,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792690216.2176492,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "1018958d91ca": {
       "id": "1018958d91ca",
@@ -27398,7 +27398,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692433.295037,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4e1591404dee": {
       "id": "4e1591404dee",
@@ -27501,7 +27501,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692433.7852914,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "37b0cb3a229d": {
       "id": "37b0cb3a229d",
@@ -27604,7 +27604,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692434.1444108,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "55c6b1a724a0": {
       "id": "55c6b1a724a0",
@@ -27707,7 +27707,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692434.4528663,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b031e57bb58b": {
       "id": "b031e57bb58b",
@@ -27810,7 +27810,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692434.754345,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d50b7daa6b98": {
       "id": "d50b7daa6b98",
@@ -27913,7 +27913,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692435.0266402,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8d2f5026b442": {
       "id": "8d2f5026b442",
@@ -28016,7 +28016,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692435.2042196,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "35434b00a7c7": {
       "id": "35434b00a7c7",
@@ -28119,7 +28119,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692435.750734,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "94e9c59af32c": {
       "id": "94e9c59af32c",
@@ -28222,7 +28222,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692436.0828795,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "dd75906d90cc": {
       "id": "dd75906d90cc",
@@ -28325,7 +28325,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692436.3487084,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8f782127e4c6": {
       "id": "8f782127e4c6",
@@ -28428,7 +28428,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692436.7195768,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2996d83c232b": {
       "id": "2996d83c232b",
@@ -28531,7 +28531,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692437.2264357,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "53c3696b1a0b": {
       "id": "53c3696b1a0b",
@@ -28634,7 +28634,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692437.6288779,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ae081e9160ee": {
       "id": "ae081e9160ee",
@@ -28737,7 +28737,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692437.8622754,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4f0998b734e2": {
       "id": "4f0998b734e2",
@@ -28838,9 +28838,9 @@
       ],
       "latch_state": 1.0,
       "w_self": 4.208,
-      "access_count": 1,
+      "access_count": 2,
       "timestamp": 1792692438.353389,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6ad3baaadd85": {
       "id": "6ad3baaadd85",
@@ -28943,7 +28943,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692438.5403583,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "efb130993aa5": {
       "id": "efb130993aa5",
@@ -29046,7 +29046,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692438.8149614,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b169025a39b4": {
       "id": "b169025a39b4",
@@ -29149,7 +29149,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692439.189518,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "5700ca6080d7": {
       "id": "5700ca6080d7",
@@ -29252,7 +29252,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692439.497604,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4d3ba1a8cedb": {
       "id": "4d3ba1a8cedb",
@@ -29355,7 +29355,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692439.7048354,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e31ada493439": {
       "id": "e31ada493439",
@@ -29458,7 +29458,7 @@
       "w_self": 4.208,
       "access_count": 2,
       "timestamp": 1792692440.0160756,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "086b90e3228a": {
       "id": "086b90e3228a",
@@ -29561,7 +29561,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692440.2830462,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "6a0909338dc5": {
       "id": "6a0909338dc5",
@@ -29664,7 +29664,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692440.5658867,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "277bb5588b36": {
       "id": "277bb5588b36",
@@ -29767,7 +29767,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692440.913902,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "686afffccb37": {
       "id": "686afffccb37",
@@ -29870,7 +29870,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692441.153506,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "256795ab9dd8": {
       "id": "256795ab9dd8",
@@ -29973,7 +29973,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692441.4864085,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "67fc900620b4": {
       "id": "67fc900620b4",
@@ -30074,9 +30074,9 @@
       ],
       "latch_state": 1.0,
       "w_self": 4.208,
-      "access_count": 1,
+      "access_count": 2,
       "timestamp": 1792692441.7880409,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "43169e75acc9": {
       "id": "43169e75acc9",
@@ -30179,7 +30179,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692442.0480907,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "3859c44c9f96": {
       "id": "3859c44c9f96",
@@ -30282,7 +30282,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692442.2285986,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "76b4aafc2428": {
       "id": "76b4aafc2428",
@@ -30385,7 +30385,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692442.5052764,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "19d917a97591": {
       "id": "19d917a97591",
@@ -30488,7 +30488,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692442.823897,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b62446ec8155": {
       "id": "b62446ec8155",
@@ -30591,7 +30591,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692443.1596253,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0a4e1e9d8505": {
       "id": "0a4e1e9d8505",
@@ -30694,7 +30694,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692443.4712863,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "380d51ea058b": {
       "id": "380d51ea058b",
@@ -30797,7 +30797,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692443.6932921,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f770d22bd793": {
       "id": "f770d22bd793",
@@ -30900,7 +30900,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692443.9166152,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "47fc9b44cbcc": {
       "id": "47fc9b44cbcc",
@@ -31003,7 +31003,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692444.1219966,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a34aa2502bc9": {
       "id": "a34aa2502bc9",
@@ -31106,7 +31106,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692444.3906336,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c2a4df25cb06": {
       "id": "c2a4df25cb06",
@@ -31207,9 +31207,9 @@
       ],
       "latch_state": 1.0,
       "w_self": 4.208,
-      "access_count": 1,
+      "access_count": 2,
       "timestamp": 1792692444.8149526,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "d1731ca5ad34": {
       "id": "d1731ca5ad34",
@@ -31312,7 +31312,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692445.0949097,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "cc8f0c42c768": {
       "id": "cc8f0c42c768",
@@ -31415,7 +31415,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692445.3355322,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "827dea69c3d8": {
       "id": "827dea69c3d8",
@@ -31518,7 +31518,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692445.784206,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0933c3a09500": {
       "id": "0933c3a09500",
@@ -31621,7 +31621,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692446.637437,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "2bd38ae3309f": {
       "id": "2bd38ae3309f",
@@ -31724,7 +31724,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692447.0039215,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "70502f94207f": {
       "id": "70502f94207f",
@@ -31827,7 +31827,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692447.3159885,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "01e6552d4051": {
       "id": "01e6552d4051",
@@ -31930,7 +31930,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692447.5563548,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4d65f39788e1": {
       "id": "4d65f39788e1",
@@ -32033,7 +32033,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692447.8695936,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "598429a3b166": {
       "id": "598429a3b166",
@@ -32136,7 +32136,7 @@
       "w_self": 4.208,
       "access_count": 2,
       "timestamp": 1792692448.1655698,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "bfd6d54a734f": {
       "id": "bfd6d54a734f",
@@ -32239,7 +32239,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692448.5345812,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "513d1e3e64e0": {
       "id": "513d1e3e64e0",
@@ -32342,7 +32342,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692448.8800466,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b64fd2830e39": {
       "id": "b64fd2830e39",
@@ -32445,7 +32445,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692449.176839,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "f5a232492a4c": {
       "id": "f5a232492a4c",
@@ -32548,7 +32548,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692449.4863043,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "b2eb765bced9": {
       "id": "b2eb765bced9",
@@ -32649,9 +32649,9 @@
       ],
       "latch_state": 1.0,
       "w_self": 4.208,
-      "access_count": 1,
+      "access_count": 2,
       "timestamp": 1792692449.8924642,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "bda8de14ba82": {
       "id": "bda8de14ba82",
@@ -32752,9 +32752,9 @@
       ],
       "latch_state": 1.0,
       "w_self": 4.208,
-      "access_count": 1,
+      "access_count": 2,
       "timestamp": 1792692450.1579368,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a32f3dbe2cb8": {
       "id": "a32f3dbe2cb8",
@@ -32857,7 +32857,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692450.350342,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "c8838ae444da": {
       "id": "c8838ae444da",
@@ -32960,7 +32960,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692450.624156,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "43794b058fe9": {
       "id": "43794b058fe9",
@@ -33063,7 +33063,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692450.9301171,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "786fe68a8caf": {
       "id": "786fe68a8caf",
@@ -33166,7 +33166,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692451.1812334,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e231da95a44b": {
       "id": "e231da95a44b",
@@ -33269,7 +33269,7 @@
       "w_self": 4.208,
       "access_count": 2,
       "timestamp": 1792692451.4068682,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "56a6a4bc66c3": {
       "id": "56a6a4bc66c3",
@@ -33372,7 +33372,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692451.6641173,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a24a3b9348ac": {
       "id": "a24a3b9348ac",
@@ -33475,7 +33475,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692451.9425418,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4203ed4a0376": {
       "id": "4203ed4a0376",
@@ -33578,7 +33578,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692452.202197,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "a978a9993b91": {
       "id": "a978a9993b91",
@@ -33681,7 +33681,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692452.4774394,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "8cd4c348ec79": {
       "id": "8cd4c348ec79",
@@ -33784,7 +33784,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692452.7994936,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "202acf665eab": {
       "id": "202acf665eab",
@@ -33887,7 +33887,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692453.0862036,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "829d95999c67": {
       "id": "829d95999c67",
@@ -33990,7 +33990,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692453.313958,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "e04961661340": {
       "id": "e04961661340",
@@ -34093,7 +34093,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692453.5528677,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "83c7d10bbb73": {
       "id": "83c7d10bbb73",
@@ -34196,7 +34196,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692453.8254707,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "4b8e755d95bf": {
       "id": "4b8e755d95bf",
@@ -34299,7 +34299,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692454.0954566,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "fbc1e2427d1d": {
       "id": "fbc1e2427d1d",
@@ -34402,7 +34402,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692454.367881,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "9d198a59da0e": {
       "id": "9d198a59da0e",
@@ -34505,7 +34505,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692454.6550388,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "779a82d0377e": {
       "id": "779a82d0377e",
@@ -34608,7 +34608,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692454.8907328,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "78ae1ab2e309": {
       "id": "78ae1ab2e309",
@@ -34711,7 +34711,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692455.1628041,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "63a6c6b7fd0c": {
       "id": "63a6c6b7fd0c",
@@ -34814,7 +34814,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692455.398859,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "035a81da98d8": {
       "id": "035a81da98d8",
@@ -34917,7 +34917,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692455.7020366,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "854078ba28aa": {
       "id": "854078ba28aa",
@@ -35020,7 +35020,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692455.921706,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "ce2fd1672a3f": {
       "id": "ce2fd1672a3f",
@@ -35123,7 +35123,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692456.118772,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "52ee6b486bd6": {
       "id": "52ee6b486bd6",
@@ -35226,7 +35226,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692456.3991077,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "41f728af312b": {
       "id": "41f728af312b",
@@ -35329,7 +35329,7 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692456.741544,
-      "temporal_octave": 0
+      "temporal_octave": 3
     },
     "0c3106c9d145": {
       "id": "0c3106c9d145",
@@ -35432,7 +35432,1322 @@
       "w_self": 4.208,
       "access_count": 1,
       "timestamp": 1792692457.0145605,
-      "temporal_octave": 0
+      "temporal_octave": 3
+    },
+    "d92b150d7fb9": {
+      "id": "d92b150d7fb9",
+      "concept": "Newtonian Physics First Principles Compendium 200 Topics Complete",
+      "content": "File: newtonian_physics_first_principles_guide.md. Lines: 9514. Size: 713,364 bytes. Modules M1-M10 intact.",
+      "payload": {
+        "macro": "Definitive 200-Topic Physics Encyclopedia Complete (Sessions 1-200, 9514 lines)",
+        "meso": "Sessions 1-200 fully deepened with exact governing PDEs, variational proofs, boundary conditions, scaling laws, and ASCII diagrams. TOC and Summary Reference Table 100% synchronized.",
+        "micro": "File: newtonian_physics_first_principles_guide.md. Lines: 9514. Size: 713,364 bytes. Modules M1-M10 intact."
+      },
+      "category": "physics-encyclopedia",
+      "coords": [
+        -4.0998,
+        3.0525,
+        -0.71
+      ],
+      "kerr_geometry": {
+        "coords": [
+          -4.0998,
+          3.0525,
+          -0.71
+        ],
+        "r": 5.0913,
+        "theta": 1.7107,
+        "phi": 2.5016,
+        "omega_drag": 0.012396,
+        "v_drag": [
+          -0.0378,
+          -0.0508,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.05292833223938942,
+        -0.008627627044916153,
+        0.09302184730768204,
+        -0.09971076995134354,
+        0.12524093687534332,
+        -0.016307838261127472,
+        -0.02922528050839901,
+        -0.1175963506102562,
+        0.010840713046491146,
+        -0.03124900534749031,
+        0.02373647876083851,
+        -0.17550154030323029,
+        0.06830329447984695,
+        -0.11102307587862015,
+        -0.2645215690135956,
+        -0.0529080405831337,
+        -0.08484616875648499,
+        -0.233510360121727,
+        0.07176604866981506,
+        -0.060647714883089066,
+        0.09900996088981628,
+        0.228262796998024,
+        0.10260452330112457,
+        0.1661359816789627,
+        -0.0493161603808403,
+        0.10574459284543991,
+        -0.011299376375973225,
+        -0.1832120418548584,
+        -0.0342659056186676,
+        -0.052660778164863586,
+        -0.13749879598617554,
+        -0.03022640198469162,
+        -0.06685981899499893,
+        -0.1099603995680809,
+        0.21107736229896545,
+        0.02323746494948864,
+        -0.03178595378994942,
+        0.17523494362831116,
+        0.14111822843551636,
+        0.05716502293944359,
+        0.1125626340508461,
+        -0.06448481231927872,
+        -0.14627714455127716,
+        -0.1550596058368683,
+        0.17964310944080353,
+        -0.04049365967512131,
+        -0.18072344362735748,
+        0.007802980486303568,
+        -0.05662170797586441,
+        0.03400200232863426,
+        0.15946577489376068,
+        -0.1987869143486023,
+        -0.07234333455562592,
+        0.03966852277517319,
+        0.06646797806024551,
+        0.15990155935287476,
+        -0.23455791175365448,
+        -0.015138208866119385,
+        -0.09379477798938751,
+        -0.21267861127853394,
+        0.06643854826688766,
+        0.11781156808137894,
+        0.16887536644935608,
+        0.2763352692127228
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793282507.698064,
+      "temporal_octave": 2
+    },
+    "f42e5278ae3c": {
+      "id": "f42e5278ae3c",
+      "concept": "Newtonian Physics Compendium Expanded to 225 Sessions (Part XIII Added)",
+      "content": "Lines: 10671. Size: 802,731 bytes. Verification suite exit code 0.",
+      "payload": {
+        "macro": "Compendium expanded to 225 sessions (Part XIII complete)",
+        "meso": "Sessions 201-225 added with step-by-step tensor derivations, exact PDEs, boundary conditions, scaling laws, ASCII diagrams, TOC and Summary table synchronized.",
+        "micro": "Lines: 10671. Size: 802,731 bytes. Verification suite exit code 0."
+      },
+      "category": "physics-encyclopedia",
+      "coords": [
+        -4.1579,
+        0.0923,
+        -1.4139
+      ],
+      "kerr_geometry": {
+        "coords": [
+          -4.1579,
+          0.0923,
+          -1.4139
+        ],
+        "r": 4.3186,
+        "theta": 1.9043,
+        "phi": 3.1194,
+        "omega_drag": 0.019929,
+        "v_drag": [
+          -0.0018,
+          -0.0829,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.15119273960590363,
+        0.07971744239330292,
+        0.03587188944220543,
+        -0.11195424944162369,
+        -0.17912223935127258,
+        -0.08693348616361618,
+        -0.07202784717082977,
+        -0.10479710251092911,
+        -0.10249992460012436,
+        -0.004019546322524548,
+        0.09473634511232376,
+        -0.08488526940345764,
+        -0.054577816277742386,
+        0.03911030292510986,
+        -0.12783831357955933,
+        -0.2616957128047943,
+        0.14829383790493011,
+        -0.01793423295021057,
+        0.14335602521896362,
+        -0.11405698955059052,
+        -0.04248639941215515,
+        -0.00805617030709982,
+        -0.09849356859922409,
+        0.08589137345552444,
+        -0.09344799816608429,
+        -0.0038449992425739765,
+        0.043904680758714676,
+        0.06634794175624847,
+        0.10983289778232574,
+        0.20440228283405304,
+        0.08369549363851547,
+        0.0607791393995285,
+        0.01697218045592308,
+        -0.38545462489128113,
+        0.14334875345230103,
+        -0.16670045256614685,
+        -0.0012900631409138441,
+        0.06731092929840088,
+        -0.13598531484603882,
+        -0.01850726455450058,
+        0.13143453001976013,
+        -0.08721719682216644,
+        0.06023700162768364,
+        -0.04314587637782097,
+        0.16350658237934113,
+        0.24847054481506348,
+        -0.13253065943717957,
+        -0.14236153662204742,
+        -0.11988722532987595,
+        -0.20990371704101562,
+        0.08804396539926529,
+        -0.08084378391504288,
+        -0.16950613260269165,
+        -0.03098851814866066,
+        -0.07494788616895676,
+        0.0362209789454937,
+        -0.1575932800769806,
+        -0.10281039774417877,
+        0.0062876115553081036,
+        -0.12424495816230774,
+        0.034172601997852325,
+        0.17383527755737305,
+        0.1382301300764084,
+        0.20667000114917755
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793283873.6497016,
+      "temporal_octave": 2
+    },
+    "b790a5166b90": {
+      "id": "b790a5166b90",
+      "concept": "Newtonian Physics Compendium Expanded to 250 Sessions (Part XIV Added)",
+      "content": "Lines: 11786. Size: 888,554 bytes. Verification suite exit code 0.",
+      "payload": {
+        "macro": "Compendium expanded to 250 sessions (Part XIV complete)",
+        "meso": "Sessions 226-250 added with step-by-step tensor derivations, exact PDEs, boundary conditions, scaling laws, ASCII diagrams, TOC and Summary table synchronized.",
+        "micro": "Lines: 11786. Size: 888,554 bytes. Verification suite exit code 0."
+      },
+      "category": "physics-encyclopedia",
+      "coords": [
+        -5.1479,
+        1.3336,
+        -0.923
+      ],
+      "kerr_geometry": {
+        "coords": [
+          -5.1479,
+          1.3336,
+          -0.923
+        ],
+        "r": 5.332,
+        "theta": 1.7448,
+        "phi": 2.8881,
+        "omega_drag": 0.01083,
+        "v_drag": [
+          -0.0144,
+          -0.0558,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.12080802768468857,
+        0.08661706000566483,
+        0.08244721591472626,
+        -0.12164399027824402,
+        -0.19462542235851288,
+        -0.09445766359567642,
+        -0.07826191931962967,
+        -0.11386738717556,
+        -0.11137139052152634,
+        -0.00436744187027216,
+        0.10293585807085037,
+        -0.09223216027021408,
+        -0.059301573783159256,
+        0.04249533638358116,
+        -0.13890282809734344,
+        -0.28434571623802185,
+        0.06056045740842819,
+        0.12185230106115341,
+        0.0314655639231205,
+        -0.15695270895957947,
+        -0.15371042490005493,
+        -0.011895742267370224,
+        -0.0919279083609581,
+        0.12295375019311905,
+        -0.17466717958450317,
+        0.07589372247457504,
+        0.04676251858472824,
+        0.07730642706155777,
+        0.1294361650943756,
+        0.06071726977825165,
+        0.10279257595539093,
+        0.07433776557445526,
+        0.010308589786291122,
+        -0.3202827572822571,
+        0.16996662318706512,
+        -0.16777817904949188,
+        0.007819445803761482,
+        0.07597103714942932,
+        -0.051433127373456955,
+        0.03402528911828995,
+        0.1521463692188263,
+        -0.07509230822324753,
+        0.076835036277771,
+        -0.04657219722867012,
+        0.16681435704231262,
+        0.16369403898715973,
+        -0.19858694076538086,
+        -0.0003096544824074954,
+        -0.14652027189731598,
+        -0.23709535598754883,
+        0.09608183056116104,
+        -0.07808367908000946,
+        -0.12399851530790329,
+        -0.03164849057793617,
+        -0.08646093308925629,
+        0.039355941116809845,
+        -0.17123311758041382,
+        -0.06823814660310745,
+        0.0068318103440105915,
+        -0.13499847054481506,
+        0.03713027015328407,
+        0.18888089060783386,
+        0.15019406378269196,
+        0.22455747425556183
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793284458.3892262,
+      "temporal_octave": 2
+    },
+    "9c257b5f56d6": {
+      "id": "9c257b5f56d6",
+      "concept": "newtonian_physics_300_sessions_compendium",
+      "content": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md",
+      "payload": {
+        "macro": "300-session complete physics compendium spanning kinematics to Standard Model action with contiguous Part I-XVI structure",
+        "meso": "14,326 lines, 300 body sessions, 300 TOC links, 300 summary table rows, 10 mathematical engine modules",
+        "micro": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md"
+      },
+      "category": "physics_encyclopedia",
+      "coords": [
+        0.7113,
+        -4.8488,
+        1.3035
+      ],
+      "kerr_geometry": {
+        "coords": [
+          0.7113,
+          -4.8488,
+          1.3035
+        ],
+        "r": 5.0042,
+        "theta": 1.3073,
+        "phi": -1.4251,
+        "omega_drag": 0.013024,
+        "v_drag": [
+          0.0631,
+          0.0093,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        -0.007288683671504259,
+        -0.034237220883369446,
+        0.07224873453378677,
+        -0.03525435924530029,
+        -0.034120384603738785,
+        0.10453427582979202,
+        -0.07124800980091095,
+        -0.2360793948173523,
+        -0.004862777888774872,
+        0.013800384476780891,
+        0.02908473089337349,
+        -0.06910868734121323,
+        0.23113024234771729,
+        0.30273234844207764,
+        0.10111645609140396,
+        -0.09914626181125641,
+        -0.06870205700397491,
+        -0.09268519282341003,
+        -0.16522379219532013,
+        0.19236135482788086,
+        -0.0018264686223119497,
+        -0.002567808609455824,
+        -0.023634223267436028,
+        -0.1101621687412262,
+        -0.25841057300567627,
+        0.031765006482601166,
+        -0.024632653221488,
+        -0.2795944809913635,
+        -0.01160093117505312,
+        -0.025759119540452957,
+        -0.14099767804145813,
+        -0.07057765871286392,
+        -0.18487921357154846,
+        -0.031442902982234955,
+        -0.012804299592971802,
+        0.09846150130033493,
+        -0.04131396487355232,
+        -0.028478309512138367,
+        0.030069034546613693,
+        0.19616618752479553,
+        0.23537378013134003,
+        -0.2122041881084442,
+        -0.014064548537135124,
+        -0.06322301924228668,
+        0.09395928680896759,
+        -0.12084593623876572,
+        -0.03851580247282982,
+        0.053327810019254684,
+        -0.1438881754875183,
+        0.050082556903362274,
+        0.07038510590791702,
+        0.2276930958032608,
+        0.13774435222148895,
+        -0.049794480204582214,
+        0.06946262717247009,
+        0.10659671574831009,
+        -0.2210906445980072,
+        -0.044167790561914444,
+        -0.11693067103624344,
+        -0.000987420091405511,
+        -0.12221965938806534,
+        0.019768185913562775,
+        0.24308787286281586,
+        0.10008682310581207
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793285768.5017033,
+      "temporal_octave": 2
+    },
+    "9b89c266be08": {
+      "id": "9b89c266be08",
+      "concept": "newtonian_physics_sessions_239_243_equation_fix",
+      "content": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md",
+      "payload": {
+        "macro": "LaTeX equation render fix in Sessions 239-243",
+        "meso": "Replaced 302 double-backslash LaTeX commands with single backslashes, verified exit code 0",
+        "micro": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md"
+      },
+      "category": "code_repair",
+      "coords": [
+        -2.5364,
+        -1.3692,
+        2.4106
+      ],
+      "kerr_geometry": {
+        "coords": [
+          -2.5364,
+          -1.3692,
+          2.4106
+        ],
+        "r": 3.7018,
+        "theta": 0.8616,
+        "phi": -2.6466,
+        "omega_drag": 0.030671,
+        "v_drag": [
+          0.042,
+          -0.0778,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.07541146129369736,
+        -0.0684797465801239,
+        -0.040010496973991394,
+        0.0701090544462204,
+        0.10266361385583878,
+        0.18934345245361328,
+        -0.03995009884238243,
+        0.07859042286872864,
+        -0.03632123023271561,
+        0.15111860632896423,
+        0.03764781728386879,
+        -0.03346789628267288,
+        -0.16582098603248596,
+        -0.17545504868030548,
+        0.05773542448878288,
+        -0.08450828492641449,
+        0.04530267044901848,
+        -0.12943682074546814,
+        -0.11689146608114243,
+        -0.1991838812828064,
+        -0.07615151256322861,
+        -0.03741835802793503,
+        -0.1503828763961792,
+        -0.15191175043582916,
+        -0.04051527753472328,
+        0.08080187439918518,
+        -0.0349719300866127,
+        -0.0635041892528534,
+        -0.051034532487392426,
+        0.025378504768013954,
+        0.13446590304374695,
+        0.2935084402561188,
+        0.03782655671238899,
+        -0.10369079560041428,
+        -0.101031094789505,
+        -0.09624434262514114,
+        0.09543173015117645,
+        0.038699597120285034,
+        -0.004681981168687344,
+        -0.008904720656573772,
+        0.010584424249827862,
+        -0.06553308665752411,
+        -0.03351310268044472,
+        -0.38786599040031433,
+        -0.08021499216556549,
+        0.14825043082237244,
+        0.20179101824760437,
+        0.2575002908706665,
+        0.15628290176391602,
+        -0.1018705815076828,
+        0.03674330189824104,
+        0.004920962732285261,
+        0.06375563889741898,
+        0.28037670254707336,
+        -0.07668706774711609,
+        -0.09626857936382294,
+        0.0016014262801036239,
+        0.1823078840970993,
+        0.07259485125541687,
+        -0.10100015252828598,
+        -0.2590044140815735,
+        -0.006459932774305344,
+        0.054809801280498505,
+        0.03080742619931698
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793287268.7252939,
+      "temporal_octave": 2
+    },
+    "bcfe4d9c2703": {
+      "id": "bcfe4d9c2703",
+      "concept": "500-Session Newtonian & Relativistic Physics Compendium Complete",
+      "content": "Strictly verified: 500 body headers, 500 TOC entries, 500 summary table rows, 0 TODOs, 100% title correspondence.",
+      "payload": {
+        "macro": "500 Sessions Complete First-Principles Compendium",
+        "meso": "25,712 lines, 2.05 MB, 3,857 display equations, 518 ASCII diagrams across 24 Parts",
+        "micro": "Strictly verified: 500 body headers, 500 TOC entries, 500 summary table rows, 0 TODOs, 100% title correspondence."
+      },
+      "category": "physics_encyclopedia_milestone",
+      "coords": [
+        2.5792,
+        -3.6993,
+        -0.6947
+      ],
+      "kerr_geometry": {
+        "coords": [
+          2.5792,
+          -3.6993,
+          -0.6947
+        ],
+        "r": 4.4849,
+        "theta": 1.7263,
+        "phi": -0.9619,
+        "omega_drag": 0.017905,
+        "v_drag": [
+          0.0662,
+          0.0462,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.04730873182415962,
+        -0.04000931978225708,
+        0.1915007084608078,
+        -0.024950597435235977,
+        -0.032633569091558456,
+        0.030937615782022476,
+        0.0,
+        -0.15496303141117096,
+        0.08103065192699432,
+        -0.0194194745272398,
+        0.04535183683037758,
+        -0.06558015197515488,
+        0.2902279496192932,
+        0.2757747769355774,
+        0.14798231422901154,
+        -0.20434296131134033,
+        0.015120183117687702,
+        0.04400400444865227,
+        -0.10750079154968262,
+        -0.08957687765359879,
+        -0.0011378307826817036,
+        0.04729795455932617,
+        0.06326449662446976,
+        -0.1660441756248474,
+        0.029788779094815254,
+        0.03290894627571106,
+        0.09707076847553253,
+        -0.4711545407772064,
+        -0.09922046214342117,
+        -0.0889650285243988,
+        -0.11873434484004974,
+        -0.10685667395591736,
+        -0.004372685682028532,
+        -0.05488745495676994,
+        -0.010958448052406311,
+        0.030190737918019295,
+        -0.10206519812345505,
+        -0.17290940880775452,
+        0.00981348566710949,
+        -0.04349174350500107,
+        0.3868168592453003,
+        0.12702804803848267,
+        -0.12091607600450516,
+        -0.01999717392027378,
+        -0.03950604051351547,
+        -0.025325583294034004,
+        0.02631184458732605,
+        -0.09543856233358383,
+        -0.1564396619796753,
+        0.1242433488368988,
+        -0.054321859031915665,
+        -0.06510531902313232,
+        -0.059948746114969254,
+        0.021691877394914627,
+        0.14829222857952118,
+        0.032589420676231384,
+        -0.06610585004091263,
+        0.05661782994866371,
+        0.020348452031612396,
+        -0.1251404881477356,
+        0.029612908139824867,
+        0.07620764523744583,
+        0.13433924317359924,
+        0.04034831002354622
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793292319.5263498,
+      "temporal_octave": 2
+    },
+    "d22f42687e26": {
+      "id": "d22f42687e26",
+      "concept": "600-Session First-Principles Physical Atlas Complete",
+      "content": "Strictly verified: 600 body headers, 600 TOC entries, 600 summary table rows, 0 TODOs, 100% title correspondence.",
+      "payload": {
+        "macro": "600 Sessions Complete Theoretical Physics Compendium",
+        "meso": "30,889 lines, 2.47 MB, 4,509 display equations, 619 ASCII diagrams across 28 Parts",
+        "micro": "Strictly verified: 600 body headers, 600 TOC entries, 600 summary table rows, 0 TODOs, 100% title correspondence."
+      },
+      "category": "physics_encyclopedia_milestone",
+      "coords": [
+        3.126,
+        -0.4627,
+        -1.2486
+      ],
+      "kerr_geometry": {
+        "coords": [
+          3.126,
+          -0.4627,
+          -1.2486
+        ],
+        "r": 3.3053,
+        "theta": 1.9581,
+        "phi": -0.147,
+        "omega_drag": 0.042392,
+        "v_drag": [
+          0.0196,
+          0.1325,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.0017730648396536708,
+        -0.06496607512235641,
+        0.00897096749395132,
+        0.033600542694330215,
+        -0.0046954406425356865,
+        0.07405631244182587,
+        0.0,
+        -0.15168781578540802,
+        0.0722147673368454,
+        -0.13311077654361725,
+        -0.10110040754079819,
+        -0.09057696908712387,
+        0.1942368745803833,
+        0.13327500224113464,
+        0.15268854796886444,
+        -0.10502535104751587,
+        0.12289025634527206,
+        0.5960589051246643,
+        0.06706038862466812,
+        -0.24896448850631714,
+        -0.16976530849933624,
+        0.07560423761606216,
+        -0.029842069372534752,
+        -0.1312761902809143,
+        -0.008187997154891491,
+        0.012640965171158314,
+        0.12531563639640808,
+        0.03171789273619652,
+        -0.13591782748699188,
+        0.003951920662075281,
+        -0.0139835299924016,
+        -0.08339659869670868,
+        -0.03983660787343979,
+        0.060587842017412186,
+        -0.020586729049682617,
+        0.0903983861207962,
+        -0.1183110848069191,
+        -0.13306277990341187,
+        0.021447014063596725,
+        -0.0012165559455752373,
+        0.1401488184928894,
+        0.09653223305940628,
+        0.03455545753240585,
+        0.027974894270300865,
+        -0.01860942132771015,
+        -0.011133036576211452,
+        -0.04409225285053253,
+        0.014012347906827927,
+        -0.16677983105182648,
+        0.29399698972702026,
+        0.036404192447662354,
+        0.01943880505859852,
+        -0.0022858825977891684,
+        -0.20032452046871185,
+        0.1104896068572998,
+        -0.08869272470474243,
+        -0.17496970295906067,
+        0.008151132613420486,
+        -0.02263479493558407,
+        -0.0478789322078228,
+        -0.05711766332387924,
+        0.056940022855997086,
+        0.08324067294597626,
+        -0.010260185226798058
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793293731.116819,
+      "temporal_octave": 2
+    },
+    "c9b3b7224e71": {
+      "id": "c9b3b7224e71",
+      "concept": "first_principles_physics_encyclopedia_700_sessions",
+      "summary": "Complete 700-session mathematical physics compendium 'newtonian_physics_first_principles_guide.md' spanning 32 parts, 36,926 lines, 3.01 MB, 5,462 display math equations, 719 ASCII diagrams, 0 placeholders, and 0 LaTeX errors. Integrates classical mechanics, relativistic gravitation, non-perturbative QCD, topological states of matter, and quantum gravity / M-theory into a unified geometric continuum.",
+      "phase_vector": [
+        -0.07269991934299469,
+        -0.13688580691814423,
+        0.005875910632312298,
+        -0.005857841111719608,
+        -0.08057548850774765,
+        0.019159046933054924,
+        0.10544389486312866,
+        -0.25239014625549316,
+        0.1586330235004425,
+        -0.021433034911751747,
+        -0.006639640312641859,
+        -0.15725895762443542,
+        0.11269541084766388,
+        0.14298909902572632,
+        -0.008487018756568432,
+        -0.004827225115150213,
+        -0.10323438793420792,
+        0.005277362652122974,
+        -0.08156776428222656,
+        0.05128472298383713,
+        -0.0661192312836647,
+        0.06073576956987381,
+        0.2878076434135437,
+        -0.2440059930086136,
+        0.06090642511844635,
+        0.10143906623125076,
+        -0.10545455664396286,
+        -0.04389176517724991,
+        0.20419572293758392,
+        -0.1149563193321228,
+        -0.2955947816371918,
+        -0.04981181398034096,
+        -0.14184048771858215,
+        -0.030679678544402122,
+        -0.03476022183895111,
+        0.05585426092147827,
+        -0.16849564015865326,
+        -0.014034339226782322,
+        0.040017805993556976,
+        -0.10121260583400726,
+        0.25758492946624756,
+        0.08077891916036606,
+        -0.057324521243572235,
+        -0.02218875102698803,
+        0.08033707737922668,
+        -0.06778896600008011,
+        -0.1909693479537964,
+        0.16849809885025024,
+        -0.19257698953151703,
+        0.06112514063715935,
+        0.03784254193305969,
+        0.07092861086130142,
+        -0.04063795506954193,
+        0.3604056239128113,
+        0.15581835806369781,
+        -0.05747136101126671,
+        -0.16111767292022705,
+        -0.08050791174173355,
+        0.014333714731037617,
+        -0.07125483453273773,
+        0.0318080335855484,
+        0.025725247338414192,
+        0.012937137857079506,
+        0.06335029006004333
+      ],
+      "w_self": 4.208,
+      "latched": true,
+      "latch_time": 1793296670.9397166,
+      "octave_decay": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "access_count": 1,
+      "last_accessed": 1793296670.9397256,
+      "canonical_path": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md",
+      "stats": {
+        "sessions": 700,
+        "parts": 32,
+        "lines": 36926,
+        "chars": 3009850,
+        "display_math": 5462,
+        "ascii_diagrams": 719,
+        "placeholders": 0,
+        "latex_errors": 0
+      },
+      "payload": {
+        "macro": "first_principles_physics_encyclopedia_700_sessions",
+        "meso": "",
+        "micro": ""
+      },
+      "kerr_geometry": {
+        "coords": [
+          -3.0372,
+          -1.4965,
+          1.0504
+        ],
+        "r": 3.4514,
+        "theta": 1.2615,
+        "phi": -2.6838,
+        "omega_drag": 0.037642,
+        "v_drag": [
+          0.0563,
+          -0.1143,
+          0.0
+        ]
+      },
+      "coords": [
+        -3.0372,
+        -1.4965,
+        1.0504
+      ],
+      "temporal_octave": 4
+    },
+    "ab98777d7118": {
+      "id": "ab98777d7118",
+      "concept": "first_principles_physics_encyclopedia_800_sessions",
+      "summary": "Completed Sessions 701 to 800 of newtonian_physics_first_principles_guide.md, reaching 800 complete graduate/research-level sessions across 35 body parts plus Part XXXVI Mathematical Engine. Total stats: 44,527 lines, 3.65 MB (3,646,838 bytes), 454,336 words, 6,666 display LaTeX equations, 1,645 ASCII phase-space diagrams, 800 strictly sequential TOC entries, 800 body headers, 800 summary reference table rows, 10 mathematical engine modules (M1-M10), 0 placeholders, 0 double backslash bugs. Parts XXXII to XXXV cover Quantum Gravity, Holographic Entanglement & QES, Non-Perturbative Dualities & S-Matrices, Topological Quantum Matter, Tensor Networks & QECC, and Nonequilibrium Quantum Dynamics, Hydrodynamics & Cosmological Horizon Unity.",
+      "phase_vector": [
+        0.43955686688423157,
+        0.029993992298841476,
+        0.0862063318490982,
+        0.07020539045333862,
+        -0.07762394845485687,
+        -0.10555960983037949,
+        0.1809266209602356,
+        0.09383811801671982,
+        0.1517326533794403,
+        0.056463342159986496,
+        0.17799058556556702,
+        -0.11049598455429077,
+        -0.062383685261011124,
+        -0.02399713173508644,
+        0.0449470579624176,
+        0.02947409823536873,
+        0.10274282842874527,
+        -0.0009376113885082304,
+        -0.0337144136428833,
+        0.23846417665481567,
+        0.03517819941043854,
+        0.05657967925071716,
+        0.2506559491157532,
+        -0.07586624473333359,
+        0.07538022100925446,
+        0.08280247449874878,
+        -0.07049896568059921,
+        0.06283174455165863,
+        0.15824973583221436,
+        0.058416616171598434,
+        -0.05078454315662384,
+        0.2599866986274719,
+        -0.045461103320121765,
+        -0.07648915797472,
+        0.037510763853788376,
+        0.008306221105158329,
+        -0.04715626314282417,
+        -0.06037702038884163,
+        -0.09973575919866562,
+        0.17477230727672577,
+        0.10013258457183838,
+        -0.05328020453453064,
+        -0.058916039764881134,
+        -0.010738076642155647,
+        0.4066092371940613,
+        -0.018814124166965485,
+        -0.12998424470424652,
+        0.11533982306718826,
+        -0.054294951260089874,
+        -0.12565498054027557,
+        0.04741400107741356,
+        0.06058424338698387,
+        0.04189220815896988,
+        0.03330482542514801,
+        0.17565800249576569,
+        0.05697314068675041,
+        -0.017898505553603172,
+        0.1297031193971634,
+        0.09940680861473083,
+        -0.04633888974785805,
+        -0.030036283656954765,
+        -0.10116754472255707,
+        -0.00816136784851551,
+        0.1600310206413269
+      ],
+      "w_self": 4.208,
+      "latched": true,
+      "latch_time": 1793354618.0952442,
+      "octave_decay": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "access_count": 1,
+      "last_accessed": 1793354618.0952487,
+      "canonical_path": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md",
+      "stats": {
+        "sessions": 800,
+        "parts": 36,
+        "lines": 44527,
+        "chars": 3646838,
+        "words": 454336,
+        "display_math": 6666,
+        "ascii_diagrams": 1645,
+        "placeholders": 0,
+        "latex_errors": 0
+      },
+      "payload": {
+        "macro": "first_principles_physics_encyclopedia_800_sessions",
+        "meso": "",
+        "micro": ""
+      },
+      "kerr_geometry": {
+        "coords": [
+          6.1033,
+          3.4413,
+          3.3241
+        ],
+        "r": 7.7171,
+        "theta": 1.1255,
+        "phi": 0.5134,
+        "omega_drag": 0.003637,
+        "v_drag": [
+          -0.0125,
+          0.0222,
+          0.0
+        ]
+      },
+      "coords": [
+        6.1033,
+        3.4413,
+        3.3241
+      ],
+      "temporal_octave": 4
+    },
+    "8de48dd0a22e": {
+      "id": "8de48dd0a22e",
+      "concept": "first_principles_physics_encyclopedia_850_sessions",
+      "summary": "Completed Sessions 801 to 850 (50-session mega batch) of newtonian_physics_first_principles_guide.md, advancing to 850 complete graduate/research-level sessions across 37 body parts plus Part XXXVIII Mathematical Engine. Total stats: 48,839 lines, 3.83 MB (4,016,826 bytes), 499,515 words, 7,237 display LaTeX equations, 878 ASCII phase-space diagrams, 850 strictly sequential TOC entries, 850 body headers, 850 summary reference table rows, 10 mathematical engine modules (M1-M10), 0 placeholders, 0 double backslash bugs. Part XXXVI covers Quantum Information Geometry, Entanglement Phases & Categorical Symmetries (Kramers-Wannier defect algebras, non-invertible SPTs, operational resource theories, MIPT, TNR/MERA, cMPS, isoTENS, GNVW index, Witt group, information convex sets). Part XXXVII covers Semiclassical Gravity, Quantum Extremal Islands & Non-Perturbative Evaporation (GSL/Bekenstein bound, Gibbons-Hawking saddles, QES 4D Page curve, higher-D islands, bra-ket wormholes, SYK/JT Schwarzian path integrals, cosmic Renyi surfaces, N=4 SYM index black hole microstates, LLM bubbling geometries, BKL singularities, and QEIs).",
+      "phase_vector": [
+        0.32236695289611816,
+        -0.04115508124232292,
+        0.13624660670757294,
+        -0.03568268567323685,
+        0.05683603510260582,
+        -0.012764179147779942,
+        0.00590737909078598,
+        -0.11655803769826889,
+        0.12540742754936218,
+        -0.09821764379739761,
+        0.06671230494976044,
+        -0.07020385563373566,
+        -0.03312806785106659,
+        0.15146911144256592,
+        0.11681479215621948,
+        -0.07245195657014847,
+        0.22719818353652954,
+        0.012258936651051044,
+        -0.12827683985233307,
+        0.12418501079082489,
+        0.03619946539402008,
+        -0.026175912469625473,
+        0.01581718400120735,
+        0.07544749975204468,
+        -0.003009025240316987,
+        -0.05980539694428444,
+        -0.13721942901611328,
+        -0.04719686135649681,
+        -0.06414663046598434,
+        -0.24019038677215576,
+        -0.1302689015865326,
+        0.09186667203903198,
+        -0.08712957054376602,
+        -0.016207333654165268,
+        -0.0921647846698761,
+        0.026928933337330818,
+        -0.031062258407473564,
+        -0.1116691380739212,
+        0.03562561795115471,
+        0.2987174391746521,
+        0.07648466527462006,
+        -0.17429272830486298,
+        -0.1453787386417389,
+        -0.010905683040618896,
+        -0.1821225881576538,
+        -0.1389646679162979,
+        -0.007058230694383383,
+        0.05877947807312012,
+        -0.05895110219717026,
+        -0.03812677413225174,
+        0.008910752832889557,
+        -0.18222637474536896,
+        -0.04116763174533844,
+        -0.009811836294829845,
+        0.4472724497318268,
+        0.1915142834186554,
+        0.12398356199264526,
+        0.09721501171588898,
+        0.013742711395025253,
+        -0.02263367921113968,
+        -0.02834220416843891,
+        -0.15827400982379913,
+        0.04314376041293144,
+        -0.10933064669370651
+      ],
+      "w_self": 4.208,
+      "latched": true,
+      "latch_time": 1793356467.981866,
+      "octave_decay": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "access_count": 1,
+      "last_accessed": 1793356467.9818714,
+      "canonical_path": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md",
+      "stats": {
+        "sessions": 850,
+        "parts": 38,
+        "lines": 48839,
+        "chars": 4016826,
+        "words": 499515,
+        "display_math": 7237,
+        "code_blocks": 878,
+        "placeholders": 0,
+        "latex_errors": 0
+      },
+      "payload": {
+        "macro": "first_principles_physics_encyclopedia_850_sessions",
+        "meso": "",
+        "micro": ""
+      },
+      "kerr_geometry": {
+        "coords": [
+          4.1862,
+          -3.2467,
+          -0.7951
+        ],
+        "r": 5.2907,
+        "theta": 1.7216,
+        "phi": -0.6597,
+        "omega_drag": 0.011081,
+        "v_drag": [
+          0.036,
+          0.0464,
+          0.0
+        ]
+      },
+      "coords": [
+        4.1862,
+        -3.2467,
+        -0.7951
+      ],
+      "temporal_octave": 4
+    },
+    "5375555267a7": {
+      "id": "5375555267a7",
+      "concept": "first_principles_physics_encyclopedia_900_sessions_grand_synthesis",
+      "summary": "Completed Sessions 851 to 900 (50-session mega batch), achieving 900 complete graduate/research-level sessions across 39 body parts plus Part XL Mathematical Engine in newtonian_physics_first_principles_guide.md. Total stats: 52,943 lines, 4.18 MB (4,379,057 bytes), 545,773 words, 7,775 display LaTeX equations, 928 ASCII phase-space diagrams, 900 strictly sequential TOC entries, 900 body headers, 900 summary reference table rows, 10 mathematical engine modules (M1-M10), 0 placeholders, 0 double backslash bugs. Part XXXVIII covers Non-Perturbative QFT, Resurgence & Topological Strings (Stokes phenomena, alien calculus, BZJ cancellation, IR renormalons, Lefschetz thimbles, Nekrasov instanton sums, M5-brane curves, AGT correspondence, B-model mirror maps, holomorphic anomaly equations, OSV black hole conjecture, Gopakumar-Vafa M2 invariants, MNOP DT/GW duality, Dijkgraaf-Vafa matrix models, Kontsevich-Soibelman wall-crossing, BPS quivers, exact WKB Voros coefficients, TBA, ODE/IM correspondence, spectral networks, Class S trinions, Argyres-Douglas points, geometric Langlands, 3D mirror symmetry, and 3D-3D correspondence). Part XXXIX covers Quantum Spacetime Thermodynamics, Higher-Spin Gravity & The Grand Synthesis (Vasiliev higher-spin theory, Klebanov-Polyakov conjecture, holographic RG Hamilton-Jacobi flows, C/A/F-theorems, HRT extremal surfaces, causal vs entanglement wedges, kinematic space dS_2, modular Berry curvature, holographic complexity CV/CA/anything, traversable wormholes, Hayden-Preskill scrambling, MSS chaos bound, fast scrambling, hydrodynamic attractors, jet quenching q_hat, holographic superconductors, non-Fermi liquids, Swampland distance conjecture, Weak Gravity Conjecture, Festina Lente de Sitter bound, S-matrix bootstrap, 3D Ising conformal bootstrap, the Amplituhedron, and Session 900: The Master Action of Physical Reality unifying all 900 sessions into symplectic geodesic geometry).",
+      "phase_vector": [
+        0.2731691598892212,
+        0.03846247121691704,
+        -0.027297494933009148,
+        0.10554447770118713,
+        -0.13799086213111877,
+        0.013185586780309677,
+        0.12115561962127686,
+        -0.07857554405927658,
+        0.16696776449680328,
+        -0.03553212061524391,
+        0.08049537241458893,
+        0.0748170018196106,
+        0.03567131236195564,
+        0.038146939128637314,
+        -0.029581572860479355,
+        0.05899105966091156,
+        0.00945078581571579,
+        0.16568532586097717,
+        -0.1870991736650467,
+        0.09563981741666794,
+        0.06388932466506958,
+        0.1721063107252121,
+        0.08447235822677612,
+        0.008525673300027847,
+        0.15650849044322968,
+        0.015789750963449478,
+        -0.2023783177137375,
+        0.0053249504417181015,
+        0.14049097895622253,
+        0.043105244636535645,
+        -0.20841775834560394,
+        0.3593566417694092,
+        -0.0422326922416687,
+        0.07021459192037582,
+        -0.1253821700811386,
+        0.01612074114382267,
+        -0.17010030150413513,
+        -0.06655651330947876,
+        0.12777289748191833,
+        -0.011907817795872688,
+        -0.08862851560115814,
+        -0.12998490035533905,
+        -0.138607457280159,
+        0.06796563416719437,
+        0.02085738629102707,
+        0.28055447340011597,
+        -0.08322685956954956,
+        0.18090665340423584,
+        -0.13304652273654938,
+        -0.05475364997982979,
+        -0.1575116068124771,
+        0.004857112653553486,
+        -0.08816812187433243,
+        -0.05101747810840607,
+        0.09602950513362885,
+        0.14319489896297455,
+        -0.006767006125301123,
+        0.20546308159828186,
+        -0.06823573261499405,
+        -0.09312170743942261,
+        0.0628766119480133,
+        0.10795511305332184,
+        0.07473812997341156,
+        0.22094056010246277
+      ],
+      "w_self": 4.208,
+      "latched": true,
+      "latch_time": 1793357745.542078,
+      "octave_decay": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "access_count": 1,
+      "last_accessed": 1793357745.5420818,
+      "canonical_path": "C:\\Users\\Admin\\.gemini\\antigravity\\brain\\b1ee406f-400d-439c-abb9-369acf28ab9a\\newtonian_physics_first_principles_guide.md",
+      "stats": {
+        "sessions": 900,
+        "parts": 40,
+        "lines": 52943,
+        "chars": 4379057,
+        "words": 545773,
+        "display_math": 7775,
+        "code_blocks": 928,
+        "placeholders": 0,
+        "latex_errors": 0
+      },
+      "payload": {
+        "macro": "first_principles_physics_encyclopedia_900_sessions_grand_synthesis",
+        "meso": "",
+        "micro": ""
+      },
+      "kerr_geometry": {
+        "coords": [
+          4.4912,
+          0.8194,
+          3.108
+        ],
+        "r": 5.4783,
+        "theta": 0.9675,
+        "phi": 0.1805,
+        "omega_drag": 0.009962,
+        "v_drag": [
+          -0.0082,
+          0.0447,
+          0.0
+        ]
+      },
+      "coords": [
+        4.4912,
+        0.8194,
+        3.108
+      ],
+      "temporal_octave": 4
+    },
+    "51dd7a1999c2": {
+      "id": "51dd7a1999c2",
+      "concept": "The Millennium Cosmic Unity: 1000 Sessions Complete First-Principles Compendium",
+      "content": "Live file at C:/Users/Admin/.gemini/antigravity/brain/b1ee406f-400d-439c-abb9-369acf28ab9a/newtonian_physics_first_principles_guide.md",
+      "payload": {
+        "macro": "1000 Sessions of Unified Theoretical Physics from Aristotle to Holographic Wormholes and Master Symplectic Geodesic Action",
+        "meso": "Sessions 901-1000: Quantum Gravity Phenomenology, Holographic Quantum Codes, Fuzzball Microstates, and Millennium Cosmic Unity",
+        "micro": "Live file at C:/Users/Admin/.gemini/antigravity/brain/b1ee406f-400d-439c-abb9-369acf28ab9a/newtonian_physics_first_principles_guide.md"
+      },
+      "category": "physics_monument",
+      "coords": [
+        3.5454,
+        -0.3732,
+        -2.7616
+      ],
+      "kerr_geometry": {
+        "coords": [
+          3.5454,
+          -0.3732,
+          -2.7616
+        ],
+        "r": 4.4598,
+        "theta": 2.2385,
+        "phi": -0.1049,
+        "omega_drag": 0.018066,
+        "v_drag": [
+          0.0067,
+          0.0641,
+          0.0
+        ]
+      },
+      "phase_vector": [
+        0.2956596910953522,
+        0.1349399834871292,
+        0.1353798508644104,
+        -0.10855235904455185,
+        0.07996557652950287,
+        0.15479686856269836,
+        0.05464715138077736,
+        0.17932011187076569,
+        0.24078992009162903,
+        0.025204695761203766,
+        -0.018057288601994514,
+        -0.06552395224571228,
+        0.12221109867095947,
+        -0.22916023433208466,
+        0.048271339386701584,
+        -0.3324900269508362,
+        0.12354421615600586,
+        0.0325770229101181,
+        -0.2525971531867981,
+        -0.12866082787513733,
+        0.09520667791366577,
+        -0.09188204258680344,
+        0.1422782838344574,
+        -0.18265581130981445,
+        0.059692785143852234,
+        -0.002737500471994281,
+        -0.10847128182649612,
+        -0.0896885097026825,
+        -0.05683024227619171,
+        -0.11871615797281265,
+        0.10323633998632431,
+        0.07656226307153702,
+        0.25261980295181274,
+        -0.08772208541631699,
+        0.041113533079624176,
+        -0.018611036241054535,
+        0.03469567745923996,
+        -0.17528747022151947,
+        0.010345724411308765,
+        0.11538572609424591,
+        0.1499660760164261,
+        -0.11512808501720428,
+        -0.07128050178289413,
+        -0.12433654069900513,
+        -0.2651343047618866,
+        -0.07823601365089417,
+        -0.035210445523262024,
+        -0.05778970941901207,
+        0.10675777494907379,
+        0.024184584617614746,
+        0.05797118693590164,
+        -0.03679114952683449,
+        -0.05740568786859512,
+        0.0782850831747055,
+        -0.022954212501645088,
+        0.09608273953199387,
+        -0.027086177840828896,
+        0.025593457743525505,
+        0.01837919093668461,
+        -0.09198717027902603,
+        -0.05047805607318878,
+        -0.11300013959407806,
+        0.07484955340623856,
+        0.08375906199216843
+      ],
+      "latch_state": 1.0,
+      "w_self": 4.208,
+      "access_count": 1,
+      "timestamp": 1793360472.3017826,
+      "temporal_octave": 1
     }
   },
   "edges": {
@@ -37517,7 +38832,22 @@
     "0c3106c9d145->2bd38ae3309f": 0.5429,
     "0c3106c9d145->4b8e755d95bf": 0.5271,
     "0c3106c9d145->94e9c59af32c": 0.502,
-    "0c3106c9d145->035a81da98d8": 0.4839
+    "0c3106c9d145->035a81da98d8": 0.4839,
+    "9c257b5f56d6->b2eb765bced9": 0.4,
+    "9c257b5f56d6->bda8de14ba82": 0.4,
+    "9b89c266be08->9c257b5f56d6": 0.4,
+    "ab98777d7118->8de48dd0a22e": {
+      "source": "ab98777d7118",
+      "target": "8de48dd0a22e",
+      "weight": 1.0,
+      "rel": "sequential_batch_evolution"
+    },
+    "8de48dd0a22e->5375555267a7": {
+      "source": "8de48dd0a22e",
+      "target": "5375555267a7",
+      "weight": 1.0,
+      "rel": "sequential_batch_evolution"
+    }
   },
   "angular_flux": {
     "0f56310a40f4->63236544084d": -0.09500141197356349,
@@ -39601,6 +40931,9 @@
     "0c3106c9d145->2bd38ae3309f": 0.1703,
     "0c3106c9d145->4b8e755d95bf": 0.431,
     "0c3106c9d145->94e9c59af32c": -0.3131,
-    "0c3106c9d145->035a81da98d8": 0.2267
+    "0c3106c9d145->035a81da98d8": 0.2267,
+    "9c257b5f56d6->b2eb765bced9": -0.8098,
+    "9c257b5f56d6->bda8de14ba82": 0.512,
+    "9b89c266be08->9c257b5f56d6": 0.1729
   }
 }
